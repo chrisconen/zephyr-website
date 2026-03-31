@@ -1,0 +1,1986 @@
+---
+// hogyan-mukodik.astro - Zephyr "Hogyan működik" aloldal
+// GSAP ScrollTrigger + EPIC SVG animációk
+// Pixella-level: flowing particles, glow paths, circuit board style
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Hogyan működik" description="Tudományosan megalapozott dupla formula a másnaposság ellen.">
+  
+  <Header />
+  
+  <main class="how-it-works-page">
+    
+    <!-- Hero Section -->
+    <section class="hiw-hero">
+      <div class="container">
+        <span class="section-label">A Tudomány</span>
+        <h1>Hogyan működik a <span class="gradient-text">Zephyr</span>?</h1>
+        <p class="hero-subtitle">
+          A Zephyr dupla formulája két irányból támogatja szervezetét: 
+          felkészíti az estére, és segít a regenerálódásban másnap reggel.
+        </p>
+        <div class="scroll-hint">
+          <span>Görgess a tudományért</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+    
+    <!-- ═══════════════════════════════════════════════════════════
+         SCROLL SECTION - Pinned 4-step animation
+         ═══════════════════════════════════════════════════════════ -->
+    <section class="scroll-section" id="the-basics">
+      <div class="scroll-container">
+        
+        <!-- Left Side - Text Content -->
+        <div class="content-side">
+          
+          <!-- Progress Indicator -->
+          <div class="progress-nav">
+            <div class="progress-track">
+              <div class="progress-fill"></div>
+            </div>
+            <div class="progress-dots">
+              <button class="progress-dot active" data-step="1">01</button>
+              <button class="progress-dot" data-step="2">02</button>
+              <button class="progress-dot" data-step="3">03</button>
+              <button class="progress-dot" data-step="4">04</button>
+            </div>
+          </div>
+          
+          <!-- Step 1: Acetaldehid -->
+          <div class="feature-item active" data-step="acetaldehyde">
+            <div class="feature-label danger-label">01 — A Probléma</div>
+            <h2 class="feature-title">Az alkohol acetaldehidet termel</h2>
+            <p class="feature-description">
+              Amikor alkoholt fogyasztunk, a szervezet megkezdi annak lebontását. 
+              Ennek során <strong>acetaldehid</strong> keletkezik — egy toxikus melléktermék, 
+              amely felelős a másnapos tünetek nagy részéért.
+            </p>
+            <div class="feature-stats">
+              <div class="stat">
+                <span class="stat-value" id="stat-toxic">10×</span>
+                <span class="stat-label">mérgezőbb mint az alkohol</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value" id="stat-time">6-8 óra</span>
+                <span class="stat-label">lebontási idő</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Step 2: Dehidratáció -->
+          <div class="feature-item" data-step="dehydration">
+            <div class="feature-label warning-label">02 — A Folyamat</div>
+            <h2 class="feature-title">A szervezet elveszíti az egyensúlyt</h2>
+            <p class="feature-description">
+              Az alkohol diuretikus hatású — fokozza a vizelettermelést, ami 
+              <strong>dehidratációhoz</strong> vezet. Eközben fontos vitaminokat és ásványi 
+              anyagokat veszítünk.
+            </p>
+            <div class="feature-stats">
+              <div class="stat">
+                <span class="stat-value" id="stat-bvit">-50%</span>
+                <span class="stat-label">B-vitamin szint</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value" id="stat-fluid">4×</span>
+                <span class="stat-label">több folyadékvesztés</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Step 3: Preventive -->
+          <div class="feature-item" data-step="preventive">
+            <div class="feature-label preventive-label">03 — Preventive</div>
+            <h2 class="feature-title">Felkészítjük a szervezetet</h2>
+            <p class="feature-description">
+              A <strong>Preventive formula</strong> ivás előtt támogatja a máj természetes 
+              méregtelenítő folyamatait. L-cisztein és Taurin segít az acetaldehid 
+              lebontásában.
+            </p>
+            <div class="feature-stats">
+              <div class="stat">
+                <span class="stat-value" id="stat-lcys">1000mg</span>
+                <span class="stat-label">L-cisztein</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value" id="stat-ofi">240mg</span>
+                <span class="stat-label">Fügekaktusz</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Step 4: Recovery -->
+          <div class="feature-item" data-step="recovery">
+            <div class="feature-label recovery-label">04 — Recovery</div>
+            <h2 class="feature-title">Helyreállítjuk az egyensúlyt</h2>
+            <p class="feature-description">
+              A <strong>Recovery formula</strong> reggel segít a regenerálódásban. 
+              Glutation és Máriatövis támogatják a máj tisztulását, míg az 
+              elektrolitok helyreállítják az energiaszintet.
+            </p>
+            <div class="feature-stats">
+              <div class="stat">
+                <span class="stat-value" id="stat-gsh">500mg</span>
+                <span class="stat-label">Glutation</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value" id="stat-b1">90mg</span>
+                <span class="stat-label">B1-vitamin</span>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+        <!-- Right Side - EPIC Visual Animations -->
+        <div class="visual-side">
+          <div class="visual-container">
+            
+            <!-- ═══════════════════════════════════════
+                 VISUAL 1: TOXIN CIRCUIT - Data flow style
+                 ═══════════════════════════════════════ -->
+            <div class="feature-visual active" data-step="acetaldehyde">
+              <div class="visual-wrapper">
+                <svg class="epic-svg" viewBox="0 0 500 500">
+                  <defs>
+                    <!-- Glow filters -->
+                    <filter id="redGlow" x="-50%" y="-50%" width="200%" height="200%">
+                      <feGaussianBlur stdDeviation="8" result="blur"/>
+                      <feMerge>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                      </feMerge>
+                    </filter>
+                    <filter id="strongRedGlow" x="-100%" y="-100%" width="300%" height="300%">
+                      <feGaussianBlur stdDeviation="15" result="blur"/>
+                      <feMerge>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                      </feMerge>
+                    </filter>
+                    
+                    <!-- Gradient for flowing pulse -->
+                    <linearGradient id="toxinPulseGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#DC2626" stop-opacity="0"/>
+                      <stop offset="50%" stop-color="#EF4444" stop-opacity="1"/>
+                      <stop offset="100%" stop-color="#DC2626" stop-opacity="0"/>
+                    </linearGradient>
+                    
+                    <!-- Radial danger glow -->
+                    <radialGradient id="dangerRadial" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stop-color="#DC2626" stop-opacity="0.4"/>
+                      <stop offset="70%" stop-color="#DC2626" stop-opacity="0.1"/>
+                      <stop offset="100%" stop-color="#DC2626" stop-opacity="0"/>
+                    </radialGradient>
+                  </defs>
+                  
+                  <!-- Background danger pulse -->
+                  <circle cx="250" cy="250" r="200" fill="url(#dangerRadial)" class="danger-bg-pulse"/>
+                  
+                  <!-- Circuit paths - Liver to body -->
+                  <g class="circuit-paths">
+                    <!-- Main circuit lines -->
+                    <path id="toxinPath1" class="circuit-line" d="M100,250 Q150,250 180,200 Q210,150 250,150" fill="none" stroke="#3a3a4a" stroke-width="3"/>
+                    <path id="toxinPath2" class="circuit-line" d="M100,250 Q150,250 200,250 Q250,250 300,250" fill="none" stroke="#3a3a4a" stroke-width="3"/>
+                    <path id="toxinPath3" class="circuit-line" d="M100,250 Q150,250 180,300 Q210,350 250,350" fill="none" stroke="#3a3a4a" stroke-width="3"/>
+                    <path id="toxinPath4" class="circuit-line" d="M250,150 Q320,150 360,180 Q400,210 400,250" fill="none" stroke="#3a3a4a" stroke-width="3"/>
+                    <path id="toxinPath5" class="circuit-line" d="M250,350 Q320,350 360,320 Q400,290 400,250" fill="none" stroke="#3a3a4a" stroke-width="3"/>
+                    
+                    <!-- Flowing pulse lines -->
+                    <path id="toxinPulse1" class="pulse-line" d="M100,250 Q150,250 180,200 Q210,150 250,150" fill="none" stroke="url(#toxinPulseGrad)" stroke-width="5" stroke-linecap="round"/>
+                    <path id="toxinPulse2" class="pulse-line" d="M100,250 Q150,250 200,250 Q250,250 300,250" fill="none" stroke="url(#toxinPulseGrad)" stroke-width="5" stroke-linecap="round"/>
+                    <path id="toxinPulse3" class="pulse-line" d="M100,250 Q150,250 180,300 Q210,350 250,350" fill="none" stroke="url(#toxinPulseGrad)" stroke-width="5" stroke-linecap="round"/>
+                  </g>
+                  
+                  <!-- Central Liver chip -->
+                  <g class="liver-chip" transform="translate(100, 250)">
+                    <rect x="-45" y="-45" width="90" height="90" rx="16" fill="#2a2a3a" stroke="#4a4a5a" stroke-width="2"/>
+                    <rect class="chip-glow" x="-45" y="-45" width="90" height="90" rx="16" fill="none" stroke="#DC2626" stroke-width="2" opacity="0"/>
+                    <!-- Liver icon -->
+                    <text x="0" y="8" text-anchor="middle" fill="#8a8a9a" font-size="32">🫀</text>
+                    <text x="0" y="32" text-anchor="middle" fill="#6a6a7a" font-size="10" font-weight="600">MÁJ</text>
+                  </g>
+                  
+                  <!-- Toxin molecule nodes -->
+                  <g class="toxin-nodes">
+                    <!-- Node 1 - Top -->
+                    <g class="toxin-node" id="toxinNode1" transform="translate(250, 150)">
+                      <circle r="35" fill="#1a1a24" stroke="#3a3a4a" stroke-width="2"/>
+                      <circle class="node-glow" r="35" fill="none" stroke="#DC2626" stroke-width="3" opacity="0"/>
+                      <circle cx="0" cy="-8" r="12" fill="#DC2626" class="atom-c"/>
+                      <circle cx="-15" cy="10" r="8" fill="#EF4444" class="atom-h"/>
+                      <circle cx="15" cy="10" r="8" fill="#EF4444" class="atom-h"/>
+                      <text x="0" y="-4" text-anchor="middle" fill="white" font-size="8" font-weight="bold">C</text>
+                    </g>
+                    
+                    <!-- Node 2 - Center -->
+                    <g class="toxin-node" id="toxinNode2" transform="translate(300, 250)">
+                      <circle r="40" fill="#1a1a24" stroke="#3a3a4a" stroke-width="2"/>
+                      <circle class="node-glow" r="40" fill="none" stroke="#DC2626" stroke-width="3" opacity="0"/>
+                      <text x="0" y="6" text-anchor="middle" fill="#DC2626" font-size="11" font-weight="bold">ACETALDEHID</text>
+                    </g>
+                    
+                    <!-- Node 3 - Bottom -->
+                    <g class="toxin-node" id="toxinNode3" transform="translate(250, 350)">
+                      <circle r="35" fill="#1a1a24" stroke="#3a3a4a" stroke-width="2"/>
+                      <circle class="node-glow" r="35" fill="none" stroke="#DC2626" stroke-width="3" opacity="0"/>
+                      <circle cx="-12" cy="-5" r="10" fill="#F87171" class="atom-o"/>
+                      <circle cx="12" cy="-5" r="10" fill="#F87171" class="atom-o"/>
+                      <circle cx="0" cy="12" r="8" fill="#DC2626"/>
+                      <text x="-12" y="-1" text-anchor="middle" fill="white" font-size="7" font-weight="bold">O</text>
+                      <text x="12" y="-1" text-anchor="middle" fill="white" font-size="7" font-weight="bold">O</text>
+                    </g>
+                    
+                    <!-- Body target -->
+                    <g class="body-target" transform="translate(400, 250)">
+                      <circle r="50" fill="#1a1a24" stroke="#3a3a4a" stroke-width="2"/>
+                      <circle class="target-pulse" r="50" fill="none" stroke="#DC2626" stroke-width="2" opacity="0"/>
+                      <text x="0" y="-5" text-anchor="middle" fill="#DC2626" font-size="28">⚠️</text>
+                      <text x="0" y="20" text-anchor="middle" fill="#8a8a9a" font-size="9" font-weight="600">TOXIKUS</text>
+                    </g>
+                  </g>
+                  
+                  <!-- Floating danger particles -->
+                  <g class="danger-particles">
+                    <circle class="d-particle" cx="150" cy="180" r="3" fill="#DC2626"/>
+                    <circle class="d-particle" cx="180" cy="320" r="4" fill="#EF4444"/>
+                    <circle class="d-particle" cx="320" cy="180" r="3" fill="#DC2626"/>
+                    <circle class="d-particle" cx="350" cy="320" r="4" fill="#EF4444"/>
+                    <circle class="d-particle" cx="280" cy="200" r="2" fill="#F87171"/>
+                    <circle class="d-particle" cx="220" cy="300" r="3" fill="#DC2626"/>
+                  </g>
+                </svg>
+                
+                <!-- Status badge -->
+                <div class="visual-badge danger">
+                  <span class="badge-dot"></span>
+                  <span>Toxin termelés aktív</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- ═══════════════════════════════════════
+                 VISUAL 2: DEHYDRATION - Water drain effect
+                 ═══════════════════════════════════════ -->
+            <div class="feature-visual" data-step="dehydration">
+              <div class="visual-wrapper">
+                <svg class="epic-svg" viewBox="0 0 500 500">
+                  <defs>
+                    <filter id="blueGlow" x="-50%" y="-50%" width="200%" height="200%">
+                      <feGaussianBlur stdDeviation="6" result="blur"/>
+                      <feMerge>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                      </feMerge>
+                    </filter>
+                    <linearGradient id="waterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#3B82F6"/>
+                      <stop offset="100%" stop-color="#1D4ED8"/>
+                    </linearGradient>
+                    <linearGradient id="drainPulse" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#FBBF24" stop-opacity="0"/>
+                      <stop offset="50%" stop-color="#F59E0B" stop-opacity="1"/>
+                      <stop offset="100%" stop-color="#FBBF24" stop-opacity="0"/>
+                    </linearGradient>
+                    <clipPath id="bodyClipPath">
+                      <path d="M180,100 L320,100 L340,400 L160,400 Z"/>
+                    </clipPath>
+                  </defs>
+                  
+                  <!-- Body container -->
+                  <g class="body-container">
+                    <!-- Body outline -->
+                    <path d="M180,100 L320,100 L340,400 L160,400 Z" fill="none" stroke="#4a4a5a" stroke-width="4" stroke-linejoin="round"/>
+                    
+                    <!-- Water inside body (animated level) -->
+                    <g clip-path="url(#bodyClipPath)">
+                      <rect id="waterLevel" x="160" y="200" width="180" height="200" fill="url(#waterGradient)" opacity="0.7"/>
+                      <!-- Wave animation -->
+                      <path id="waterWave" d="M160,200 Q200,180 250,200 T340,200 L340,400 L160,400 Z" fill="url(#waterGradient)" opacity="0.5"/>
+                    </g>
+                    
+                    <!-- Drain pipes -->
+                    <g class="drain-pipes">
+                      <path id="drainPath1" d="M180,300 Q120,300 100,350 L100,420" fill="none" stroke="#4a4a5a" stroke-width="3"/>
+                      <path id="drainPath2" d="M320,300 Q380,300 400,350 L400,420" fill="none" stroke="#4a4a5a" stroke-width="3"/>
+                      
+                      <!-- Flowing drain pulses -->
+                      <path id="drainPulse1" d="M180,300 Q120,300 100,350 L100,420" fill="none" stroke="url(#drainPulse)" stroke-width="6" stroke-linecap="round"/>
+                      <path id="drainPulse2" d="M320,300 Q380,300 400,350 L400,420" fill="none" stroke="url(#drainPulse)" stroke-width="6" stroke-linecap="round"/>
+                    </g>
+                  </g>
+                  
+                  <!-- Escaping nutrient bubbles -->
+                  <g class="nutrient-bubbles">
+                    <!-- Left side nutrients -->
+                    <g class="nutrient-bubble nb1" transform="translate(80, 350)">
+                      <circle r="25" fill="rgba(251, 191, 36, 0.2)" stroke="#FBBF24" stroke-width="2"/>
+                      <text y="5" text-anchor="middle" fill="#FBBF24" font-size="11" font-weight="bold">B₆</text>
+                    </g>
+                    <g class="nutrient-bubble nb2" transform="translate(100, 420)">
+                      <circle r="22" fill="rgba(139, 92, 246, 0.2)" stroke="#8B5CF6" stroke-width="2"/>
+                      <text y="5" text-anchor="middle" fill="#8B5CF6" font-size="11" font-weight="bold">Mg</text>
+                    </g>
+                    
+                    <!-- Right side nutrients -->
+                    <g class="nutrient-bubble nb3" transform="translate(420, 350)">
+                      <circle r="23" fill="rgba(34, 197, 94, 0.2)" stroke="#22C55E" stroke-width="2"/>
+                      <text y="5" text-anchor="middle" fill="#22C55E" font-size="11" font-weight="bold">K</text>
+                    </g>
+                    <g class="nutrient-bubble nb4" transform="translate(400, 420)">
+                      <circle r="20" fill="rgba(251, 191, 36, 0.2)" stroke="#FBBF24" stroke-width="2"/>
+                      <text y="5" text-anchor="middle" fill="#FBBF24" font-size="11" font-weight="bold">B₁₂</text>
+                    </g>
+                  </g>
+                  
+                  <!-- Water droplets escaping -->
+                  <g class="water-drops">
+                    <circle class="w-drop" cx="130" cy="320" r="6" fill="#3B82F6" filter="url(#blueGlow)"/>
+                    <circle class="w-drop" cx="370" cy="330" r="5" fill="#60A5FA"/>
+                    <circle class="w-drop" cx="110" cy="380" r="4" fill="#3B82F6"/>
+                    <circle class="w-drop" cx="390" cy="390" r="6" fill="#60A5FA" filter="url(#blueGlow)"/>
+                    <circle class="w-drop" cx="95" cy="440" r="5" fill="#3B82F6"/>
+                    <circle class="w-drop" cx="405" cy="450" r="4" fill="#60A5FA"/>
+                  </g>
+                  
+                  <!-- Percentage indicator -->
+                  <g transform="translate(250, 70)">
+                    <rect x="-50" y="-20" width="100" height="40" rx="20" fill="rgba(251, 191, 36, 0.15)" stroke="#FBBF24" stroke-width="1"/>
+                    <text id="dehydrationPercent" x="0" y="7" text-anchor="middle" fill="#FBBF24" font-size="16" font-weight="bold">-50%</text>
+                  </g>
+                </svg>
+                
+                <div class="visual-badge warning">
+                  <span class="badge-dot"></span>
+                  <span>Dehidratáció folyamatban</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- ═══════════════════════════════════════
+                 VISUAL 3: PREVENTIVE - Shield activation
+                 ═══════════════════════════════════════ -->
+            <div class="feature-visual" data-step="preventive">
+              <div class="visual-wrapper">
+                <svg class="epic-svg" viewBox="0 0 500 500">
+                  <defs>
+                    <filter id="purpleGlow" x="-50%" y="-50%" width="200%" height="200%">
+                      <feGaussianBlur stdDeviation="10" result="blur"/>
+                      <feMerge>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                      </feMerge>
+                    </filter>
+                    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#6D2077"/>
+                      <stop offset="50%" stop-color="#8B3A96"/>
+                      <stop offset="100%" stop-color="#A855F7"/>
+                    </linearGradient>
+                    <linearGradient id="shieldPulseGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#A855F7" stop-opacity="0"/>
+                      <stop offset="50%" stop-color="#C084FC" stop-opacity="1"/>
+                      <stop offset="100%" stop-color="#A855F7" stop-opacity="0"/>
+                    </linearGradient>
+                    <radialGradient id="shieldRadial" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stop-color="#8B3A96" stop-opacity="0.3"/>
+                      <stop offset="100%" stop-color="#8B3A96" stop-opacity="0"/>
+                    </radialGradient>
+                  </defs>
+                  
+                  <!-- Background energy field -->
+                  <circle cx="250" cy="250" r="220" fill="url(#shieldRadial)" class="shield-energy-bg"/>
+                  
+                  <!-- Orbital rings -->
+                  <g class="orbital-system">
+                    <circle cx="250" cy="250" r="180" fill="none" stroke="rgba(139, 58, 150, 0.2)" stroke-width="1" stroke-dasharray="10,5" class="orbit-ring o1"/>
+                    <circle cx="250" cy="250" r="140" fill="none" stroke="rgba(139, 58, 150, 0.3)" stroke-width="1" stroke-dasharray="8,4" class="orbit-ring o2"/>
+                    <circle cx="250" cy="250" r="100" fill="none" stroke="rgba(139, 58, 150, 0.4)" stroke-width="1" class="orbit-ring o3"/>
+                  </g>
+                  
+                  <!-- Shield shape -->
+                  <g class="shield-main" transform="translate(250, 250)">
+                    <!-- Outer glow shield -->
+                    <path class="shield-glow-path" d="M0,-100 L80,-65 L80,40 Q80,95 0,115 Q-80,95 -80,40 L-80,-65 Z" 
+                          fill="none" stroke="url(#shieldGrad)" stroke-width="6" filter="url(#purpleGlow)" opacity="0.5"/>
+                    
+                    <!-- Main shield -->
+                    <path class="shield-fill" d="M0,-90 L70,-58 L70,35 Q70,85 0,103 Q-70,85 -70,35 L-70,-58 Z" 
+                          fill="url(#shieldGrad)" opacity="0.9"/>
+                    
+                    <!-- Shield inner border -->
+                    <path d="M0,-75 L55,-48 L55,28 Q55,70 0,85 Q-55,70 -55,28 L-55,-48 Z" 
+                          fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+                    
+                    <!-- Animated checkmark -->
+                    <path id="shieldCheck" d="M-30,5 L-8,28 L35,-25" 
+                          fill="none" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+                    
+                    <!-- Shield pulse rings -->
+                    <circle class="shield-pulse-ring spr1" r="70" fill="none" stroke="#A855F7" stroke-width="2"/>
+                    <circle class="shield-pulse-ring spr2" r="85" fill="none" stroke="#8B3A96" stroke-width="1"/>
+                    <circle class="shield-pulse-ring spr3" r="100" fill="none" stroke="#6D2077" stroke-width="1"/>
+                  </g>
+                  
+                  <!-- Orbiting ingredient nodes -->
+                  <g class="ingredient-nodes">
+                    <!-- L-Cysteine -->
+                    <g class="ing-node ing1">
+                      <circle cx="250" cy="70" r="30" fill="#1a1a24" stroke="#8B3A96" stroke-width="2"/>
+                      <circle class="ing-glow" cx="250" cy="70" r="30" fill="none" stroke="#A855F7" stroke-width="3" filter="url(#purpleGlow)"/>
+                      <text x="250" y="65" text-anchor="middle" fill="#C084FC" font-size="9" font-weight="bold">L-CYS</text>
+                      <text x="250" y="80" text-anchor="middle" fill="#8a8a9a" font-size="8">1000mg</text>
+                    </g>
+                    
+                    <!-- Taurin -->
+                    <g class="ing-node ing2">
+                      <circle cx="400" cy="300" r="28" fill="#1a1a24" stroke="#8B3A96" stroke-width="2"/>
+                      <circle class="ing-glow" cx="400" cy="300" r="28" fill="none" stroke="#A855F7" stroke-width="3" filter="url(#purpleGlow)"/>
+                      <text x="400" y="295" text-anchor="middle" fill="#C084FC" font-size="9" font-weight="bold">TAU</text>
+                      <text x="400" y="310" text-anchor="middle" fill="#8a8a9a" font-size="8">500mg</text>
+                    </g>
+                    
+                    <!-- Fügekaktusz -->
+                    <g class="ing-node ing3">
+                      <circle cx="100" cy="300" r="28" fill="#1a1a24" stroke="#8B3A96" stroke-width="2"/>
+                      <circle class="ing-glow" cx="100" cy="300" r="28" fill="none" stroke="#A855F7" stroke-width="3" filter="url(#purpleGlow)"/>
+                      <text x="100" y="295" text-anchor="middle" fill="#C084FC" font-size="9" font-weight="bold">OFI</text>
+                      <text x="100" y="310" text-anchor="middle" fill="#8a8a9a" font-size="8">240mg</text>
+                    </g>
+                  </g>
+                  
+                  <!-- Connecting flow lines -->
+                  <g class="flow-connections">
+                    <path id="flowPath1" d="M250,100 Q250,150 250,160" fill="none" stroke="#5a5a6a" stroke-width="2"/>
+                    <path id="flowPath2" d="M372,300 Q320,280 310,260" fill="none" stroke="#5a5a6a" stroke-width="2"/>
+                    <path id="flowPath3" d="M128,300 Q180,280 190,260" fill="none" stroke="#5a5a6a" stroke-width="2"/>
+                    
+                    <!-- Animated pulses on flow lines - hidden initially -->
+                    <circle id="flowDot1" cx="250" cy="100" r="4" fill="#A855F7" filter="url(#purpleGlow)" opacity="0"/>
+                    <circle id="flowDot2" cx="372" cy="300" r="4" fill="#A855F7" filter="url(#purpleGlow)" opacity="0"/>
+                    <circle id="flowDot3" cx="128" cy="300" r="4" fill="#A855F7" filter="url(#purpleGlow)" opacity="0"/>
+                  </g>
+                  
+                  <!-- Energy particles -->
+                  <g class="energy-particles">
+                    <circle class="e-particle" cx="180" cy="180" r="3" fill="#A855F7"/>
+                    <circle class="e-particle" cx="320" cy="180" r="3" fill="#C084FC"/>
+                    <circle class="e-particle" cx="150" cy="280" r="2" fill="#8B3A96"/>
+                    <circle class="e-particle" cx="350" cy="280" r="3" fill="#A855F7"/>
+                    <circle class="e-particle" cx="200" cy="350" r="2" fill="#C084FC"/>
+                    <circle class="e-particle" cx="300" cy="350" r="3" fill="#8B3A96"/>
+                  </g>
+                </svg>
+                
+                <div class="visual-badge preventive">
+                  <span class="badge-dot"></span>
+                  <span>Védelem aktiválva</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- ═══════════════════════════════════════
+                 VISUAL 4: RECOVERY - Energy restoration
+                 ═══════════════════════════════════════ -->
+            <div class="feature-visual" data-step="recovery">
+              <div class="visual-wrapper">
+                <svg class="epic-svg" viewBox="0 0 500 500">
+                  <defs>
+                    <filter id="cyanGlow" x="-50%" y="-50%" width="200%" height="200%">
+                      <feGaussianBlur stdDeviation="12" result="blur"/>
+                      <feMerge>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                      </feMerge>
+                    </filter>
+                    <linearGradient id="energyGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+                      <stop offset="0%" stop-color="#003B5C"/>
+                      <stop offset="50%" stop-color="#0A5A85"/>
+                      <stop offset="100%" stop-color="#0EA5E9"/>
+                    </linearGradient>
+                    <radialGradient id="sunburstGrad" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stop-color="#0EA5E9" stop-opacity="0.6"/>
+                      <stop offset="50%" stop-color="#0A5A85" stop-opacity="0.3"/>
+                      <stop offset="100%" stop-color="#003B5C" stop-opacity="0"/>
+                    </radialGradient>
+                  </defs>
+                  
+                  <!-- Background sunburst -->
+                  <circle cx="250" cy="250" r="200" fill="url(#sunburstGrad)" class="sunburst-bg"/>
+                  
+                  <!-- Energy rays -->
+                  <g class="energy-rays" transform="translate(250, 250)">
+                    <line class="e-ray ray1" x1="0" y1="-70" x2="0" y2="-150" stroke="#0EA5E9" stroke-width="4" stroke-linecap="round"/>
+                    <line class="e-ray ray2" x1="49" y1="-49" x2="106" y2="-106" stroke="#0EA5E9" stroke-width="4" stroke-linecap="round"/>
+                    <line class="e-ray ray3" x1="70" y1="0" x2="150" y2="0" stroke="#0EA5E9" stroke-width="4" stroke-linecap="round"/>
+                    <line class="e-ray ray4" x1="49" y1="49" x2="106" y2="106" stroke="#0EA5E9" stroke-width="4" stroke-linecap="round"/>
+                    <line class="e-ray ray5" x1="0" y1="70" x2="0" y2="150" stroke="#0EA5E9" stroke-width="4" stroke-linecap="round"/>
+                    <line class="e-ray ray6" x1="-49" y1="49" x2="-106" y2="106" stroke="#0EA5E9" stroke-width="4" stroke-linecap="round"/>
+                    <line class="e-ray ray7" x1="-70" y1="0" x2="-150" y2="0" stroke="#0EA5E9" stroke-width="4" stroke-linecap="round"/>
+                    <line class="e-ray ray8" x1="-49" y1="-49" x2="-106" y2="-106" stroke="#0EA5E9" stroke-width="4" stroke-linecap="round"/>
+                  </g>
+                  
+                  <!-- Central energy core -->
+                  <g class="energy-core" transform="translate(250, 250)">
+                    <!-- Outer rings -->
+                    <circle class="core-ring cr1" r="80" fill="none" stroke="rgba(14, 165, 233, 0.3)" stroke-width="2"/>
+                    <circle class="core-ring cr2" r="65" fill="none" stroke="rgba(14, 165, 233, 0.4)" stroke-width="2"/>
+                    
+                    <!-- Main core -->
+                    <circle r="55" fill="url(#energyGrad)" filter="url(#cyanGlow)"/>
+                    <circle r="40" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                    
+                    <!-- Lightning bolt -->
+                    <path d="M-10,-25 L10,-25 L3,-5 L15,-5 L-10,30 L-3,8 L-15,8 Z" fill="white"/>
+                  </g>
+                  
+                  <!-- Incoming nutrient streams -->
+                  <g class="nutrient-streams">
+                    <!-- GSH stream -->
+                    <g class="stream stream1">
+                      <path id="streamPath1" d="M70,100 Q150,150 200,200" fill="none" stroke="#3a3a4a" stroke-width="2"/>
+                      <circle id="streamDot1" cx="70" cy="100" r="6" fill="#0EA5E9" filter="url(#cyanGlow)" opacity="0"/>
+                      <g class="stream-node" transform="translate(70, 100)">
+                        <circle r="25" fill="#1a1a24" stroke="#0A5A85" stroke-width="2"/>
+                        <text y="4" text-anchor="middle" fill="#0EA5E9" font-size="10" font-weight="bold">GSH</text>
+                      </g>
+                    </g>
+                    
+                    <!-- B1 stream -->
+                    <g class="stream stream2">
+                      <path id="streamPath2" d="M430,100 Q350,150 300,200" fill="none" stroke="#3a3a4a" stroke-width="2"/>
+                      <circle id="streamDot2" cx="430" cy="100" r="6" fill="#0EA5E9" filter="url(#cyanGlow)" opacity="0"/>
+                      <g class="stream-node" transform="translate(430, 100)">
+                        <circle r="25" fill="#1a1a24" stroke="#0A5A85" stroke-width="2"/>
+                        <text y="4" text-anchor="middle" fill="#0EA5E9" font-size="10" font-weight="bold">B₁</text>
+                      </g>
+                    </g>
+                    
+                    <!-- Mg stream -->
+                    <g class="stream stream3">
+                      <path id="streamPath3" d="M70,400 Q150,350 200,300" fill="none" stroke="#3a3a4a" stroke-width="2"/>
+                      <circle id="streamDot3" cx="70" cy="400" r="6" fill="#0EA5E9" filter="url(#cyanGlow)" opacity="0"/>
+                      <g class="stream-node" transform="translate(70, 400)">
+                        <circle r="25" fill="#1a1a24" stroke="#0A5A85" stroke-width="2"/>
+                        <text y="4" text-anchor="middle" fill="#0EA5E9" font-size="10" font-weight="bold">Mg</text>
+                      </g>
+                    </g>
+                    
+                    <!-- SIL stream -->
+                    <g class="stream stream4">
+                      <path id="streamPath4" d="M430,400 Q350,350 300,300" fill="none" stroke="#3a3a4a" stroke-width="2"/>
+                      <circle id="streamDot4" cx="430" cy="400" r="6" fill="#0EA5E9" filter="url(#cyanGlow)" opacity="0"/>
+                      <g class="stream-node" transform="translate(430, 400)">
+                        <circle r="25" fill="#1a1a24" stroke="#0A5A85" stroke-width="2"/>
+                        <text y="4" text-anchor="middle" fill="#0EA5E9" font-size="10" font-weight="bold">SIL</text>
+                      </g>
+                    </g>
+                  </g>
+                  
+                  <!-- Energy waves expanding -->
+                  <g class="energy-waves">
+                    <circle class="ew" cx="250" cy="250" r="60" fill="none" stroke="#0EA5E9" stroke-width="2"/>
+                    <circle class="ew" cx="250" cy="250" r="90" fill="none" stroke="#0A5A85" stroke-width="1.5"/>
+                    <circle class="ew" cx="250" cy="250" r="120" fill="none" stroke="#003B5C" stroke-width="1"/>
+                  </g>
+                  
+                  <!-- Sparkle particles -->
+                  <g class="sparkles">
+                    <circle class="sparkle" cx="150" cy="150" r="3" fill="#0EA5E9"/>
+                    <circle class="sparkle" cx="350" cy="150" r="2" fill="#22D3EE"/>
+                    <circle class="sparkle" cx="120" cy="320" r="3" fill="#0EA5E9"/>
+                    <circle class="sparkle" cx="380" cy="320" r="2" fill="#22D3EE"/>
+                    <circle class="sparkle" cx="200" cy="420" r="2" fill="#0EA5E9"/>
+                    <circle class="sparkle" cx="300" cy="420" r="3" fill="#22D3EE"/>
+                  </g>
+                </svg>
+                
+                <div class="visual-badge recovery">
+                  <span class="badge-dot"></span>
+                  <span>Regeneráció aktív</span>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+    </section>
+    
+    <!-- ═══════════════════════════════════════════════════════════
+         A MEGOLDÁS - Dupla támogatás
+         ═══════════════════════════════════════════════════════════ -->
+    <section class="solution-section" id="solution">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-label">A Megoldás</span>
+          <h2>Dupla támogatás, <span class="gradient-text">két irányból</span></h2>
+          <p class="section-subtitle">
+            A Zephyr nem egy "csodapirula" — hanem egy tudományosan megalapozott rendszer, 
+            amely két fázisban támogatja a szervezetet.
+          </p>
+        </div>
+        
+        <div class="phases-grid">
+          
+          <!-- Fázis 1: Preventive -->
+          <div class="phase-card">
+            <div class="phase-header preventive-accent">
+              <span class="phase-number">1. Fázis</span>
+              <h3>Preventive</h3>
+              <p class="phase-timing">Ivás előtt 30-60 perccel</p>
+            </div>
+            <div class="phase-content">
+              <p>
+                A Preventive formula felkészíti a szervezetet az alkohol feldolgozására. 
+                Az összetevők támogatják a máj természetes méregtelenítő folyamatait, és előre 
+                feltöltik azokat a tápanyagokat, amelyeket az alkohol fogyaszt.
+              </p>
+              <div class="phase-ingredients">
+                <h4>Főbb hatóanyagok:</h4>
+                <ul>
+                  <li><strong>L-cisztein (1000 mg)</strong> Aminosav, amely közvetlenül részt vesz az acetaldehid lebontásában.</li>
+                  <li><strong>Taurin (1000 mg)</strong> Erős antioxidáns, védi a sejteket az oxidatív stressztől.</li>
+                  <li><strong>Fügekaktusz kivonat (240 mg)</strong> Klinikai vizsgálatokban bizonyított hatás a másnaposság tüneteire.</li>
+                  <li><strong>C-vitamin (1000 mg)</strong> Antioxidáns és immunrendszer támogatás.</li>
+                  <li><strong>Elektrolitok (Mg, K, Na)</strong> A dehidratáció megelőzésére.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Fázis 2: Recovery -->
+          <div class="phase-card">
+            <div class="phase-header recovery-accent">
+              <span class="phase-number">2. Fázis</span>
+              <h3>Recovery</h3>
+              <p class="phase-timing">Másnap reggel, ébredés után</p>
+            </div>
+            <div class="phase-content">
+              <p>
+                A Recovery formula segíti a szervezet regenerálódásában. Az összetevők támogatják 
+                a máj tisztulását, helyreállítják az energiaszintet, és pótolják az elvesztett tápanyagokat.
+              </p>
+              <div class="phase-ingredients">
+                <h4>Főbb hatóanyagok:</h4>
+                <ul>
+                  <li><strong>Glutation (500 mg)</strong> A "mester antioxidáns" — kulcsszerepet játszik a méregtelenítésben.</li>
+                  <li><strong>Máriatövis (150 mg, 120 mg szilimarin)</strong> Évszázadok óta használt gyógynövény a máj támogatására.</li>
+                  <li><strong>L-alanil-L-glutamin (1000 mg)</strong> Gyors felszívódású aminosav a regenerálódáshoz.</li>
+                  <li><strong>B1-vitamin (90 mg)</strong> Az energia-anyagcsere támogatása — az alkohol csökkenti a B-vitamin szintet.</li>
+                  <li><strong>Elektrolitok (Mg, K, Na)</strong> A folyadékegyensúly helyreállítása.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+    </section>
+    
+    <!-- ═══════════════════════════════════════════════════════════
+         HASZNÁLAT - Három egyszerű lépés
+         ═══════════════════════════════════════════════════════════ -->
+    <section class="usage-section" id="usage">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-label">Használat</span>
+          <h2>Három egyszerű lépés</h2>
+        </div>
+        
+        <div class="usage-timeline">
+          
+          <!-- Step 1 -->
+          <div class="usage-step">
+            <div class="step-marker">01</div>
+            <div class="step-content">
+              <div class="step-icon-wrap preventive-glow">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+              </div>
+              <div class="step-text">
+                <h4>Preventive — Este</h4>
+                <p>
+                  Vedd be a <strong>lila tasakot</strong> 30-60 perccel ivás előtt. 
+                  Keverd el egy pohár vízben vagy gyümölcslében. A formula felkészíti a szervezetedet az estére.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Step 2 -->
+          <div class="usage-step">
+            <div class="step-marker">02</div>
+            <div class="step-content">
+              <div class="step-icon-wrap party-glow">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5.8 11.3L2 22l10.7-3.8"/>
+                  <path d="M4 3h.01M22 8h.01M15 2h.01M22 20h.01M22 2l-2.2 4.3a3 3 0 0 0 2.9 4.2c.2 0 .4-.03.6-.08L22 22l-2.24-4.24A3 3 0 0 0 22 14a3 3 0 0 0-3-3 3 3 0 0 0-2.9 2.24L12 12l4.24-2.1A3 3 0 0 0 14 7a3 3 0 0 0 3-3 3 3 0 0 0 5 1"/>
+                </svg>
+              </div>
+              <div class="step-text">
+                <h4>Élvezd az estét</h4>
+                <p>
+                  Bulizz, ünnepelj, lazíts! A Preventive formula a háttérben dolgozik, 
+                  támogatja a szervezetedet, miközben te jól érzed magad.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Step 3 -->
+          <div class="usage-step">
+            <div class="step-marker">03</div>
+            <div class="step-content">
+              <div class="step-icon-wrap recovery-glow">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="4"/>
+                  <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+                </svg>
+              </div>
+              <div class="step-text">
+                <h4>Recovery — Reggel</h4>
+                <p>
+                  Ébredés után vedd be a <strong>kék tasakot</strong>. 30-45 percen belül 
+                  érezd a különbséget — energia, tiszta fej, és egy produktív nap.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+    </section>
+    
+    <!-- ═══════════════════════════════════════════════════════════
+         A HÁTTÉRBEN - Miért működik
+         ═══════════════════════════════════════════════════════════ -->
+    <section class="why-section" id="why">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-label">A Háttérben</span>
+          <h2>Miért működik a Zephyr?</h2>
+        </div>
+        
+        <div class="why-grid">
+          
+          <div class="why-card">
+            <div class="why-icon">🧬</div>
+            <h4>Klinikailag vizsgált összetevők</h4>
+            <p>
+              Minden hatóanyagot tudományos kutatások támasztanak alá. 
+              Nem "csodaösszetevőket" használunk, hanem bevált, tesztelt anyagokat.
+            </p>
+          </div>
+          
+          <div class="why-card">
+            <div class="why-icon">⚖️</div>
+            <h4>Optimális dózisok</h4>
+            <p>
+              Nem "homeopátiás" mennyiségeket adagolunk. A Zephyr tartalmazza azt a mennyiséget, 
+              amelyet a kutatások hatékonynak találtak.
+            </p>
+          </div>
+          
+          <div class="why-card">
+            <div class="why-icon">🎯</div>
+            <h4>Kettős megközelítés</h4>
+            <p>
+              A legtöbb termék csak "másnap reggel" próbál segíteni. 
+              A Zephyr megelőz ÉS helyreállít — ez a kulcs a valódi eredményekhez.
+            </p>
+          </div>
+          
+          <div class="why-card">
+            <div class="why-icon">⚡</div>
+            <h4>Gyors felszívódás</h4>
+            <p>
+              A por formátum gyorsabb felszívódást biztosít, mint a tabletták vagy kapszulák. 
+              A hatóanyagok hamarabb kezdenek dolgozni.
+            </p>
+          </div>
+          
+        </div>
+        
+      </div>
+    </section>
+    
+    <!-- ═══════════════════════════════════════════════════════════
+         CTA Section
+         ═══════════════════════════════════════════════════════════ -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <h2>Készen állsz kipróbálni?</h2>
+          <p>30 napos elégedettségi garancia. Ha nem vagy elégedett, visszaadjuk a pénzed.</p>
+          <a href="/#shop" class="btn-primary">
+            Vásárlás
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+    
+  </main>
+  
+  <Footer />
+  
+</Layout>
+
+<style>
+  /* ═══════════════════════════════════════════
+     BASE STYLES
+     ═══════════════════════════════════════════ */
+  .how-it-works-page {
+    background: #FDFBF7;
+    color: #1A1A1A;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  
+  .section-label {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #6D2077;
+    margin-bottom: 1rem;
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, #6D2077, #003B5C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* ═══════════════════════════════════════════
+     HERO - VILÁGOS
+     ═══════════════════════════════════════════ */
+  .hiw-hero {
+    padding: 10rem 1.5rem 5rem;
+    text-align: center;
+    background: linear-gradient(180deg, #FDFBF7 0%, #F5F0E8 100%);
+  }
+  
+  .hiw-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 400;
+    color: #1A1A1A;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+    color: #4A4A4A;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    line-height: 1.7;
+  }
+  
+  .scroll-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: #6D2077;
+    font-size: 0.875rem;
+    animation: bounce 2s infinite;
+  }
+  
+  .scroll-hint svg {
+    stroke: #6D2077;
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+  }
+  
+  /* ═══════════════════════════════════════════
+     SCROLL SECTION
+     ═══════════════════════════════════════════ */
+  .scroll-section {
+    position: relative;
+    min-height: 400vh;
+    background: #0a0a0f;
+  }
+  
+  .scroll-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    align-items: center;
+  }
+  
+  @media (max-width: 1024px) {
+    .scroll-container {
+      grid-template-columns: 1fr;
+      padding: 0 1.5rem;
+    }
+    .visual-side { display: none; }
+  }
+  
+  /* Content Side */
+  .content-side {
+    position: relative;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  /* Progress Nav */
+  .progress-nav {
+    position: absolute;
+    left: -70px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  @media (max-width: 1200px) {
+    .progress-nav { display: none; }
+  }
+  
+  .progress-track {
+    width: 3px;
+    height: 160px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    position: relative;
+  }
+  
+  .progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 25%;
+    background: linear-gradient(180deg, #8B3A96, #0EA5E9);
+    border-radius: 3px;
+    transition: height 0.5s ease;
+    box-shadow: 0 0 15px rgba(139, 58, 150, 0.5);
+  }
+  
+  .progress-dots {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .progress-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.4);
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .progress-dot:hover {
+    border-color: rgba(139, 58, 150, 0.5);
+    color: rgba(255,255,255,0.7);
+  }
+  
+  .progress-dot.active {
+    background: linear-gradient(135deg, #8B3A96, #0A5A85);
+    border-color: transparent;
+    color: white;
+    box-shadow: 0 0 20px rgba(139, 58, 150, 0.5);
+  }
+  
+  /* Feature Items */
+  .feature-item {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+  }
+  
+  .feature-item.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .feature-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 1.25rem;
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    background: rgba(255,255,255,0.05);
+  }
+  
+  .feature-label::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  
+  .danger-label { color: #EF4444; }
+  .danger-label::before { background: #EF4444; box-shadow: 0 0 10px #EF4444; }
+  
+  .warning-label { color: #FBBF24; }
+  .warning-label::before { background: #FBBF24; box-shadow: 0 0 10px #FBBF24; }
+  
+  .preventive-label { color: #A855F7; }
+  .preventive-label::before { background: #A855F7; box-shadow: 0 0 10px #A855F7; }
+  
+  .recovery-label { color: #0EA5E9; }
+  .recovery-label::before { background: #0EA5E9; box-shadow: 0 0 10px #0EA5E9; }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+  
+  .feature-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    color: white;
+    margin-bottom: 1.5rem;
+    line-height: 1.15;
+  }
+  
+  .feature-description {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.65);
+    max-width: 500px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+  
+  .feature-description strong {
+    color: white;
+  }
+  
+  .feature-stats {
+    display: flex;
+    gap: 3rem;
+  }
+  
+  .stat-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: white;
+    display: block;
+  }
+  
+  .stat-label {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+  }
+  
+  /* ═══════════════════════════════════════════
+     VISUAL SIDE
+     ═══════════════════════════════════════════ */
+  .visual-side {
+    position: relative;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .visual-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .feature-visual {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  
+  .feature-visual.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+  }
+  
+  .visual-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    overflow: hidden;
+  }
+  
+  .epic-svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    display: block;
+  }
+  
+  /* Visual badges */
+  .visual-badge {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+  }
+  
+  .badge-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+  }
+  
+  .visual-badge.danger {
+    background: rgba(220, 38, 38, 0.2);
+    border: 1px solid rgba(220, 38, 38, 0.4);
+    color: #EF4444;
+  }
+  .visual-badge.danger .badge-dot { background: #EF4444; }
+  
+  .visual-badge.warning {
+    background: rgba(251, 191, 36, 0.15);
+    border: 1px solid rgba(251, 191, 36, 0.4);
+    color: #FBBF24;
+  }
+  .visual-badge.warning .badge-dot { background: #FBBF24; }
+  
+  .visual-badge.preventive {
+    background: rgba(139, 58, 150, 0.2);
+    border: 1px solid rgba(139, 58, 150, 0.4);
+    color: #A855F7;
+  }
+  .visual-badge.preventive .badge-dot { background: #A855F7; }
+  
+  .visual-badge.recovery {
+    background: rgba(14, 165, 233, 0.2);
+    border: 1px solid rgba(14, 165, 233, 0.4);
+    color: #0EA5E9;
+  }
+  .visual-badge.recovery .badge-dot { background: #0EA5E9; }
+  
+  /* ═══════════════════════════════════════════
+     SVG ANIMATIONS
+     ═══════════════════════════════════════════ */
+  
+  /* Danger background pulse */
+  .danger-bg-pulse {
+    animation: dangerPulse 3s ease-in-out infinite;
+  }
+  @keyframes dangerPulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.05); }
+  }
+  
+  /* Floating particles */
+  .d-particle {
+    animation: floatParticle 4s ease-in-out infinite;
+  }
+  .d-particle:nth-child(1) { animation-delay: 0s; }
+  .d-particle:nth-child(2) { animation-delay: 0.7s; }
+  .d-particle:nth-child(3) { animation-delay: 1.4s; }
+  .d-particle:nth-child(4) { animation-delay: 2.1s; }
+  .d-particle:nth-child(5) { animation-delay: 2.8s; }
+  .d-particle:nth-child(6) { animation-delay: 3.5s; }
+  
+  @keyframes floatParticle {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+    50% { transform: translate(15px, -20px) scale(1.3); opacity: 1; }
+  }
+  
+  /* Water drops falling */
+  .w-drop {
+    animation: dropFall 2s ease-in infinite;
+  }
+  .w-drop:nth-child(1) { animation-delay: 0s; }
+  .w-drop:nth-child(2) { animation-delay: 0.3s; }
+  .w-drop:nth-child(3) { animation-delay: 0.6s; }
+  .w-drop:nth-child(4) { animation-delay: 0.9s; }
+  .w-drop:nth-child(5) { animation-delay: 1.2s; }
+  .w-drop:nth-child(6) { animation-delay: 1.5s; }
+  
+  @keyframes dropFall {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(60px); opacity: 0; }
+  }
+  
+  /* Nutrient bubbles floating away */
+  .nutrient-bubble {
+    animation: bubbleFloat 3s ease-in-out infinite;
+  }
+  .nb1 { animation-delay: 0s; }
+  .nb2 { animation-delay: 0.8s; }
+  .nb3 { animation-delay: 1.6s; }
+  .nb4 { animation-delay: 2.4s; }
+  
+  @keyframes bubbleFloat {
+    0%, 100% { transform: translate(0, 0); opacity: 0.8; }
+    50% { transform: translate(-10px, -15px); opacity: 1; }
+  }
+  
+  /* Shield pulse rings */
+  .shield-pulse-ring {
+    animation: shieldRingPulse 2s ease-out infinite;
+    opacity: 0;
+  }
+  .spr1 { animation-delay: 0s; }
+  .spr2 { animation-delay: 0.6s; }
+  .spr3 { animation-delay: 1.2s; }
+  
+  @keyframes shieldRingPulse {
+    0% { r: 70; opacity: 0.8; }
+    100% { r: 130; opacity: 0; }
+  }
+  
+  /* Orbit rings rotation */
+  .orbit-ring {
+    transform-origin: center;
+  }
+  .o1 { animation: orbitSpin 30s linear infinite; }
+  .o2 { animation: orbitSpin 25s linear infinite reverse; }
+  .o3 { animation: orbitSpin 20s linear infinite; }
+  
+  @keyframes orbitSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Energy particles */
+  .e-particle {
+    animation: energyFloat 3s ease-in-out infinite;
+  }
+  .e-particle:nth-child(1) { animation-delay: 0s; }
+  .e-particle:nth-child(2) { animation-delay: 0.5s; }
+  .e-particle:nth-child(3) { animation-delay: 1s; }
+  .e-particle:nth-child(4) { animation-delay: 1.5s; }
+  .e-particle:nth-child(5) { animation-delay: 2s; }
+  .e-particle:nth-child(6) { animation-delay: 2.5s; }
+  
+  @keyframes energyFloat {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+  }
+  
+  /* Energy rays pulsing */
+  .e-ray {
+    animation: rayPulse 2s ease-in-out infinite;
+    opacity: 0.4;
+  }
+  .ray1 { animation-delay: 0s; }
+  .ray2 { animation-delay: 0.25s; }
+  .ray3 { animation-delay: 0.5s; }
+  .ray4 { animation-delay: 0.75s; }
+  .ray5 { animation-delay: 1s; }
+  .ray6 { animation-delay: 1.25s; }
+  .ray7 { animation-delay: 1.5s; }
+  .ray8 { animation-delay: 1.75s; }
+  
+  @keyframes rayPulse {
+    0%, 100% { opacity: 0.3; stroke-width: 3; }
+    50% { opacity: 1; stroke-width: 6; }
+  }
+  
+  /* Energy waves */
+  .ew {
+    animation: waveExpand 3s ease-out infinite;
+    opacity: 0;
+  }
+  .ew:nth-child(1) { animation-delay: 0s; }
+  .ew:nth-child(2) { animation-delay: 1s; }
+  .ew:nth-child(3) { animation-delay: 2s; }
+  
+  @keyframes waveExpand {
+    0% { r: 60; opacity: 0.8; }
+    100% { r: 180; opacity: 0; }
+  }
+  
+  /* Sparkles */
+  .sparkle {
+    animation: sparkleAnim 2s ease-in-out infinite;
+  }
+  .sparkle:nth-child(1) { animation-delay: 0s; }
+  .sparkle:nth-child(2) { animation-delay: 0.3s; }
+  .sparkle:nth-child(3) { animation-delay: 0.6s; }
+  .sparkle:nth-child(4) { animation-delay: 0.9s; }
+  .sparkle:nth-child(5) { animation-delay: 1.2s; }
+  .sparkle:nth-child(6) { animation-delay: 1.5s; }
+  
+  @keyframes sparkleAnim {
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1.5); }
+  }
+  
+  /* Core rings */
+  .core-ring {
+    animation: coreRingSpin 8s linear infinite;
+    transform-origin: center;
+  }
+  .cr2 { animation-direction: reverse; animation-duration: 6s; }
+  
+  @keyframes coreRingSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  /* ═══════════════════════════════════════════
+     A MEGOLDÁS - Solution Section - VILÁGOS
+     ═══════════════════════════════════════════ */
+  .solution-section {
+    padding: 6rem 1.5rem;
+    background: #FDFBF7;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  
+  .section-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 400;
+    color: #1A1A1A;
+    margin-bottom: 1rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1.1rem;
+    color: #4A4A4A;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  
+  /* Phases Grid */
+  .phases-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  @media (max-width: 900px) {
+    .phases-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .phase-card {
+    background: white;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  }
+  
+  .phase-card:hover {
+    border-color: rgba(0,0,0,0.12);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+  }
+  
+  .phase-header {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  
+  .phase-header.preventive-accent {
+    background: linear-gradient(135deg, rgba(109, 32, 119, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%);
+    border-left: 4px solid #6D2077;
+  }
+  
+  .phase-header.recovery-accent {
+    background: linear-gradient(135deg, rgba(0, 59, 92, 0.1) 0%, rgba(14, 165, 233, 0.05) 100%);
+    border-left: 4px solid #003B5C;
+  }
+  
+  .phase-number {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #8A8A8A;
+    margin-bottom: 0.5rem;
+  }
+  
+  .phase-header h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: #1A1A1A;
+    margin-bottom: 0.25rem;
+  }
+  
+  .phase-timing {
+    font-size: 0.9rem;
+    color: #6A6A6A;
+  }
+  
+  .phase-content {
+    padding: 2rem;
+  }
+  
+  .phase-content > p {
+    font-size: 1rem;
+    color: #4A4A4A;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  
+  .phase-ingredients h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6A6A6A;
+    margin-bottom: 1rem;
+  }
+  
+  .phase-ingredients ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .phase-ingredients li {
+    font-size: 0.95rem;
+    color: #4A4A4A;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+    padding-left: 0;
+  }
+  
+  .phase-ingredients li strong {
+    color: #1A1A1A;
+    display: block;
+    margin-bottom: 0.15rem;
+  }
+  
+  /* ═══════════════════════════════════════════
+     HASZNÁLAT - Usage Section - VILÁGOS
+     ═══════════════════════════════════════════ */
+  .usage-section {
+    padding: 6rem 1.5rem;
+    background: linear-gradient(180deg, #F5F0E8 0%, #FDFBF7 100%);
+  }
+  
+  .usage-section .section-label {
+    color: #6D2077;
+  }
+  
+  .usage-timeline {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .usage-timeline::before {
+    content: '';
+    position: absolute;
+    left: 18px;
+    top: 40px;
+    bottom: 40px;
+    width: 2px;
+    background: linear-gradient(180deg, #6D2077, #E5E5E5, #003B5C);
+  }
+  
+  .usage-step {
+    position: relative;
+    padding-left: 60px;
+    padding-bottom: 3rem;
+  }
+  
+  .usage-step:last-child {
+    padding-bottom: 0;
+  }
+  
+  .step-marker {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 38px;
+    height: 38px;
+    background: #FDFBF7;
+    border: 2px solid #E5E5E5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #8A8A8A;
+    z-index: 1;
+  }
+  
+  .usage-step:first-child .step-marker {
+    border-color: #6D2077;
+    color: #6D2077;
+  }
+  
+  .usage-step:last-child .step-marker {
+    border-color: #003B5C;
+    color: #003B5C;
+  }
+  
+  .step-content {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+  
+  .step-icon-wrap {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: white;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  }
+  
+  .step-icon-wrap.preventive-glow {
+    color: #6D2077;
+    border-color: rgba(109, 32, 119, 0.2);
+    box-shadow: 0 4px 20px rgba(109, 32, 119, 0.1);
+  }
+  
+  .step-icon-wrap.party-glow {
+    color: #4A4A4A;
+  }
+  
+  .step-icon-wrap.recovery-glow {
+    color: #003B5C;
+    border-color: rgba(0, 59, 92, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 59, 92, 0.1);
+  }
+  
+  .step-text h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: #1A1A1A;
+    margin-bottom: 0.5rem;
+  }
+  
+  .step-text p {
+    font-size: 1rem;
+    color: #4A4A4A;
+    line-height: 1.7;
+  }
+  
+  .step-text strong {
+    color: #6D2077;
+  }
+  
+  .usage-step:last-child .step-text strong {
+    color: #003B5C;
+  }
+  
+  /* ═══════════════════════════════════════════
+     A HÁTTÉRBEN - Why Section - VILÁGOS
+     ═══════════════════════════════════════════ */
+  .why-section {
+    padding: 6rem 1.5rem;
+    background: #FDFBF7;
+  }
+  
+  .why-section .section-label {
+    color: #6D2077;
+  }
+  
+  .why-section .section-header h2 {
+    color: #1A1A1A;
+  }
+  
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  @media (max-width: 700px) {
+    .why-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .why-card {
+    background: white;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 16px;
+    padding: 1.75rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  }
+  
+  .why-card:hover {
+    border-color: rgba(0,0,0,0.12);
+    background: white;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  }
+  
+  .why-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .why-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #1A1A1A;
+    margin-bottom: 0.75rem;
+  }
+  
+  .why-card p {
+    font-size: 0.95rem;
+    color: #4A4A4A;
+    line-height: 1.65;
+  }
+  
+  /* ═══════════════════════════════════════════
+     CTA Section - VILÁGOS HÁTTÉR
+     ═══════════════════════════════════════════ */
+  .cta-section {
+    padding: 4rem 1.5rem 6rem;
+    background: linear-gradient(180deg, #FDFBF7 0%, #F5F0E8 100%);
+  }
+  
+  .cta-box {
+    background: linear-gradient(135deg, #6D2077, #003B5C);
+    border-radius: 24px;
+    padding: 4rem 2rem;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .cta-box h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 400;
+    color: white;
+    margin-bottom: 1rem;
+  }
+  
+  .cta-box p {
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 2rem;
+  }
+  
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2.5rem;
+    background: white;
+    color: #6D2077;
+    font-weight: 600;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(255,255,255,0.2);
+  }
+</style>
+
+<!-- GSAP -->
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof gsap === 'undefined') return;
+  
+  gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
+  
+  var steps = ['acetaldehyde', 'dehydration', 'preventive', 'recovery'];
+  var currentStep = 0;
+  
+  var scrollSection = document.querySelector('.scroll-section');
+  var featureItems = document.querySelectorAll('.feature-item');
+  var featureVisuals = document.querySelectorAll('.feature-visual');
+  var progressDots = document.querySelectorAll('.progress-dot');
+  var progressFill = document.querySelector('.progress-fill');
+  
+  // Create flowing pulse animations for toxin paths
+  function createToxinPulseAnimations() {
+    var pulses = ['#toxinPulse1', '#toxinPulse2', '#toxinPulse3'];
+    
+    pulses.forEach(function(selector, index) {
+      var pulse = document.querySelector(selector);
+      if (!pulse) return;
+      
+      var length = pulse.getTotalLength();
+      gsap.set(pulse, { 
+        strokeDasharray: length,
+        strokeDashoffset: length
+      });
+      
+      gsap.to(pulse, {
+        strokeDashoffset: -length,
+        duration: 2,
+        repeat: -1,
+        ease: 'none',
+        delay: index * 0.4
+      });
+    });
+  }
+  
+  // Create node glow animations
+  function createNodeGlowAnimations() {
+    gsap.to('.node-glow', {
+      opacity: 0.8,
+      duration: 1,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+      stagger: 0.3
+    });
+    
+    gsap.to('.chip-glow', {
+      opacity: 0.6,
+      duration: 1.5,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut'
+    });
+    
+    gsap.to('.target-pulse', {
+      opacity: 0.5,
+      scale: 1.15,
+      duration: 1,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+      transformOrigin: 'center'
+    });
+  }
+  
+  // Create drain pulse animations
+  function createDrainAnimations() {
+    ['#drainPulse1', '#drainPulse2'].forEach(function(selector, index) {
+      var pulse = document.querySelector(selector);
+      if (!pulse) return;
+      
+      var length = pulse.getTotalLength();
+      gsap.set(pulse, {
+        strokeDasharray: 40 + ' ' + length,
+        strokeDashoffset: -length
+      });
+      
+      gsap.to(pulse, {
+        strokeDashoffset: length,
+        duration: 1.5,
+        repeat: -1,
+        ease: 'none',
+        delay: index * 0.5
+      });
+    });
+  }
+  
+  // Create shield flow dot animations
+  function createShieldFlowAnimations() {
+    ['flowPath1', 'flowPath2', 'flowPath3'].forEach(function(pathId, index) {
+      var path = document.getElementById(pathId);
+      var dot = document.getElementById('flowDot' + (index + 1));
+      if (!path || !dot) return;
+      
+      // Make visible and animate
+      gsap.set(dot, { opacity: 1 });
+      gsap.to(dot, {
+        motionPath: {
+          path: '#' + pathId,
+          align: '#' + pathId,
+          alignOrigin: [0.5, 0.5]
+        },
+        duration: 1.5,
+        repeat: -1,
+        ease: 'none',
+        delay: index * 0.5
+      });
+    });
+    
+    // Ingredient glow
+    gsap.to('.ing-glow', {
+      opacity: 0.8,
+      duration: 1.2,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+      stagger: 0.4
+    });
+  }
+  
+  // Create recovery stream animations
+  function createRecoveryStreamAnimations() {
+    [1, 2, 3, 4].forEach(function(num) {
+      var path = document.getElementById('streamPath' + num);
+      var dot = document.getElementById('streamDot' + num);
+      if (!path || !dot) return;
+      
+      // Make visible and animate
+      gsap.set(dot, { opacity: 1 });
+      gsap.to(dot, {
+        motionPath: {
+          path: '#streamPath' + num,
+          align: '#streamPath' + num,
+          alignOrigin: [0.5, 0.5]
+        },
+        duration: 2,
+        repeat: -1,
+        ease: 'power1.inOut',
+        delay: (num - 1) * 0.5
+      });
+    });
+  }
+  
+  // Initialize all animations
+  createToxinPulseAnimations();
+  createNodeGlowAnimations();
+  createDrainAnimations();
+  createShieldFlowAnimations();
+  createRecoveryStreamAnimations();
+  
+  // ScrollTrigger
+  ScrollTrigger.create({
+    trigger: scrollSection,
+    start: 'top top',
+    end: 'bottom bottom',
+    scrub: 0.5,
+    onUpdate: function(self) {
+      var progress = self.progress;
+      var stepIndex = Math.min(Math.floor(progress * steps.length), steps.length - 1);
+      
+      if (progressFill) {
+        progressFill.style.height = (progress * 100) + '%';
+      }
+      
+      if (stepIndex !== currentStep) {
+        updateStep(stepIndex);
+        currentStep = stepIndex;
+      }
+    }
+  });
+  
+  function updateStep(index) {
+    featureItems.forEach(function(item, i) {
+      item.classList.toggle('active', i === index);
+    });
+    
+    featureVisuals.forEach(function(visual, i) {
+      visual.classList.toggle('active', i === index);
+    });
+    
+    progressDots.forEach(function(dot, i) {
+      dot.classList.toggle('active', i === index);
+    });
+  }
+  
+  // Progress dot click
+  progressDots.forEach(function(dot, i) {
+    dot.addEventListener('click', function() {
+      var scrollStart = scrollSection.offsetTop;
+      var scrollHeight = scrollSection.offsetHeight - window.innerHeight;
+      var targetScroll = scrollStart + (scrollHeight * (i / steps.length)) + 100;
+      
+      window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+    });
+  });
+  
+  // Hero animation
+  gsap.from('.hiw-hero h1, .hiw-hero .hero-subtitle', {
+    opacity: 0,
+    y: 40,
+    duration: 1.2,
+    stagger: 0.2,
+    ease: 'power3.out'
+  });
+  
+  ScrollTrigger.refresh();
+  console.log('Zephyr EPIC animations initialized');
+});
+</script>

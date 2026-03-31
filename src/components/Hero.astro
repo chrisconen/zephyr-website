@@ -1,0 +1,454 @@
+---
+// Hero.astro - Zephyr főoldal hero szekció
+// Orbit animáció + 3D termék videó
+---
+
+<section class="hero" id="hero">
+  <div class="hero-container">
+    
+    <!-- Bal oldal: Tartalom -->
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-icon">🧬</span>
+        <span>Klinikai körülmények közt tesztelve</span>
+      </div>
+      
+      <h1 class="hero-title">
+        Ébredj felkészülten<br>
+        <span class="gradient-text">a holnapra</span>
+      </h1>
+      
+      <p class="hero-description">
+        A Zephyr dupla támogató formulája segít, hogy a legjobb formádat hozd 
+        egy bulizós éjszaka után. Preventive és Recovery — a tökéletes páros.
+      </p>
+      
+      <div class="hero-cta">
+        <a href="#shop" class="btn-primary">
+          Vásárlás
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="#how-it-works" class="btn-outline">
+          Hogyan működik?
+        </a>
+      </div>
+      
+      <div class="hero-trust">
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+          <span>Természetes összetevők</span>
+        </div>
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+          <span>30 napos garancia</span>
+        </div>
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+          <span>Ingyenes szállítás</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Jobb oldal: Orbit animáció + Termék -->
+    <div class="hero-visual">
+      <div class="orbit-container">
+        
+        <!-- Orbit pályák -->
+        <div class="orbit-track orbit-track-1"></div>
+        <div class="orbit-track orbit-track-2"></div>
+        <div class="orbit-track orbit-track-3"></div>
+        
+        <!-- Keringő elemek -->
+        <div class="orbit-item orbit-1">
+          <div class="orbit-dot purple"></div>
+        </div>
+        <div class="orbit-item orbit-2">
+          <div class="orbit-dot blue"></div>
+        </div>
+        <div class="orbit-item orbit-3">
+          <div class="orbit-dot purple-light"></div>
+        </div>
+        
+        <!-- Központi termék / 3D videó -->
+        <div class="hero-product">
+          <video 
+            id="hero-video"
+            autoplay 
+            muted 
+            playsinline
+          >
+            <source src="/images/zephyr-intro.webm" type="video/webm">
+            <!-- Fallback kép ha nincs video -->
+          </video>
+        </div>
+        
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<style is:global>
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 1.5rem 4rem;
+    background:  #fffffb;
+    overflow: hidden;
+  }
+  
+  .hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  
+  .hero-content {
+    min-width: 0;
+  }
+  
+  .hero-visual {
+    min-width: 0;
+  }
+  
+  @media (max-width: 968px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+  }
+  
+  /* Content */
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(109, 32, 119, 0.1);
+    border-radius: 50px;
+    font-size: 0.875rem;
+    color: #6D2077;
+    margin-bottom: 1.5rem;
+  }
+  
+  .badge-icon {
+    font-size: 1rem;
+  }
+  
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: #1A1A1A;
+    margin-bottom: 1.5rem;
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, #6D2077, #003B5C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .hero-description {
+    font-size: 1.125rem;
+    color: #4A4A4A;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    max-width: 520px;
+  }
+  
+  @media (max-width: 968px) {
+    .hero-description {
+      max-width: 100%;
+    }
+  }
+  
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  @media (max-width: 968px) {
+    .hero-cta {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+  
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: #6D2077;
+    color: white;
+    font-weight: 600;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background: #4A1552;
+    transform: translateY(-2px);
+  }
+  
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: transparent;
+    color: #1A1A1A;
+    font-weight: 600;
+    border: 2px solid #1A1A1A;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-outline:hover {
+    background: #1A1A1A;
+    color: #FDFBF7;
+  }
+  
+  /* Trust badges */
+  .hero-trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  
+  @media (max-width: 968px) {
+    .hero-trust {
+      justify-content: center;
+    }
+  }
+  
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #4A4A4A;
+  }
+  
+  .trust-icon {
+    width: 18px;
+    height: 18px;
+    color: #6D2077;
+  }
+  
+  /* Visual / Orbit */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+    position: relative;
+    height: 580px;
+  }
+  
+  .orbit-container {
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  @media (max-width: 1024px) {
+    .orbit-container {
+      width: 550px;
+      height: 550px;
+    }
+  }
+  
+  @media (max-width: 968px) {
+    .orbit-container {
+      width: 400px;
+      height: 400px;
+    }
+  }
+  
+  /* Orbit tracks */
+  .orbit-track {
+    position: absolute;
+    border: 1px solid rgba(109, 32, 119, 0.15);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .orbit-track-1 {
+    width: 580px;
+    height: 580px;
+  }
+  
+  .orbit-track-2 {
+    width: 700px;
+    height: 700px;
+    border-color: rgba(0, 59, 92, 0.15);
+  }
+  
+  .orbit-track-3 {
+    width: 460px;
+    height: 460px;
+    border-color: rgba(109, 32, 119, 0.1);
+  }
+  
+  @media (max-width: 1024px) {
+    .orbit-track-1 { width: 370px; height: 370px; }
+    .orbit-track-2 { width: 460px; height: 460px; }
+    .orbit-track-3 { width: 290px; height: 290px; }
+  }
+  
+  @media (max-width: 968px) {
+    .orbit-track-1 { width: 270px; height: 270px; }
+    .orbit-track-2 { width: 340px; height: 340px; }
+    .orbit-track-3 { width: 210px; height: 210px; }
+  }
+  
+  /* Orbiting items */
+  .orbit-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+  }
+  
+  .orbit-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    box-shadow: 0 0 20px currentColor;
+    margin: -6px 0 0 -6px;
+  }
+  
+  .orbit-dot.purple {
+    background: #6D2077;
+    color: rgba(109, 32, 119, 0.5);
+  }
+  
+  .orbit-dot.blue {
+    background: #003B5C;
+    color: rgba(0, 59, 92, 0.5);
+  }
+  
+  .orbit-dot.purple-light {
+    background: #8B3A96;
+    color: rgba(139, 58, 150, 0.5);
+  }
+  
+  .orbit-1 {
+    animation: orbit-1 20s linear infinite;
+  }
+  
+  .orbit-2 {
+    animation: orbit-2 25s linear infinite reverse;
+  }
+  
+  .orbit-3 {
+    animation: orbit-3 30s linear infinite;
+  }
+  
+  @keyframes orbit-1 {
+    from { transform: rotate(0deg) translateX(290px) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(290px) rotate(-360deg); }
+  }
+  
+  @keyframes orbit-2 {
+    from { transform: rotate(0deg) translateX(350px) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(350px) rotate(-360deg); }
+  }
+  
+  @keyframes orbit-3 {
+    from { transform: rotate(0deg) translateX(230px) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(230px) rotate(-360deg); }
+  }
+  
+  @media (max-width: 1024px) {
+    @keyframes orbit-1 {
+      from { transform: rotate(0deg) translateX(185px) rotate(0deg); }
+      to { transform: rotate(360deg) translateX(185px) rotate(-360deg); }
+    }
+    
+    @keyframes orbit-2 {
+      from { transform: rotate(0deg) translateX(230px) rotate(0deg); }
+      to { transform: rotate(360deg) translateX(230px) rotate(-360deg); }
+    }
+    
+    @keyframes orbit-3 {
+      from { transform: rotate(0deg) translateX(145px) rotate(0deg); }
+      to { transform: rotate(360deg) translateX(145px) rotate(-360deg); }
+    }
+  }
+  
+  @media (max-width: 968px) {
+    @keyframes orbit-1 {
+      from { transform: rotate(0deg) translateX(135px) rotate(0deg); }
+      to { transform: rotate(360deg) translateX(135px) rotate(-360deg); }
+    }
+    
+    @keyframes orbit-2 {
+      from { transform: rotate(0deg) translateX(170px) rotate(0deg); }
+      to { transform: rotate(360deg) translateX(170px) rotate(-360deg); }
+    }
+    
+    @keyframes orbit-3 {
+      from { transform: rotate(0deg) translateX(105px) rotate(0deg); }
+      to { transform: rotate(360deg) translateX(105px) rotate(-360deg); }
+    }
+  }
+  
+  /* Central product */
+  .hero-product {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  @media (max-width: 1024px) {
+    .hero-product {
+      width: 300px;
+      height: 300px;
+    }
+  }
+  
+  @media (max-width: 968px) {
+    .hero-product {
+      width: 200px;
+      height: 200px;
+    }
+  }
+  
+  .hero-product video,
+  .hero-product img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+</style>

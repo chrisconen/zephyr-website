@@ -1,0 +1,291 @@
+---
+// Products.astro - Zephyr termék kártyák
+// Preventive (lila) + Recovery (kék)
+---
+
+<section class="products" id="products">
+  <div class="container">
+    
+    <div class="section-header">
+      <span class="section-label">Termékek</span>
+      <h2>Dupla támogatás.<br><span class="gradient-text">Egyetlen rendszer.</span></h2>
+      <p class="section-description">
+        A Zephyr két egymást kiegészítő formulát kínál — egyet az este előtt, egyet a másnap reggelre.
+      </p>
+    </div>
+    
+    <div class="products-grid">
+      
+      <!-- Preventive Card -->
+      <div class="product-card preventive">
+        <div class="product-badge">Preventive</div>
+        
+        <div class="product-top">
+          <h3>Vedd be ivás előtt</h3>
+          <p>
+            A Preventive formula felkészíti szervezetedet az estére. 
+            L-cisztein, Taurin és Fügekaktusz kivonat segít támogatni 
+            a máj természetes funkcióit.
+          </p>
+        </div>
+
+        <div class="product-bottom">
+          <ul class="product-benefits">
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              30-60 perccel ivás előtt
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              Vízben vagy gyümölcslében
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              Természetes összetevők
+            </li>
+          </ul>
+          <div class="product-image-lila">
+            <img src="/images/Zephyr_stick_latvany_lila.png" alt="Zephyr Preventive tasak" />
+          </div>
+        </div>
+      </div>
+      
+      <!-- Recovery Card -->
+      <div class="product-card recovery">
+        <div class="product-badge">Recovery</div>
+
+        <div class="product-top">
+          <h3>Vedd be másnap reggel</h3>
+          <p>
+            A Recovery formula segít helyreállítani az egyensúlyt. 
+            Glutation, Máriatövis és B-vitaminok támogatják a 
+            regenerálódást és az energiaszintet.
+          </p>
+        </div>
+
+        <div class="product-bottom">
+          <ul class="product-benefits">
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              Ébredés után azonnal
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              Gyors felszívódás
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              Energia és tiszta fej
+            </li>
+          </ul>
+          <div class="product-image-kek">
+            <img src="/images/Zephyr_stick_latvany_kek.png" alt="Zephyr Recovery tasak" />
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+</section>
+
+<style>
+  .products {
+    padding: 6rem 1.5rem;
+    background: #FDFBF7;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  
+  .section-label {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6D2077;
+    margin-bottom: 1rem;
+  }
+  
+  .section-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    color: #1A1A1A;
+    margin-bottom: 1rem;
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, #6D2077, #003B5C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .section-description {
+    font-size: 1.125rem;
+    color: #4A4A4A;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Products Grid */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  @media (max-width: 768px) {
+    .products-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* Product Card */
+  .product-card {
+    position: relative;
+    border-radius: 24px;
+    padding: 2.5rem;
+    color: white;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-8px);
+  }
+  
+  .product-card.preventive {
+    background: linear-gradient(135deg, #6D2077 0%, #8B3A96 100%);
+  }
+  
+  .product-card.recovery {
+    background: linear-gradient(135deg, #003B5C 0%, #0A5A85 100%);
+  }
+  
+  /* Badge */
+  .product-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    align-self: flex-start;
+  }
+
+  /* Top section: title + description, full width */
+  .product-top {
+    margin-bottom: 1.5rem;
+  }
+
+  .product-top h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.75rem;
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+  }
+
+  .product-top p {
+    font-size: 1rem;
+    line-height: 1.7;
+    opacity: 0.9;
+    color: white;
+    margin: 0;
+  }
+
+  /* Bottom section: benefits left, image right */
+  .product-bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex: 1;
+  }
+
+  /* Benefits list */
+  .product-benefits {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+  }
+  
+  .product-benefits li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    opacity: 0.9;
+  }
+
+  .product-benefits li:last-child {
+    margin-bottom: 0;
+  }
+  
+  .product-benefits svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  /* Product image — right side */
+  .product-image-kek, .product-image-lila {
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+
+  .product-image-kek img {
+    height: 200px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease;
+  }
+
+  .product-image-lila img {
+    height: 240px;
+    margin-bottom: -20px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease;
+  }
+
+  .product-card:hover .product-image img {
+    transform: scale(1.05);
+  }
+
+  /* Mobile: stack vertically */
+  @media (max-width: 768px) {
+    .product-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .product-image {
+      align-self: flex-end;
+    }
+
+    .product-image img {
+      height: 140px;
+    }
+  }
+</style>

@@ -1,0 +1,292 @@
+---
+// Ingredients.astro - Zephyr összetevők tab-okkal
+// Preventive (lila) és Recovery (kék) tab
+---
+
+<section class="ingredients" id="ingredients">
+  <div class="container">
+    
+    <div class="section-header">
+      <span class="section-label">Összetevők</span>
+      <h2>Tudományosan megalapozott<br><span class="gradient-text">természetes összetevők</span></h2>
+      <p class="section-description">
+        Minden összetevőnket klinikai vizsgálatok támasztják alá. 
+        Tiszta, hatékony, biztonságos.
+      </p>
+    </div>
+    
+    <!-- Tabs -->
+    <div class="tabs-container">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="preventive">
+          <span class="tab-dot preventive"></span>
+          Preventive
+        </button>
+        <button class="tab-btn" data-tab="recovery">
+          <span class="tab-dot recovery"></span>
+          Recovery
+        </button>
+      </div>
+      
+      <!-- Tab Content: Preventive -->
+      <div class="tab-content active" id="tab-preventive">
+        <div class="ingredients-grid">
+          
+          <div class="ingredient-card">
+            <div class="ingredient-icon">🧬</div>
+            <h4>L-Cisztein</h4>
+            <p class="ingredient-dose">600mg</p>
+            <p>Aminosav, amely támogatja a máj méregtelenítő folyamatait és segít az acetaldehid lebontásában.</p>
+          </div>
+          
+          <div class="ingredient-card">
+            <div class="ingredient-icon">⚡</div>
+            <h4>Taurin</h4>
+            <p class="ingredient-dose">500mg</p>
+            <p>Erős antioxidáns hatású aminosav, amely védi a sejteket és támogatja az idegrendszert.</p>
+          </div>
+          
+          <div class="ingredient-card">
+            <div class="ingredient-icon">🌵</div>
+            <h4>Fügekaktusz kivonat</h4>
+            <p class="ingredient-dose">300mg</p>
+            <p>Klinikai vizsgálatokban bizonyított összetevő a másnaposság tüneteinek csökkentésére.</p>
+          </div>
+          
+          <div class="ingredient-card">
+            <div class="ingredient-icon">🍊</div>
+            <h4>C-vitamin</h4>
+            <p class="ingredient-dose">200mg</p>
+            <p>Erős antioxidáns, amely támogatja az immunrendszert és segít semlegesíteni a szabad gyököket.</p>
+          </div>
+          
+        </div>
+      </div>
+      
+      <!-- Tab Content: Recovery -->
+      <div class="tab-content" id="tab-recovery">
+        <div class="ingredients-grid">
+          
+          <div class="ingredient-card">
+            <div class="ingredient-icon">🛡️</div>
+            <h4>Glutation</h4>
+            <p class="ingredient-dose">250mg</p>
+            <p>A "mester antioxidáns" — kulcsszerepet játszik a méregtelenítésben és a sejtek védelmében.</p>
+          </div>
+          
+          <div class="ingredient-card">
+            <div class="ingredient-icon">🌿</div>
+            <h4>Máriatövis kivonat</h4>
+            <p class="ingredient-dose">200mg</p>
+            <p>Évszázadok óta használt gyógynövény a máj egészségének támogatására. 80% szilimarin tartalom.</p>
+          </div>
+          
+          <div class="ingredient-card">
+            <div class="ingredient-icon">💊</div>
+            <h4>B-vitamin komplex</h4>
+            <p class="ingredient-dose">B1, B6, B12</p>
+            <p>Az energia-anyagcsere és az idegrendszer normál működéséhez. Az alkohol csökkenti a B-vitamin szintet.</p>
+          </div>
+          
+          <div class="ingredient-card">
+            <div class="ingredient-icon">💧</div>
+            <h4>Elektrolitok</h4>
+            <p class="ingredient-dose">Mg, K, Na</p>
+            <p>Magnézium, kálium és nátrium a dehidratáció ellensúlyozására és az izomfunkció támogatására.</p>
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+</section>
+
+<style>
+  .ingredients {
+    padding: 6rem 1.5rem;
+    background: #1A1A1A;
+    color: white;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .section-label {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #8B3A96;
+    margin-bottom: 1rem;
+  }
+  
+  .section-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    color: white;
+    margin-bottom: 1rem;
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, #8B3A96, #0A5A85);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .section-description {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Tabs */
+  .tabs-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  
+  .tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .tab-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+  }
+  
+  .tab-btn.active {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+  
+  .tab-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  
+  .tab-dot.preventive {
+    background: #6D2077;
+  }
+  
+  .tab-dot.recovery {
+    background: #003B5C;
+  }
+  
+  /* Tab Content */
+  .tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .tab-content.active {
+    display: block;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Ingredients Grid */
+  .ingredients-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  @media (max-width: 640px) {
+    .ingredients-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .ingredient-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .ingredient-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-4px);
+  }
+  
+  .ingredient-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .ingredient-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: white;
+    margin-bottom: 0.25rem;
+  }
+  
+  .ingredient-dose {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #8B3A96;
+    margin-bottom: 0.75rem;
+  }
+  
+  .ingredient-card p:last-child {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+  }
+</style>
+
+<script>
+  // Tab functionality
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.tab;
+      
+      // Update buttons
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      // Update content
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.getElementById(`tab-${target}`)?.classList.add('active');
+    });
+  });
+</script>

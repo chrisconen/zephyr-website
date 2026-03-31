@@ -1,0 +1,232 @@
+---
+// HowItWorks.astro - Zephyr "Hogyan működik" szekció
+// 3 lépés: Preventive → Buli → Recovery
+---
+
+<section class="how-it-works" id="how-it-works">
+  <div class="container">
+    
+    <div class="section-header">
+      <span class="section-label">Hogyan működik</span>
+      <h2>Három egyszerű lépés.<br><span class="gradient-text">Egy jobb reggel.</span></h2>
+    </div>
+    
+    <div class="steps-grid">
+      
+      <!-- Step 1 -->
+      <div class="step">
+        <div class="step-number">01</div>
+        <div class="step-icon preventive">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <h3>Preventive — Este</h3>
+        <p>
+          30-60 perccel az ivás előtt vedd be a lila Preventive tasakot. 
+          Keverd el egy pohár vízben vagy gyümölcslében.
+        </p>
+        <div class="step-tag">Ivás előtt</div>
+      </div>
+      
+      <!-- Step 2 -->
+      <div class="step">
+        <div class="step-number">02</div>
+        <div class="step-icon party">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18z"/>
+          </svg>
+        </div>
+        <h3>Élvezd az estét</h3>
+        <p>
+          Bulizz, ünnepelj, lazíts! A Preventive formula a háttérben dolgozik, 
+          hogy támogassa a szervezetedet.
+        </p>
+        <div class="step-tag">Buli közben</div>
+      </div>
+      
+      <!-- Step 3 -->
+      <div class="step">
+        <div class="step-number">03</div>
+        <div class="step-icon recovery">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+        </div>
+        <h3>Recovery — Reggel</h3>
+        <p>
+          Ébredés után vedd be a kék Recovery tasakot. 30-45 percen belül 
+          érezd a különbséget — energia és tiszta fej.
+        </p>
+        <div class="step-tag">Másnap reggel</div>
+      </div>
+      
+    </div>
+    
+    <!-- Connection line (desktop) -->
+    <div class="steps-connector" aria-hidden="true">
+      <div class="connector-line"></div>
+    </div>
+    
+  </div>
+</section>
+
+<style>
+  .how-it-works {
+    padding: 6rem 1.5rem;
+    background: linear-gradient(180deg, #F5F0E8 0%, #FDFBF7 100%);
+    position: relative;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  
+  .section-label {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6D2077;
+    margin-bottom: 1rem;
+  }
+  
+  .section-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    color: #1A1A1A;
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, #6D2077, #003B5C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Steps Grid */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  @media (max-width: 768px) {
+    .steps-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+  
+  /* Step Card */
+  .step {
+    background: white;
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .step:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+  }
+  
+  .step-number {
+    position: absolute;
+    top: -12px;
+    left: 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: rgba(109, 32, 119, 0.15);
+    line-height: 1;
+  }
+  
+  .step-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: white;
+  }
+  
+  .step-icon.preventive {
+    background: linear-gradient(135deg, #6D2077, #8B3A96);
+  }
+  
+  .step-icon.party {
+    background: linear-gradient(135deg, #1A1A1A, #2D2D2D);
+  }
+  
+  .step-icon.recovery {
+    background: linear-gradient(135deg, #003B5C, #0A5A85);
+  }
+  
+  .step h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #1A1A1A;
+    margin-bottom: 1rem;
+  }
+  
+  .step p {
+    font-size: 1rem;
+    color: #4A4A4A;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  
+  .step-tag {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #F5F0E8;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #4A4A4A;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  /* Connector line */
+  .steps-connector {
+    display: none;
+  }
+  
+  @media (min-width: 769px) {
+    .steps-connector {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    
+    .connector-line {
+      height: 2px;
+      background: linear-gradient(90deg, #6D2077, #1A1A1A, #003B5C);
+      opacity: 0.2;
+    }
+  }
+</style>
