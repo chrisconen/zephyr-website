@@ -1,6 +1,7 @@
 ---
 // Hero.astro - Zephyr főoldal hero szekció
-// Orbit animáció + 3D termék videó
+// Orbit animáció + 3D termék viewer
+import ProductViewer3D from './ProductViewer3D.astro';
 ---
 
 <section class="hero" id="hero">
@@ -77,17 +78,9 @@
           <div class="orbit-dot purple-light"></div>
         </div>
         
-        <!-- Központi termék / 3D videó -->
+        <!-- Központi termék - 3D Viewer -->
         <div class="hero-product">
-          <video 
-            id="hero-video"
-            autoplay 
-            muted 
-            playsinline
-          >
-            <source src="/images/zephyr-intro.webm" type="video/webm">
-            <!-- Fallback kép ha nincs video -->
-          </video>
+          <img src="/images/Zephyr_doboz_3D_latvany.png" alt="Zephyr Box">
         </div>
         
       </div>
@@ -102,7 +95,7 @@
     display: flex;
     align-items: center;
     padding: 8rem 1.5rem 4rem;
-    background:  #fffffb;
+    background: #fffffb;
     overflow: hidden;
   }
   
@@ -418,37 +411,41 @@
     }
   }
   
-  /* Central product */
+  /* Central product - 3D Viewer */
   .hero-product {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 300px;
-    height: 300px;
+    width: 450px;
+    height: 450px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   
+  /* Override ProductViewer3D styles for hero */
+  .hero-product .product-viewer-container {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+  }
+  
+  .hero-product .viewer-hint {
+    display: none; /* Hero-ban nem kell a hint */
+  }
+  
   @media (max-width: 1024px) {
     .hero-product {
-      width: 300px;
-      height: 300px;
+      width: 320px;
+      height: 320px;
     }
   }
   
   @media (max-width: 968px) {
     .hero-product {
-      width: 200px;
-      height: 200px;
+      width: 250px;
+      height: 250px;
     }
-  }
-  
-  .hero-product video,
-  .hero-product img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
   }
 </style>
