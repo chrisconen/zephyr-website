@@ -114,11 +114,12 @@ export default function StickyCart() {
     }
   }
 
-  if (!product) return <div style={{position:'fixed',bottom:0,left:0,background:'red',color:'white',padding:'20px',zIndex:9999}}>StickyCart: No product loaded</div>;
+  if (!product) return null; 
 
   const variants = product.variants.edges.map(e => e.node);
   const selectedVariant = variants[selectedVariantIndex];
   const price = parseFloat(selectedVariant?.price?.amount || 0);
+  const comparePrice = selectedVariant?.compareAtPrice ? parseFloat(selectedVariant.compareAtPrice.amount) : null;
 
   const bundleLabels = ['Buli csomag', 'Fesztivál csomag'];
 
