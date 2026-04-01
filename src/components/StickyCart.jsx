@@ -5,9 +5,9 @@
 import { useState, useEffect } from 'react';
 
 // Shopify konfiguráció
-const SHOPIFY_DOMAIN = 'toplexa-demo.myshopify.com';
-const STOREFRONT_ACCESS_TOKEN = 'e37f65b00f41087b6ea0017d199ec53c';
-const PRODUCT_HANDLE = 'toplexa-alvassegito';
+const SHOPIFY_DOMAIN = 'zephyr-hangover.myshopify.com';
+const STOREFRONT_ACCESS_TOKEN = 'a225ffacab411d067a8d8b474e490668';
+const PRODUCT_HANDLE = 'teszt-zephyr-termek';
 
 // GraphQL query
 const PRODUCT_QUERY = `
