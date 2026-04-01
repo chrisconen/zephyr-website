@@ -65,7 +65,7 @@ async function shopifyFetch(query, variables = {}) {
 export default function StickyCart() {
   const [isVisible, setIsVisible] = useState(false);
   const [product, setProduct] = useState(null);
-  const [selectedVariantIndex, setSelectedVariantIndex] = useState(1); // 2 csomag default
+  const [selectedVariantIndex, setSelectedVariantIndex] = useState(0); // ← itt
   const [loading, setLoading] = useState(false);
 
   // Scroll figyelés
@@ -117,9 +117,8 @@ export default function StickyCart() {
   if (!product) return null;
 
   const variants = product.variants.edges.map(e => e.node);
-  const [selectedVariantIndex, setSelectedVariantIndex] = useState(0); // első variáns
+  const selectedVariant = variants[selectedVariantIndex];
   const price = parseFloat(selectedVariant?.price?.amount || 0);
-  const comparePrice = selectedVariant?.compareAtPrice ? parseFloat(selectedVariant.compareAtPrice.amount) : null;
 
   const bundleLabels = ['Buli csomag', 'Fesztivál csomag'];
 
