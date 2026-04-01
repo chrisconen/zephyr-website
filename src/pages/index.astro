@@ -11,6 +11,7 @@ import Shop from '../components/Shop.astro';
 import FAQ from '../components/FAQ.astro';
 import Footer from '../components/Footer.astro';
 import ShopifyBuyButton from '../components/ShopifyBuyButton.jsx';
+import StickyCart from '../components/StickyCart.jsx';
 ---
 
 <Layout title="Dupla támogatás a másnap ellen">
@@ -28,5 +29,5 @@ import ShopifyBuyButton from '../components/ShopifyBuyButton.jsx';
   </main>
   
   <Footer />
-  
+  <StickyCart client:load />
 </Layout>
