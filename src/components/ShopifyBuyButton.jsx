@@ -70,7 +70,7 @@ async function shopifyFetch(query, variables = {}) {
 }
 
 export default function ShopifyBuyButton({
-  productHandle = 'zephyr-csomag', // ← Frissíteni a végleges handle-re
+  productHandle = 'teszt-zephyr-termek',
   quantity = 1,
   buttonText = 'Megrendelem',
   className = '',
