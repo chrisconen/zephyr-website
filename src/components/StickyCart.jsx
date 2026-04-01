@@ -114,7 +114,7 @@ export default function StickyCart() {
     }
   }
 
-  if (!product) return null;
+  if (!product) return <div style={{position:'fixed',bottom:0,left:0,background:'red',color:'white',padding:'20px',zIndex:9999}}>StickyCart: No product loaded</div>;
 
   const variants = product.variants.edges.map(e => e.node);
   const selectedVariant = variants[selectedVariantIndex];
