@@ -1,4 +1,8 @@
 ---
+// Layout.astro - Zephyr alap layout
+// CartWrapper-rel a kosár rendszerhez
+import CartWrapper from '../components/cart/CartWrapper.jsx';
+
 interface Props {
   title: string;
   description?: string;
@@ -30,7 +34,9 @@ const { title, description = "Ébredj felkészülten a holnapra. A Zephyr dupla 
     <meta property="og:image" content="/og-image.jpg" />
   </head>
   <body class="bg-[#FDFBF7] text-[#1A1A1A]">
-    <slot />
+    <CartWrapper client:load>
+      <slot />
+    </CartWrapper>
   </body>
 </html>
 
