@@ -1,7 +1,7 @@
 ---
 // Header.astro - Zephyr navigáció
 // Logo középen, menü bal, kosár jobb (wearewild.com / mobilfox.com stílus)
-import CartIcon from './cart/CartIcon.jsx';
+import CartIconStandalone from './cart/CartIconStandalone.jsx';
 ---
 
 <header id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
@@ -25,7 +25,7 @@ import CartIcon from './cart/CartIcon.jsx';
     
     <!-- JOBB: Kosár -->
     <div class="nav-right">
-      <CartIcon client:load />
+      <CartIconStandalone client:load />
     </div>
     
   </nav>
