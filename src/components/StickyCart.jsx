@@ -121,7 +121,7 @@ export default function StickyCart() {
   const price = parseFloat(selectedVariant?.price?.amount || 0);
   const comparePrice = selectedVariant?.compareAtPrice ? parseFloat(selectedVariant.compareAtPrice.amount) : null;
 
-  const bundleLabels = ['1 csomag', '2 csomag', '3 csomag'];
+  const bundleLabels = ['Alap csomag', 'Buli csomag', 'Fesztivál csomag'];
 
   return (
     <div 
@@ -140,10 +140,9 @@ export default function StickyCart() {
             {/* Bal: Termék info */}
             <div className="hidden sm:flex items-center gap-3">
               <div className="w-10 h-10 bg-gradient-to-br from-[#6D2077] to-[#003B5C] rounded-lg flex items-center justify-center">
-                <span className="text-white text-lg">🌙</span>
               </div>
               <div>
-                <p className="font-semibold text-[#003B5C] text-sm">Toplexa alvássegítő</p>
+                <p className="font-semibold text-[#003B5C] text-sm">Zephyr - ne bánd a másnapot!</p>
                 <p className="text-xs text-gray-500">Természetes formula</p>
               </div>
             </div>
