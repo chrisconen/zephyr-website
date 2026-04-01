@@ -117,11 +117,11 @@ export default function StickyCart() {
   if (!product) return null;
 
   const variants = product.variants.edges.map(e => e.node);
-  const selectedVariant = variants[selectedVariantIndex];
+  const [selectedVariantIndex, setSelectedVariantIndex] = useState(0); // első variáns
   const price = parseFloat(selectedVariant?.price?.amount || 0);
   const comparePrice = selectedVariant?.compareAtPrice ? parseFloat(selectedVariant.compareAtPrice.amount) : null;
 
-  const bundleLabels = ['Alap csomag', 'Buli csomag', 'Fesztivál csomag'];
+  const bundleLabels = ['Buli csomag', 'Fesztivál csomag'];
 
   return (
     <div 
@@ -156,7 +156,7 @@ export default function StickyCart() {
               >
                 {variants.map((variant, index) => (
                   <option key={variant.id} value={index}>
-                    {bundleLabels[index] || variant.title}
+                    {variant.title}  {/* A Shopify-ból jövő név */}
                   </option>
                 ))}
               </select>
