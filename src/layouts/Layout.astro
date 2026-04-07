@@ -1,13 +1,10 @@
 ---
-// Layout.astro - Zephyr alap layout
-import CartDrawer from '../components/cart/CartDrawer.jsx';
-
 interface Props {
   title: string;
   description?: string;
 }
 
-const { title, description = "Ébredj felkészülten a holnapra. A Zephyr dupla formulája segít, hogy a legjobb formádat hozd egy bulizós éjszaka után." } = Astro.props;
+const { title, description = "Két formula. Egy éjszaka. Nulla dráma. A Zephyr dupla formulája esti és reggeli támogatást nyújt alkoholfogyasztás során." } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -24,7 +21,7 @@ const { title, description = "Ébredj felkészülten a holnapra. A Zephyr dupla 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
     
     <!-- Open Graph -->
     <meta property="og:title" content={`${title} | Zephyr`} />
@@ -34,7 +31,6 @@ const { title, description = "Ébredj felkészülten a holnapra. A Zephyr dupla 
   </head>
   <body class="bg-[#FDFBF7] text-[#1A1A1A]">
     <slot />
-    <CartDrawer client:load />
   </body>
 </html>
 
