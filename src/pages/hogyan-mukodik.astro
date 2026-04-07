@@ -963,43 +963,57 @@ import Footer from '../components/Footer.astro';
   @media (max-width: 1024px) {
     .scroll-container {
       grid-template-columns: 1fr;
-      padding: 0 1.5rem;
+      padding: 0 1rem;
       gap: 0;
     }
     
     .visual-side {
-      height: 40vh;
+      height: 30vh;
       order: 2;
+      overflow: hidden;
+    }
+    
+    .visual-container {
+      overflow: hidden;
     }
     
     .content-side {
-      height: 50vh;
+      height: 60vh;
       order: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      padding-top: 60px;
     }
     
     .visual-wrapper {
-      max-width: 300px;
+      max-width: 280px;
       margin: 0 auto;
+    }
+    
+    .epic-svg {
+      overflow: hidden;
+    }
+    
+    .feature-visual {
+      overflow: hidden;
     }
     
     .feature-label {
       font-size: 0.7rem;
       padding: 0.4rem 0.75rem;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
     }
     
     .feature-title {
-      font-size: 1.5rem;
-      margin-bottom: 0.75rem;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
     }
     
     .feature-description {
-      font-size: 0.9rem;
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin-bottom: 1rem;
     }
     
     .feature-stats {
@@ -1007,36 +1021,41 @@ import Footer from '../components/Footer.astro';
     }
     
     .stat-value {
-      font-size: 1.75rem;
+      font-size: 1.5rem;
     }
     
     .stat-label {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
+    }
+    
+    .visual-badge {
+      display: none;
     }
     
     .progress-nav { display: none; }
   }
   
   @media (max-width: 480px) {
-    .visual-side {
-      height: 35vh;
-    }
-    
     .content-side {
       height: 55vh;
     }
     
+    .visual-side {
+      height: 35vh;
+    }
+    
     .visual-wrapper {
-      max-width: 250px;
+      max-width: 240px;
     }
     
     .feature-title {
-      font-size: 1.35rem;
+      font-size: 1.25rem;
     }
     
     .feature-description {
-      font-size: 0.85rem;
-      margin-bottom: 1rem;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
     }
   }
   
