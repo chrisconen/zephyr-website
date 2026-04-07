@@ -1,7 +1,6 @@
 ---
 // Shop.astro - Zephyr vásárlás szekció
-// Kosár rendszerrel integrálva
-import AddToCartButton from './cart/AddToCartButton.jsx';
+// 3 csomag: Kezdő, Buli, Fesztivál
 ---
 
 <section class="shop" id="shop">
@@ -12,74 +11,80 @@ import AddToCartButton from './cart/AddToCartButton.jsx';
       <!-- Bal: Termék kép -->
       <div class="shop-visual">
         <img 
-          src="/images/Zephyr_stick_latvany.webp" 
+          src="/images/zephyr-box-3d.png" 
           alt="Zephyr doboz" 
           class="product-image"
-          loading="lazy"
         />
       </div>
       
       <!-- Jobb: Vásárlás -->
       <div class="shop-content">
         <span class="section-label">Vásárlás</span>
-        <h2>Válaszd ki a <span class="gradient-text">csomagod</span></h2>
+        <h2>Válaszd ki a<br><span class="gradient-text">csomagod</span></h2>
         <p class="shop-description">
           Minden doboz 3 Preventive + 3 Recovery tasakot tartalmaz. 
-          Spórolj többet, ha több dobozt veszel.
+          Minél többet veszel, annál többet spórolsz éjszakánként — ráadásul a 2. szinttől ingyenes a szállítás.
         </p>
         
         <!-- Package Options -->
         <div class="package-options" id="package-options">
           
-          <!-- Option 1: 2 doboz -->
-          <label class="package-option selected" data-variant-index="0">
-            <input type="radio" name="package" value="0" checked />
+          <!-- Option 1 -->
+          <label class="package-option selected" data-quantity="1" data-price="7990">
+            <input type="radio" name="package" value="1" checked />
             <div class="package-radio"></div>
             <div class="package-info">
-              <span class="package-name">Alap csomag</span>
-              <span class="package-desc">1 doboz • 2 tasak BASIC Booster</span>
+              <span class="package-name">Starter</span>
+              <span class="package-desc">1 doboz • 3 éjszakára elegendő</span>
             </div>
             <div class="package-price">
-              <span class="price-current">9 990 Ft</span>
+              <span class="price-current">7 990 Ft</span>
+              <span class="price-per">3 160 Ft/éjszaka</span>
+              <span class="price-shipping">+1 490 Ft szállítás</span>
             </div>
           </label>
           
-          <!-- Option 2: 2 doboz -->
-          <label class="package-option" data-variant-index="1">
-            <span class="package-badge best">Kedvelt</span>
-            <input type="radio" name="package" value="1" />
+          <!-- Option 2 - Popular -->
+          <label class="package-option" data-quantity="2" data-price="14990">
+            <span class="package-badge">Legnépszerűbb</span>
+            <input type="radio" name="package" value="2" />
             <div class="package-radio"></div>
             <div class="package-info">
-              <span class="package-name">Buli csomag</span>
-              <span class="package-desc">2 doboz • 4 csomag PREMIUM Booster</span>
+              <span class="package-name">Party</span>
+              <span class="package-desc">2 doboz • 6 éjszakára elegendő</span>
             </div>
             <div class="package-price">
-              <span class="price-current">17 990 Ft</span>
-              <span class="price-save">Megéri!</span>
+              <span class="price-current">14 990 Ft</span>
+              <span class="price-per">2 498 Ft/éjszaka</span>
+              <span class="price-save">Spórolj 20.9% + ingyenes szállítás</span>
             </div>
           </label>
-
-         <!-- Option 3: 3 doboz -->
-          <label class="package-option" data-variant-index="2">
+          
+          <!-- Option 3 - Best Value -->
+          <label class="package-option" data-quantity="3" data-price="19990">
             <span class="package-badge best">Legjobb ár</span>
-            <input type="radio" name="package" value="1" />
+            <input type="radio" name="package" value="3" />
             <div class="package-radio"></div>
             <div class="package-info">
-              <span class="package-name">Fesztivál csomag</span>
-              <span class="package-desc">3 doboz • 6 csomag MEGA Booster</span>
+              <span class="package-name">Mega</span>
+              <span class="package-desc">3 doboz • 9 éjszakára elegendő</span>
             </div>
             <div class="package-price">
-              <span class="price-current">27 990 Ft</span>
-              <span class="price-save">Legjobb érték!</span>
+              <span class="price-current">19 990 Ft</span>
+              <span class="price-per">2 220 Ft/éjszaka</span>
+              <span class="price-save">Spórolj 29.7% + ingyenes szállítás</span>
             </div>
           </label>
           
         </div>
         
-        <!-- Add to Cart Button (React) -->
-        <div id="add-to-cart-container">
-          <AddToCartButton client:load variantIndex={0} />
-        </div>
+        <!-- CTA Button -->
+        <button class="btn-primary shop-cta" id="add-to-cart">
+          <span id="cta-text">Kosárba — 7 990 Ft</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
         
         <!-- Trust -->
         <div class="shop-trust">
@@ -291,6 +296,11 @@ import AddToCartButton from './cart/AddToCartButton.jsx';
     color: #1A1A1A;
   }
   
+  .price-per {
+    font-size: 0.75rem;
+    color: #8A8A8A;
+  }
+  
   .price-save {
     font-size: 0.7rem;
     font-weight: 600;
@@ -298,9 +308,36 @@ import AddToCartButton from './cart/AddToCartButton.jsx';
     text-transform: uppercase;
   }
   
-  /* Add to cart container */
-  #add-to-cart-container {
+  .price-shipping {
+    font-size: 0.7rem;
+    color: #8A8A8A;
+  }
+  
+  /* CTA */
+  .shop-cta {
+    width: 100%;
+    padding: 1.25rem 2rem;
+    font-size: 1.125rem;
     margin-bottom: 1.5rem;
+  }
+  
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: #6D2077;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background: #4A1552;
+    transform: translateY(-2px);
   }
   
   /* Trust */
@@ -327,10 +364,17 @@ import AddToCartButton from './cart/AddToCartButton.jsx';
 </style>
 
 <script>
-  // Package selection - dispatch event for React component
+  // Package selection
   const options = document.querySelectorAll('.package-option');
+  const ctaText = document.getElementById('cta-text');
   
-  options.forEach((option) => {
+  const prices: Record<string, string> = {
+    '1': '7 990',
+    '2': '14 990',
+    '3': '19 990'
+  };
+  
+  options.forEach(option => {
     option.addEventListener('click', () => {
       // Update selected state
       options.forEach(o => o.classList.remove('selected'));
@@ -338,13 +382,24 @@ import AddToCartButton from './cart/AddToCartButton.jsx';
       
       // Update radio
       const radio = option.querySelector('input');
-      if (radio) radio.checked = true;
+      if (radio) (radio as HTMLInputElement).checked = true;
       
-      // Dispatch event for React component
-      const variantIndex = parseInt(option.getAttribute('data-variant-index') || '0');
-      window.dispatchEvent(new CustomEvent('variantChange', { 
-        detail: { index: variantIndex } 
-      }));
+      // Update CTA text
+      const quantity = option.getAttribute('data-quantity') || '1';
+      if (ctaText) ctaText.textContent = `Kosárba — ${prices[quantity]} Ft`;
     });
+  });
+  
+  // Shopify checkout (to be integrated)
+  const addToCart = document.getElementById('add-to-cart');
+  addToCart?.addEventListener('click', async () => {
+    const selected = document.querySelector('.package-option.selected');
+    const quantity = selected?.getAttribute('data-quantity') || '1';
+    
+    // TODO: Shopify integration
+    console.log('Add to cart:', quantity, 'packages');
+    
+    // Placeholder - redirect to checkout
+    // window.location.href = checkoutUrl;
   });
 </script>
