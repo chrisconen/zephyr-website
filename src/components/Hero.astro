@@ -1,7 +1,6 @@
 ---
 // Hero.astro - Zephyr főoldal hero szekció
-// Orbit animáció + 3D termék viewer
-import ProductViewer3D from './ProductViewer3D.astro';
+// Orbit animáció + 3D termék videó
 ---
 
 <section class="hero" id="hero">
@@ -11,17 +10,18 @@ import ProductViewer3D from './ProductViewer3D.astro';
     <div class="hero-content">
       <div class="hero-badge">
         <span class="badge-icon">🧬</span>
-        <span>Klinikai körülmények közt tesztelve</span>
+        <span>Klinikailag kutatott összetevőkkel és dupla formulával kifejlesztve</span>
       </div>
       
       <h1 class="hero-title">
-        Ébredj felkészülten<br>
-        <span class="gradient-text">a holnapra</span>
+        Két formula. Egy éjszaka.<br>
+        <span class="gradient-text">Nulla dráma.</span>
       </h1>
       
       <p class="hero-description">
-        A Zephyr dupla támogató formulája segít, hogy a legjobb formádat hozd 
-        egy bulizós éjszaka után. Preventive és Recovery — a tökéletes páros.
+        A Zephyr dupla formulája esti és reggeli támogatást nyújt alkoholfogyasztás során.
+        Egy adag Preventive, egy adag Recovery, kettős védelem.
+        Prémium. Célzott. Tudományosan megalapozott.
       </p>
       
       <div class="hero-cta">
@@ -31,7 +31,7 @@ import ProductViewer3D from './ProductViewer3D.astro';
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
         </a>
-        <a href="#how-it-works" class="btn-outline">
+        <a href="#how-it-works" class="btn-secondary">
           Hogyan működik?
         </a>
       </div>
@@ -78,9 +78,17 @@ import ProductViewer3D from './ProductViewer3D.astro';
           <div class="orbit-dot purple-light"></div>
         </div>
         
-        <!-- Központi termék - 3D Viewer -->
+        <!-- Központi termék / 3D videó -->
         <div class="hero-product">
-          <img src="/images/Zephyr_doboz_3D_latvany.webp" width="300" height="308" alt="Zephyr Box">
+          <video 
+            id="hero-video"
+            autoplay 
+            muted 
+            playsinline
+          >
+            <source src="/images/zephyr-intro.webm" type="video/webm">
+            <!-- Fallback kép ha nincs video -->
+          </video>
         </div>
         
       </div>
@@ -95,7 +103,7 @@ import ProductViewer3D from './ProductViewer3D.astro';
     display: flex;
     align-items: center;
     padding: 8rem 1.5rem 4rem;
-    background: #fffffb;
+    background:  #fffffb;
     overflow: hidden;
   }
   
@@ -186,8 +194,10 @@ import ProductViewer3D from './ProductViewer3D.astro';
   .btn-primary {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     padding: 1rem 2rem;
+    min-width: 200px;
     background: #6D2077;
     color: white;
     font-weight: 600;
@@ -201,22 +211,23 @@ import ProductViewer3D from './ProductViewer3D.astro';
     transform: translateY(-2px);
   }
   
-  .btn-outline {
+  .btn-secondary {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     padding: 1rem 2rem;
-    background: transparent;
-    color: #1A1A1A;
+    min-width: 200px;
+    background: #003B5C;
+    color: white;
     font-weight: 600;
-    border: 2px solid #1A1A1A;
     border-radius: 50px;
     text-decoration: none;
     transition: all 0.3s ease;
   }
   
-  .btn-outline:hover {
-    background: #1A1A1A;
-    color: #FDFBF7;
+  .btn-secondary:hover {
+    background: #002A42;
+    transform: translateY(-2px);
   }
   
   /* Trust badges */
@@ -411,41 +422,37 @@ import ProductViewer3D from './ProductViewer3D.astro';
     }
   }
   
-  /* Central product - 3D Viewer */
+  /* Central product */
   .hero-product {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 450px;
-    height: 450px;
+    width: 300px;
+    height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   
-  /* Override ProductViewer3D styles for hero */
-  .hero-product .product-viewer-container {
-    width: 100% !important;
-    height: 100% !important;
-    max-width: none !important;
-  }
-  
-  .hero-product .viewer-hint {
-    display: none; /* Hero-ban nem kell a hint */
-  }
-  
   @media (max-width: 1024px) {
     .hero-product {
-      width: 320px;
-      height: 320px;
+      width: 300px;
+      height: 300px;
     }
   }
   
   @media (max-width: 968px) {
     .hero-product {
-      width: 250px;
-      height: 250px;
+      width: 200px;
+      height: 200px;
     }
+  }
+  
+  .hero-product video,
+  .hero-product img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 </style>
