@@ -10,7 +10,7 @@
       <span class="section-label">Termékek</span>
       <h2>Dupla támogatás.<br><span class="gradient-text">Egyetlen rendszer.</span></h2>
       <p class="section-description">
-        A Zephyr két egymást kiegészítő formulát kínál — egyet az este előtt, egyet a másnap reggelre.
+        A Zephyr két célzott formulát kínál — egyet az este előtt, egyet az este után vagy másnap reggelre.
       </p>
     </div>
     
@@ -21,11 +21,13 @@
         <div class="product-badge">Preventive</div>
         
         <div class="product-top">
-          <h3>Vedd be ivás előtt</h3>
+          <h3>Vedd be az első alkoholos ital elfogyasztása előtt 30-60 perccel 1-2 dl vízben feloldva</h3>
           <p>
-            A Preventive formula felkészíti szervezetedet az estére. 
-            L-cisztein, Taurin és Fügekaktusz kivonat segít támogatni 
-            a máj természetes funkcióit.
+            Készítsd fel szervezeted a Zephyr Preventive formulájával, 
+            amely többek között L-ciszteint, miricetint, fügekaktusz-kivonatot 
+            és Lactobacillus plantarum probiotikumot tartalmaz. A célzott 
+            összetevők támogatják az elektrolit-egyensúlyt, az ásványi anyagok 
+            pótlását és az anyagcsere-folyamatokat az esti kikapcsolódás során.
           </p>
         </div>
 
@@ -37,7 +39,7 @@
             </li>
             <li>
               <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              Vízben vagy gyümölcslében
+              1-2 dl vízben feloldva
             </li>
             <li>
               <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
@@ -45,7 +47,7 @@
             </li>
           </ul>
           <div class="product-image-lila">
-            <img loading="lazy" src="/images/Zephyr_stick_latvany_lila.webp" width="100" height="200" alt="Zephyr Preventive tasak" />
+            <img src="/images/Zephyr_stick_latvany_lila.png" alt="Zephyr Preventive tasak" />
           </div>
         </div>
       </div>
@@ -55,11 +57,14 @@
         <div class="product-badge">Recovery</div>
 
         <div class="product-top">
-          <h3>Vedd be másnap reggel</h3>
+          <h3>Vedd be az utolsó alkoholos ital elfogyasztása után vagy másnap reggel 1-2 dl vízben feloldva</h3>
           <p>
-            A Recovery formula segít helyreállítani az egyensúlyt. 
-            Glutation, Máriatövis és B-vitaminok támogatják a 
-            regenerálódást és az energiaszintet.
+            Támogasd szervezeted a Zephyr Recovery formulájával a gyorsabb 
+            regenerálódás érdekében glutationnal és máriatövissel. Ez a 
+            helyreállító formula feltölti a létfontosságú B-vitaminokat és 
+            ásványi anyagokat, L-alanil-L-glutaminnal és foszfatidilkolinnal 
+            segítve a rapid hidratálást és a szervezet egyensúlyát egy 
+            megerőltető éjszaka után.
           </p>
         </div>
 
@@ -67,7 +72,7 @@
           <ul class="product-benefits">
             <li>
               <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              Ébredés után azonnal
+              Az este után vagy ébredés után
             </li>
             <li>
               <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
@@ -79,7 +84,7 @@
             </li>
           </ul>
           <div class="product-image-kek">
-            <img loading="lazy" src="/images/Zephyr_stick_latvany_kek.webp" width="100" height="200" alt="Zephyr Recovery tasak" />
+            <img src="/images/Zephyr_stick_latvany_kek.png" alt="Zephyr Recovery tasak" />
           </div>
         </div>
       </div>
@@ -254,7 +259,6 @@
 
   .product-image-kek img {
     height: 200px;
-    margin-right: 30px;
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
@@ -262,8 +266,8 @@
   }
 
   .product-image-lila img {
-    height: 200px;
-    margin-right: 30px;
+    height: 240px;
+    margin-bottom: -20px;
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
@@ -274,19 +278,36 @@
     transform: scale(1.05);
   }
 
-  /* Mobile: stack vertically */
+  /* Mobile: keep horizontal layout but adjust sizing */
   @media (max-width: 768px) {
     .product-bottom {
-      flex-direction: column;
-      align-items: flex-start;
+      flex-direction: row;
+      align-items: center;
     }
 
-    .product-image {
-      align-self: flex-end;
+    .product-image-kek, .product-image-lila {
+      flex-shrink: 0;
     }
 
-    .product-image img {
+    .product-image-kek img {
       height: 140px;
+    }
+
+    .product-image-lila img {
+      height: 160px;
+      margin-bottom: -15px;
+    }
+
+    .product-top h3 {
+      font-size: 1.35rem;
+    }
+
+    .product-top p {
+      font-size: 0.9rem;
+    }
+
+    .product-benefits li {
+      font-size: 0.85rem;
     }
   }
 </style>
