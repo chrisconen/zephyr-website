@@ -3,9 +3,9 @@
 
 import { useState, useEffect } from 'react';
 
-// Shopify konfiguráció
-const SHOPIFY_DOMAIN = 'zephyr-hangover.myshopify.com';
-const STOREFRONT_ACCESS_TOKEN = 'a225ffacab411d067a8d8b474e490668';
+// Shopify konfiguráció - CSERÉLNI a végleges adatokra
+const SHOPIFY_DOMAIN = 'toplexa-demo.myshopify.com'; // TODO: Zephyr domain
+const STOREFRONT_ACCESS_TOKEN = 'e37f65b00f41087b6ea0017d199ec53c'; // TODO: Zephyr token
 
 // GraphQL query a termék lekéréséhez
 const PRODUCT_QUERY = `
@@ -70,7 +70,7 @@ async function shopifyFetch(query, variables = {}) {
 }
 
 export default function ShopifyBuyButton({
-  productHandle = 'teszt-zephyr-termek',
+  productHandle = 'zephyr-csomag',
   quantity = 1,
   buttonText = 'Megrendelem',
   className = '',
