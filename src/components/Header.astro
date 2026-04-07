@@ -67,6 +67,16 @@
     background: rgba(253, 251, 247, 0.95);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+  }
+  
+  header.header-hidden {
+    transform: translateY(-100%);
   }
   
   header.scrolled {
@@ -278,10 +288,38 @@
 </style>
 
 <script>
-  // Scroll effect
+  // Scroll effect + auto-hide on mobile
   const nav = document.getElementById('nav');
+  let lastScrollY = 0;
+  let ticking = false;
+  
+  function updateHeader() {
+    const currentScrollY = window.scrollY;
+    
+    nav?.classList.toggle('scrolled', currentScrollY > 50);
+    
+    // Auto-hide: only on mobile (< 1024px)
+    if (window.innerWidth < 1024) {
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down - hide header
+        nav?.classList.add('header-hidden');
+      } else {
+        // Scrolling up - show header
+        nav?.classList.remove('header-hidden');
+      }
+    } else {
+      nav?.classList.remove('header-hidden');
+    }
+    
+    lastScrollY = currentScrollY;
+    ticking = false;
+  }
+  
   window.addEventListener('scroll', () => {
-    nav?.classList.toggle('scrolled', window.scrollY > 50);
+    if (!ticking) {
+      requestAnimationFrame(updateHeader);
+      ticking = true;
+    }
   });
   
   // Mobile menu toggle
