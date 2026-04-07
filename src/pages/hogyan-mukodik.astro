@@ -896,6 +896,12 @@ import Footer from '../components/Footer.astro';
     background: linear-gradient(180deg, #FDFBF7 0%, #F5F0E8 100%);
   }
   
+  @media (max-width: 768px) {
+    .hiw-hero {
+      padding: 7rem 1.5rem 3rem;
+    }
+  }
+  
   .hiw-hero h1 {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(2.5rem, 5vw, 4rem);
@@ -957,42 +963,80 @@ import Footer from '../components/Footer.astro';
     .scroll-container {
       grid-template-columns: 1fr;
       padding: 0 1.5rem;
-      position: relative;
-      top: auto;
-      height: auto;
-      align-items: stretch;
+      gap: 0;
     }
     
-    .scroll-section {
-      min-height: auto;
+    .visual-side {
+      height: 40vh;
+      order: 2;
     }
-    
-    .visual-side { display: none; }
     
     .content-side {
-      height: auto;
-      padding: 4rem 0;
+      height: 50vh;
+      order: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     
-    .feature-item {
-      position: relative;
-      top: auto;
-      left: auto;
-      transform: none;
-      opacity: 1;
-      pointer-events: auto;
-      margin-bottom: 3rem;
-      padding-bottom: 3rem;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+    .visual-wrapper {
+      max-width: 300px;
+      margin: 0 auto;
     }
     
-    .feature-item:last-child {
-      margin-bottom: 0;
-      padding-bottom: 0;
-      border-bottom: none;
+    .feature-label {
+      font-size: 0.7rem;
+      padding: 0.4rem 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .feature-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .feature-description {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    
+    .feature-stats {
+      gap: 2rem;
+    }
+    
+    .stat-value {
+      font-size: 1.75rem;
+    }
+    
+    .stat-label {
+      font-size: 0.75rem;
     }
     
     .progress-nav { display: none; }
+  }
+  
+  @media (max-width: 480px) {
+    .visual-side {
+      height: 35vh;
+    }
+    
+    .content-side {
+      height: 55vh;
+    }
+    
+    .visual-wrapper {
+      max-width: 250px;
+    }
+    
+    .feature-title {
+      font-size: 1.35rem;
+    }
+    
+    .feature-description {
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
   }
   
   /* Content Side */
@@ -1154,29 +1198,6 @@ import Footer from '../components/Footer.astro';
   .feature-stats {
     display: flex;
     gap: 3rem;
-  }
-  
-  @media (max-width: 768px) {
-    .feature-title {
-      font-size: 1.75rem;
-    }
-    
-    .feature-description {
-      font-size: 1rem;
-      line-height: 1.7;
-    }
-    
-    .feature-stats {
-      gap: 2rem;
-    }
-    
-    .stat-value {
-      font-size: 2rem;
-    }
-    
-    .hiw-hero {
-      padding: 7rem 1.5rem 3rem;
-    }
   }
   
   .stat-value {
