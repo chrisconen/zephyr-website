@@ -1158,7 +1158,7 @@ import Footer from '../components/Footer.astro';
     margin-bottom: 1.5rem;
     line-height: 1.15;
   }
-  
+ 
   .feature-description {
     font-size: 1.1rem;
     color: rgba(255,255,255,0.65);
@@ -1188,6 +1188,18 @@ import Footer from '../components/Footer.astro';
     font-size: 0.85rem;
     color: rgba(255,255,255,0.5);
   }
+
+  @media (max-width: 468px) {
+    .feature-title {
+      font-size: 20px;
+      }
+    .feature-description {
+      font-size: 14px;
+      }
+    .stat-value {
+      font-size: 20px;
+      }
+   }
   
   /* ═══════════════════════════════════════════
      VISUAL SIDE
@@ -1206,9 +1218,9 @@ import Footer from '../components/Footer.astro';
     height: 100%;
     overflow: hidden;
   }
-@media (max-width: 768px) {
+@media (max-width: 468px) {
    .visual-container {
-    margin-top: -150px;
+    margin- top: -180px;
   }
 }
   
