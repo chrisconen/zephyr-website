@@ -28,6 +28,304 @@
       <!-- Logo -->
       <div class="footer-brand">
         <span class="footer-logo">Zephyr</span>
+        <p class="footer-tagline">Két bölcs döntés. Egy jobb reggel.</p>
+      </div>
+      
+      <!-- Links -->
+      <nav class="footer-nav">
+        <div class="footer-col">
+          <h4>Termékek</h4>
+          <a href="#products">Preventive</a>
+          <a href="#products">Recovery</a>
+          <a href="#shop">Csomagok</a>
+        </div>
+        <div class="footer-col">
+          <h4>Információ</h4>
+          <a href="#how-it-works">Hogyan működik</a>
+          <a href="#ingredients">Összetevők</a>
+          <a href="#faq">GYIK</a>
+        </div>
+        <div class="footer-col">
+          <h4>Kapcsolat</h4>
+          <a href="mailto:info@zephyr.hu">info@zephyr.hu</a>
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+        </div>
+      </nav>
+      
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <!-- Bottom -->
+    <div class="footer-bottom">
+      <div class="footer-copy-wrap">
+        <p class="footer-copy">© 2026 Toplexa Kft. Minden jog fenntartva.</p>
+        <p class="footer-credit">
+          <a href="https://conendigital.hu" target="_blank" rel="noopener">Weboldal & webáruház készítés</a> — Conen Digital
+        </p>
+      </div>
+      <div class="footer-legal">
+        <a href="/adatvedelem">Adatvédelem</a>
+        <a href="/aszf">Felhasználási feltételek</a>
+        <a href="/szallitas">Szállítás</a>
+      </div>
+    </div>
+    
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: 4rem 1.5rem 2rem;
+    background: #1A1A1A;
+    color: white;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Newsletter */
+  .newsletter {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto 3rem;
+  }
+  
+  .newsletter h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.75rem;
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+  }
+  
+  .newsletter p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 1.5rem;
+  }
+  
+  .newsletter-form {
+    display: flex;
+    gap: 0.75rem;
+  }
+  
+  @media (max-width: 480px) {
+    .newsletter-form {
+      flex-direction: column;
+    }
+  }
+  
+  .newsletter-input {
+    flex: 1;
+    padding: 1rem 1.25rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.2s ease;
+  }
+  
+  .newsletter-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+  
+  .newsletter-input:focus {
+    border-color: #6D2077;
+    background: rgba(255, 255, 255, 0.15);
+  }
+  
+  .newsletter-btn {
+    padding: 1rem 2rem;
+    background: #6D2077;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+  
+  .newsletter-btn:hover {
+    background: #8B3A96;
+  }
+  
+  /* Divider */
+  .footer-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 2rem 0;
+  }
+  
+  /* Content */
+  .footer-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+  }
+  
+  @media (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      text-align: center;
+    }
+  }
+  
+  /* Brand */
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    background: linear-gradient(135deg, #8B3A96, #0A5A85);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .footer-tagline {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 0.5rem;
+  }
+  
+  /* Nav */
+  .footer-nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  
+  @media (max-width: 480px) {
+    .footer-nav {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .footer-col h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.125rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: white;
+  }
+  
+  .footer-col a {
+    display: block;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    margin-bottom: 0.75rem;
+    transition: color 0.2s ease;
+  }
+  
+  .footer-col a:hover {
+    color: #8B3A96;
+  }
+  
+  /* Bottom */
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  @media (max-width: 640px) {
+    .footer-bottom {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+  
+  .footer-copy {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.4);
+  }
+  
+  .footer-copy-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  
+  .footer-credit {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.35);
+    margin: 0;
+  }
+  
+  .footer-credit a {
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .footer-credit a:hover {
+    color: #8B3A96;
+  }
+  
+  .footer-legal {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .footer-legal a {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .footer-legal a:hover {
+    color: rgba(255, 255, 255, 0.7);
+  }
+</style>
+
+<script>
+  const form = document.getElementById('newsletter-form');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    // TODO: Integrate with email service (Klaviyo, etc.)
+    alert('Köszönjük a feliratkozást!');
+    form.reset();
+  });
+</script>---
+// Footer.astro - Zephyr footer
+---
+
+<footer class="footer">
+  <div class="container">
+    
+    <!-- Newsletter -->
+    <div class="newsletter">
+      <h3>Iratkozz fel hírlevelünkre</h3>
+      <p>Exkluzív ajánlatok, új termékek és hasznos tippek — közvetlenül a postaládádba.</p>
+      <form class="newsletter-form" id="newsletter-form">
+        <input 
+          type="email" 
+          placeholder="Email címed" 
+          required 
+          class="newsletter-input"
+        />
+        <button type="submit" class="newsletter-btn">Feliratkozom</button>
+      </form>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <!-- Footer Content -->
+    <div class="footer-content">
+      
+      <!-- Logo -->
+      <div class="footer-brand">
+        <span class="footer-logo">Zephyr</span>
         <p class="footer-tagline">Ma buli. Holnap élet.</p>
       </div>
       
