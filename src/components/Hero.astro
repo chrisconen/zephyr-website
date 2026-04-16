@@ -8,20 +8,17 @@
     
     <!-- Bal oldal: Tartalom -->
     <div class="hero-content">
-      <div class="hero-badge">
-        <span class="badge-icon">🧬</span>
-        <span>Klinikailag kutatott összetevőkkel és dupla formulával kifejlesztve</span>
-      </div>
+      <h1 class="sr-only">Zephyr — Prémium étrend-kiegészítő másnaposság ellen, dupla formulával</h1>
       
-      <h1 class="hero-title">
-        Két formula. Egy éjszaka.<br>
+      <h2 class="hero-title">
+        <span class="line-1">Két formula.</span> <span class="line-2">Egy éjszaka.</span><br>
         <span class="gradient-text">Nulla dráma.</span>
-      </h1>
+      </h2>
       
       <p class="hero-description">
-        A Zephyr dupla formulája esti és reggeli támogatást nyújt alkoholfogyasztás során.
-        Egy adag Preventive, egy adag Recovery, kettős védelem.
-        Prémium. Célzott. Tudományosan megalapozott.
+        A Zephyr dupla formulája esti felkészülést és reggeli regenerációt nyújt a rögös éjszakák során.
+        Egy Preventive, egy Recovery, kettős védelem. 
+        Gyógyszerészek által kifejlesztve, tudományos összetevőkkel megalapozva, egy könnyebb reggelért.
       </p>
       
       <div class="hero-cta">
@@ -34,27 +31,6 @@
         <a href="#how-it-works" class="btn-secondary">
           Hogyan működik?
         </a>
-      </div>
-      
-      <div class="hero-trust">
-        <div class="trust-item">
-          <svg class="trust-icon" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-          </svg>
-          <span>Természetes összetevők</span>
-        </div>
-        <div class="trust-item">
-          <svg class="trust-icon" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-          </svg>
-          <span>30 napos garancia</span>
-        </div>
-        <div class="trust-item">
-          <svg class="trust-icon" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-          </svg>
-          <span>Ingyenes szállítás</span>
-        </div>
       </div>
     </div>
     
@@ -125,29 +101,21 @@
   }
   
   /* Content */
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: rgba(109, 32, 119, 0.1);
-    border-radius: 50px;
-    font-size: 0.875rem;
-    color: #6D2077;
-    margin-bottom: 1.5rem;
-  }
-  
-  .badge-icon {
-    font-size: 1rem;
-  }
-  
   .hero-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 400;
-    line-height: 1.1;
+    line-height: 1.15;
     color: #1A1A1A;
     margin-bottom: 1.5rem;
+  }
+  
+  /* Mobile: each sentence on its own line */
+  @media (max-width: 968px) {
+    .hero-title .line-1::after {
+      content: '';
+      display: block;
+    }
   }
   
   .gradient-text {
@@ -221,33 +189,6 @@
   .btn-secondary:hover {
     background: #002A42;
     transform: translateY(-2px);
-  }
-  
-  /* Trust badges */
-  .hero-trust {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-  }
-  
-  @media (max-width: 968px) {
-    .hero-trust {
-      justify-content: center;
-    }
-  }
-  
-  .trust-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.875rem;
-    color: #4A4A4A;
-  }
-  
-  .trust-icon {
-    width: 18px;
-    height: 18px;
-    color: #6D2077;
   }
   
   /* Visual / Orbit */
