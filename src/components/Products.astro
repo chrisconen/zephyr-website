@@ -31,6 +31,240 @@
             pótlását és az anyagcsere-folyamatokat az esti kikapcsolódás során.
           </p>
         </div>
+      </div>
+      
+      <!-- Recovery Card -->
+      <div class="product-card recovery">
+        <div class="product-badge">2. Lépés</div>
+
+        <div class="product-content">
+          <h3 class="product-title">Recovery</h3>
+          <p class="product-subtitle">Vedd be az utolsó alkoholos ital elfogyasztása után vagy másnap reggel 1-2 dl vízben feloldva</p>
+          <p class="product-description">
+            Támogasd szervezeted a Zephyr Recovery formulájával a gyorsabb 
+            regenerálódás érdekében glutationnal és máriatövissel. Ez a 
+            helyreállító formula feltölti a létfontosságú B-vitaminokat és 
+            ásványi anyagokat, L-alanil-L-glutaminnal és foszfatidilkolinnal 
+            segítve a rapid hidratálást és a szervezet egyensúlyát egy 
+            megerőltető éjszaka után.
+          </p>
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+</section>
+
+<style>
+  .products {
+    padding: 6rem 1.5rem;
+    background: #FDFBF7;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  
+  .section-label {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6D2077;
+    margin-bottom: 1rem;
+  }
+  
+  .section-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: #1A1A1A;
+    margin-bottom: 1rem;
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, #6D2077, #003B5C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .section-description {
+    font-size: 1.125rem;
+    color: #4A4A4A;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Products Grid */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  @media (max-width: 768px) {
+    .products-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* Product Card */
+  .product-card {
+    position: relative;
+    border-radius: 24px;
+    padding: 2.5rem;
+    color: white;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    min-height: 420px;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-8px);
+  }
+  
+  .product-card.preventive {
+    background: linear-gradient(135deg, #6D2077 0%, #8B3A96 100%);
+  }
+  
+  .product-card.recovery {
+    background: linear-gradient(135deg, #003B5C 0%, #0A5A85 100%);
+  }
+  
+  /* Badge - "1. Lépés" / "2. Lépés" */
+  .product-badge {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Content: text in front via z-index */
+  .product-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .product-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin: 0 0 0.5rem;
+    line-height: 1.1;
+  }
+
+  .product-subtitle {
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0 0 1rem;
+    line-height: 1.5;
+  }
+
+  .product-description {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.88);
+    margin: 0;
+  }
+
+  /* Pouch image — behind content via z-index, original size preserved */
+  .product-image-kek,
+  .product-image-lila {
+    position: absolute;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .product-image-kek img,
+  .product-image-lila img {
+    height: 240px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease;
+  }
+
+  .product-card:hover .product-image-kek img,
+  .product-card:hover .product-image-lila img {
+    transform: scale(1.05);
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .product-card {
+      padding: 2rem 1.5rem;
+      min-height: 380px;
+    }
+
+    .product-title {
+      font-size: 2rem;
+    }
+
+    .product-subtitle {
+      font-size: 0.95rem;
+    }
+
+    .product-description {
+      font-size: 0.9rem;
+    }
+
+    .product-image-kek img,
+    .product-image-lila img {
+      height: 180px;
+    }
+  }
+</style>---
+// Products.astro - Zephyr termék kártyák
+// Preventive (lila) + Recovery (kék)
+---
+
+<section class="products" id="products">
+  <div class="container">
+    
+    <div class="section-header">
+      <span class="section-label">Termékek</span>
+      <h2>Dupla támogatás.<br><span class="gradient-text">Egyetlen rendszer.</span></h2>
+      <p class="section-description">
+        A Zephyr két célzott formulát kínál — egy adag Preventive az este előtt, egy adag Recovery az este után vagy másnap reggel.
+      </p>
+    </div>
+    
+    <div class="products-grid">
+      
+      <!-- Preventive Card -->
+      <div class="product-card preventive">
+        <div class="product-badge">1. Lépés</div>
+        
+        <div class="product-content">
+          <h3 class="product-title">Preventive</h3>
+          <p class="product-subtitle">Vedd be az első alkoholos ital elfogyasztása előtt 30-60 perccel 1-2 dl vízben feloldva</p>
+          <p class="product-description">
+            Készítsd fel szervezeted a Zephyr Preventive formulájával, 
+            amely többek között L-ciszteint, miricetint, fügekaktusz-kivonatot 
+            és Lactobacillus plantarum probiotikumot tartalmaz. A célzott 
+            összetevők támogatják az elektrolit-egyensúlyt, az ásványi anyagok 
+            pótlását és az anyagcsere-folyamatokat az esti kikapcsolódás során.
+          </p>
+        </div>
         
         <div class="product-image-lila">
           <img src="/images/Zephyr_stick_latvany_lila.webp" alt="Zephyr Preventive tasak — esti támogatás" />
