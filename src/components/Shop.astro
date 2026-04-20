@@ -35,6 +35,405 @@
             <div class="package-radio"></div>
             <div class="package-info">
               <span class="package-name">Zephyr Breeze</span>
+              <span class="package-desc">1 doboz • 3 éjszaka</span>
+            </div>
+            <div class="package-price">
+              <span class="price-current">7 990 Ft</span>
+              <span class="price-per">3 160 Ft/éjszaka</span>
+              <span class="price-shipping">+1 490 Ft szállítás</span>
+            </div>
+          </label>
+          
+          <!-- Option 2 - Popular -->
+          <label class="package-option" data-quantity="2" data-price="14990">
+            <span class="package-badge">Legnépszerűbb</span>
+            <input type="radio" name="package" value="2" />
+            <div class="package-radio"></div>
+            <div class="package-info">
+              <span class="package-name">Zephyr Flow</span>
+              <span class="package-desc">2 doboz • 6 éjszaka</span>
+            </div>
+            <div class="package-price">
+              <span class="price-current">14 990 Ft</span>
+              <span class="price-per">2 498 Ft/éjszaka</span>
+              <span class="price-save">Spórolj 20.9% + ingyenes szállítás</span>
+            </div>
+          </label>
+          
+          <!-- Option 3 - Best Value -->
+          <label class="package-option" data-quantity="3" data-price="19990">
+            <span class="package-badge best">Legjobb ár</span>
+            <input type="radio" name="package" value="3" />
+            <div class="package-radio"></div>
+            <div class="package-info">
+              <span class="package-name">Zephyr Pro</span>
+              <span class="package-desc">3 doboz • 9 éjszaka</span>
+            </div>
+            <div class="package-price">
+              <span class="price-current">19 990 Ft</span>
+              <span class="price-per">2 220 Ft/éjszaka</span>
+              <span class="price-save">Spórolj 29.7% + ingyenes szállítás</span>
+            </div>
+          </label>
+          
+        </div>
+        
+        <!-- CTA Button -->
+        <button class="btn-primary shop-cta" id="add-to-cart">
+          <span id="cta-text">Kosárba — 7 990 Ft</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+        
+        <!-- Trust -->
+        <div class="shop-trust">
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+            </svg>
+            <span>Biztonságos fizetés</span>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/>
+            </svg>
+            <span>Ingyenes szállítás</span>
+          </div>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+  </div>
+</section>
+
+<style>
+  .shop {
+    padding: 6rem 1.5rem;
+    background: linear-gradient(180deg, #F5F0E8 0%, #FDFBF7 100%);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .shop-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  
+  @media (max-width: 968px) {
+    .shop-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* Visual */
+  .shop-visual {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .product-image {
+    max-width: 400px;
+    width: 100%;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+    animation: float 4s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+  
+  /* Content */
+  .section-label {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6D2077;
+    margin-bottom: 1rem;
+  }
+  
+  .shop-content h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 400;
+    color: #1A1A1A;
+    margin-bottom: 1rem;
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, #6D2077, #003B5C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .shop-description {
+    font-size: 1rem;
+    color: #4A4A4A;
+    margin-bottom: 2rem;
+  }
+  
+  /* Package Options */
+  .package-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .package-option {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: white;
+    border: 2px solid #E5E5E5;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .package-option:hover {
+    border-color: #6D2077;
+  }
+  
+  .package-option.selected {
+    border-color: #6D2077;
+    background: rgba(109, 32, 119, 0.03);
+  }
+  
+  .package-option input {
+    display: none;
+  }
+  
+  .package-radio {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #E5E5E5;
+    border-radius: 50%;
+    position: relative;
+    transition: all 0.2s ease;
+  }
+  
+  .package-option.selected .package-radio {
+    border-color: #6D2077;
+  }
+  
+  .package-option.selected .package-radio::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background: #6D2077;
+    border-radius: 50%;
+  }
+  
+  .package-badge {
+    position: absolute;
+    top: -10px;
+    right: 16px;
+    padding: 0.25rem 0.75rem;
+    background: #6D2077;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 50px;
+  }
+  
+  .package-badge.best {
+    background: linear-gradient(135deg, #6D2077, #003B5C);
+  }
+  
+  .package-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .package-name {
+    font-weight: 600;
+    color: #1A1A1A;
+  }
+  
+  .package-desc {
+    font-size: 0.8rem;
+    color: #8A8A8A;
+    white-space: nowrap;
+  }
+  
+  .package-price {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .price-current {
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: #1A1A1A;
+  }
+  
+  .price-per {
+    font-size: 0.75rem;
+    color: #8A8A8A;
+  }
+  
+  .price-save {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #6D2077;
+    text-transform: uppercase;
+  }
+  
+  .price-shipping {
+    font-size: 0.7rem;
+    color: #8A8A8A;
+  }
+  
+  /* CTA */
+  .shop-cta {
+    width: 100%;
+    padding: 1.25rem 2rem;
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: #6D2077;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background: #4A1552;
+    transform: translateY(-2px);
+  }
+  
+  /* Trust */
+  .shop-trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+  }
+  
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #4A4A4A;
+  }
+  
+  .trust-item svg {
+    width: 20px;
+    height: 20px;
+    color: #6D2077;
+  }
+</style>
+
+<script>
+  // Package selection
+  const options = document.querySelectorAll('.package-option');
+  const ctaText = document.getElementById('cta-text');
+  
+  const prices: Record<string, string> = {
+    '1': '7 990',
+    '2': '14 990',
+    '3': '19 990'
+  };
+  
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      // Update selected state
+      options.forEach(o => o.classList.remove('selected'));
+      option.classList.add('selected');
+      
+      // Update radio
+      const radio = option.querySelector('input');
+      if (radio) (radio as HTMLInputElement).checked = true;
+      
+      // Update CTA text
+      const quantity = option.getAttribute('data-quantity') || '1';
+      if (ctaText) ctaText.textContent = `Kosárba — ${prices[quantity]} Ft`;
+    });
+  });
+  
+  // Shopify checkout (to be integrated)
+  const addToCart = document.getElementById('add-to-cart');
+  addToCart?.addEventListener('click', async () => {
+    const selected = document.querySelector('.package-option.selected');
+    const quantity = selected?.getAttribute('data-quantity') || '1';
+    
+    // TODO: Shopify integration
+    console.log('Add to cart:', quantity, 'packages');
+    
+    // Placeholder - redirect to checkout
+    // window.location.href = checkoutUrl;
+  });
+</script>---
+// Shop.astro - Zephyr vásárlás szekció
+// 3 csomag: Kezdő, Buli, Fesztivál
+---
+
+<section class="shop" id="shop">
+  <div class="container">
+    
+    <div class="shop-layout">
+      
+      <!-- Bal: Termék kép -->
+      <div class="shop-visual">
+        <img 
+          src="/images/Zephyr_stick_latvany.webp" 
+          alt="Zephyr doboz" 
+          class="product-image"
+        />
+      </div>
+      
+      <!-- Jobb: Vásárlás -->
+      <div class="shop-content">
+        <span class="section-label">Vásárlás</span>
+        <h2>Válaszd ki a<br><span class="gradient-text">csomagod</span></h2>
+        <p class="shop-description">
+          Minden doboz 3 Preventive + 3 Recovery tasakot tartalmaz. 
+          Minél többet veszel, annál többet spórolsz éjszakánként — ráadásul a 2. szinttől ingyenes a szállítás.
+        </p>
+        
+        <!-- Package Options -->
+        <div class="package-options" id="package-options">
+          
+          <!-- Option 1 -->
+          <label class="package-option selected" data-quantity="1" data-price="7990">
+            <input type="radio" name="package" value="1" checked />
+            <div class="package-radio"></div>
+            <div class="package-info">
+              <span class="package-name">Zephyr Breeze</span>
               <span class="package-desc">1 doboz . 3 éjszaka</span>
             </div>
             <div class="package-price">
