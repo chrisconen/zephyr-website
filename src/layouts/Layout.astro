@@ -1,4 +1,6 @@
 ---
+import CartDrawer from '../components/cart/CartDrawer.jsx';
+
 interface Props {
   title: string;
   description?: string;
@@ -31,6 +33,9 @@ const { title, description = "Két formula. Egy éjszaka. Nulla dráma. A Zephyr
   </head>
   <body class="bg-[#FDFBF7] text-[#1A1A1A]">
     <slot />
+    
+    <!-- Globális kosár drawer: minden oldalon elérhető az `openCart` event-re -->
+    <CartDrawer client:load />
   </body>
 </html>
 
