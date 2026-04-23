@@ -20,7 +20,7 @@
       <!-- Jobb: Vásárlás -->
       <div class="shop-content">
         <span class="section-label">Vásárlás</span>
-        <h2>Válaszd ki a<br><span class="gradient-text">csomagod</span></h2>
+        <h2>Válaszd ki a<span class="gradient-text">csomagod</span></h2>
         <p class="shop-description">
           Minden doboz 3 Preventive + 3 Recovery tasakot tartalmaz. 
           Minél többet veszel, annál többet spórolsz éjszakánként — ráadásul a 2. szinttől ingyenes a szállítás.
@@ -385,16 +385,95 @@
     });
   });
   
-  // Shopify checkout (to be integrated)
+  // Shopify checkout
+  const SHOPIFY_DOMAIN = 'zephyr-hangover.myshopify.com';
+  const STOREFRONT_TOKEN = 'a225ffacab411d067a8d8b474e490668';
+  const PRODUCT_HANDLE = 'teszt-zephyr-termek';
+
+  const PRODUCT_QUERY = `
+    query getProduct($handle: String!) {
+      product(handle: $handle) {
+        variants(first: 10) {
+          edges {
+            node {
+              id
+              title
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const CREATE_CART = `
+    mutation cartCreate($input: CartInput!) {
+      cartCreate(input: $input) {
+        cart { checkoutUrl }
+        userErrors { message }
+      }
+    }
+  `;
+
+  async function shopifyFetch(query: string, variables = {}) {
+    const res = await fetch(`https://${SHOPIFY_DOMAIN}/api/2024-10/graphql.json`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Storefront-Access-Token': STOREFRONT_TOKEN,
+      },
+      body: JSON.stringify({ query, variables }),
+    });
+    const json = await res.json();
+    if (json.errors) throw new Error(json.errors[0].message);
+    return json.data;
+  }
+
+  // Variánsok betöltése induláskor
+  let variants: any[] = [];
+  try {
+    const data = await shopifyFetch(PRODUCT_QUERY, { handle: PRODUCT_HANDLE });
+    variants = data.product?.variants?.edges?.map((e: any) => e.node) || [];
+  } catch (err) {
+    console.error('Shopify product fetch error:', err);
+  }
+
   const addToCart = document.getElementById('add-to-cart');
   addToCart?.addEventListener('click', async () => {
     const selected = document.querySelector('.package-option.selected');
-    const quantity = selected?.getAttribute('data-quantity') || '1';
+    const quantityStr = selected?.getAttribute('data-quantity') || '1';
+    const quantityIndex = parseInt(quantityStr) - 1; // 1→0, 2→1, 3→2
     
-    // TODO: Shopify integration
-    console.log('Add to cart:', quantity, 'packages');
-    
-    // Placeholder - redirect to checkout
-    // window.location.href = checkoutUrl;
+    const variant = variants[quantityIndex];
+    if (!variant) {
+      console.error('No variant found for quantity:', quantityStr);
+      return;
+    }
+
+    // Disable button + loading state
+    const btn = addToCart as HTMLButtonElement;
+    const ctaText = document.getElementById('cta-text');
+    const originalText = ctaText?.textContent || '';
+    btn.disabled = true;
+    if (ctaText) ctaText.textContent = 'Átirányítás...';
+
+    try {
+      const data = await shopifyFetch(CREATE_CART, {
+        input: {
+          lines: [{ merchandiseId: variant.id, quantity: 1 }],
+        },
+      });
+
+      if (data.cartCreate.userErrors?.length > 0) {
+        throw new Error(data.cartCreate.userErrors[0].message);
+      }
+
+      if (data.cartCreate.cart?.checkoutUrl) {
+        window.location.href = data.cartCreate.cart.checkoutUrl;
+      }
+    } catch (err) {
+      console.error('Checkout error:', err);
+      btn.disabled = false;
+      if (ctaText) ctaText.textContent = originalText;
+    }
   });
 </script>
