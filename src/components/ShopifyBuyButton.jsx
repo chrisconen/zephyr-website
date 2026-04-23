@@ -3,10 +3,9 @@
 
 import { useState, useEffect } from 'react';
 
-// Shopify konfiguráció
+// Shopify konfiguráció - CSERÉLNI a végleges adatokra
 const SHOPIFY_DOMAIN = 'zephyr-hangover.myshopify.com';
 const STOREFRONT_ACCESS_TOKEN = 'a225ffacab411d067a8d8b474e490668';
-const PRODUCT_HANDLE = 'teszt-zephyr-termek';
 
 // GraphQL query a termék lekéréséhez
 const PRODUCT_QUERY = `
@@ -71,7 +70,7 @@ async function shopifyFetch(query, variables = {}) {
 }
 
 export default function ShopifyBuyButton({
-  productHandle = 'zephyr-csomag',
+  productHandle = 'teszt-zephyr-termek',
   quantity = 1,
   buttonText = 'Megrendelem',
   className = '',
