@@ -1,6 +1,6 @@
 ---
 // Shop.astro - Zephyr vásárlás szekció
-// 3 csomag: Kezdő, Buli, Fesztivál
+// 3 csomag: Zephyr Breeze / Flow / Pro (Shopify 1/2/3 doboz variánsok)
 ---
 
 <section class="shop" id="shop">
@@ -335,6 +335,12 @@
     transform: translateY(-2px);
   }
   
+  .btn-primary:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
   /* Trust */
   .shop-trust {
     display: flex;
@@ -359,8 +365,10 @@
 </style>
 
 <script>
-  // Package selection
-  const options = document.querySelectorAll('.package-option');
+  // ─────────────────────────────────────────
+  // 1) Package selection (UI)
+  // ─────────────────────────────────────────
+  const options = document.querySelectorAll<HTMLElement>('.package-option');
   const ctaText = document.getElementById('cta-text');
   
   const prices: Record<string, string> = {
@@ -371,21 +379,21 @@
   
   options.forEach(option => {
     option.addEventListener('click', () => {
-      // Update selected state
       options.forEach(o => o.classList.remove('selected'));
       option.classList.add('selected');
       
-      // Update radio
       const radio = option.querySelector('input');
       if (radio) (radio as HTMLInputElement).checked = true;
       
-      // Update CTA text
       const quantity = option.getAttribute('data-quantity') || '1';
       if (ctaText) ctaText.textContent = `Kosárba — ${prices[quantity]} Ft`;
     });
   });
   
-  // Shopify checkout
+  // ─────────────────────────────────────────
+  // 2) Shopify variants — lazy load + cache
+  //    Csak akkor kérjük le az API-t, ha a user tényleg vásárol.
+  // ─────────────────────────────────────────
   const SHOPIFY_DOMAIN = 'zephyr-hangover.myshopify.com';
   const STOREFRONT_TOKEN = 'a225ffacab411d067a8d8b474e490668';
   const PRODUCT_HANDLE = 'teszt-zephyr-termek';
@@ -393,11 +401,13 @@
   const PRODUCT_QUERY = `
     query getProduct($handle: String!) {
       product(handle: $handle) {
+        title
         variants(first: 10) {
           edges {
             node {
               id
               title
+              price { amount }
             }
           }
         }
@@ -405,14 +415,11 @@
     }
   `;
 
-  const CREATE_CART = `
-    mutation cartCreate($input: CartInput!) {
-      cartCreate(input: $input) {
-        cart { checkoutUrl }
-        userErrors { message }
-      }
-    }
-  `;
+  type Variant = {
+    id: string;
+    title: string;
+    price: { amount: string };
+  };
 
   async function shopifyFetch(query: string, variables = {}) {
     const res = await fetch(`https://${SHOPIFY_DOMAIN}/api/2024-10/graphql.json`, {
@@ -428,52 +435,92 @@
     return json.data;
   }
 
-  // Variánsok betöltése induláskor
-  let variants: any[] = [];
-  try {
-    const data = await shopifyFetch(PRODUCT_QUERY, { handle: PRODUCT_HANDLE });
-    variants = data.product?.variants?.edges?.map((e: any) => e.node) || [];
-  } catch (err) {
-    console.error('Shopify product fetch error:', err);
-  }
+  let variantsCache: Variant[] | null = null;
+  let productTitle = 'Zephyr';
 
-  const addToCart = document.getElementById('add-to-cart');
-  addToCart?.addEventListener('click', async () => {
+  async function loadVariants(): Promise<Variant[]> {
+    if (variantsCache) return variantsCache;
+    try {
+      const data = await shopifyFetch(PRODUCT_QUERY, { handle: PRODUCT_HANDLE });
+      productTitle = data.product?.title || 'Zephyr';
+      variantsCache = data.product?.variants?.edges?.map((e: any) => e.node) || [];
+    } catch (err) {
+      console.error('Shopify product fetch error:', err);
+      variantsCache = [];
+    }
+    return variantsCache!;
+  }
+  
+  // ─────────────────────────────────────────
+  // 3) Kosárba gomb — localStorage + event dispatch
+  //    A CartDrawer (Layout.astro-ban) az `openCart` + `cartUpdated` event-eket figyeli.
+  //    Ugyanaz a localStorage kulcs és adatszerkezet, mint az AddToCartButton.jsx-ben.
+  // ─────────────────────────────────────────
+  type CartItem = {
+    variantId: string;
+    title: string;
+    price: number;
+    quantity: number;
+  };
+
+  const addToCartBtn = document.getElementById('add-to-cart') as HTMLButtonElement | null;
+
+  addToCartBtn?.addEventListener('click', async () => {
     const selected = document.querySelector('.package-option.selected');
     const quantityStr = selected?.getAttribute('data-quantity') || '1';
-    const quantityIndex = parseInt(quantityStr) - 1; // 1→0, 2→1, 3→2
+    const variantIndex = parseInt(quantityStr) - 1; // 1 doboz → variant 0, 2 doboz → variant 1, 3 doboz → variant 2
     
-    const variant = variants[quantityIndex];
-    if (!variant) {
-      console.error('No variant found for quantity:', quantityStr);
-      return;
-    }
-
-    // Disable button + loading state
-    const btn = addToCart as HTMLButtonElement;
-    const ctaText = document.getElementById('cta-text');
-    const originalText = ctaText?.textContent || '';
-    btn.disabled = true;
-    if (ctaText) ctaText.textContent = 'Átirányítás...';
-
+    // Loading state
+    addToCartBtn.disabled = true;
+    const originalCta = ctaText?.textContent || '';
+    if (ctaText) ctaText.textContent = 'Hozzáadás...';
+    
     try {
-      const data = await shopifyFetch(CREATE_CART, {
-        input: {
-          lines: [{ merchandiseId: variant.id, quantity: 1 }],
-        },
-      });
-
-      if (data.cartCreate.userErrors?.length > 0) {
-        throw new Error(data.cartCreate.userErrors[0].message);
+      const variants = await loadVariants();
+      const variant = variants[variantIndex];
+      
+      if (!variant) {
+        console.error('Variant not found for package:', quantityStr);
+        if (ctaText) ctaText.textContent = 'Hiba történt';
+        setTimeout(() => {
+          if (ctaText) ctaText.textContent = originalCta;
+          addToCartBtn.disabled = false;
+        }, 1500);
+        return;
       }
-
-      if (data.cartCreate.cart?.checkoutUrl) {
-        window.location.href = data.cartCreate.cart.checkoutUrl;
+      
+      // LocalStorage frissítése
+      const saved = localStorage.getItem('zephyr-cart');
+      const items: CartItem[] = saved ? JSON.parse(saved) : [];
+      
+      const existing = items.find(item => item.variantId === variant.id);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        items.push({
+          variantId: variant.id,
+          title: `${productTitle} — ${variant.title}`,
+          price: parseFloat(variant.price.amount),
+          quantity: 1,
+        });
       }
+      
+      localStorage.setItem('zephyr-cart', JSON.stringify(items));
+      
+      // Events: Header badge frissül, Drawer megnyílik
+      window.dispatchEvent(new CustomEvent('cartUpdated'));
+      window.dispatchEvent(new CustomEvent('openCart'));
+      
+      // Gomb visszaállítása (a drawer ekkor már takarja, de ha bezárják, újra használható)
+      if (ctaText) ctaText.textContent = originalCta;
+      addToCartBtn.disabled = false;
     } catch (err) {
-      console.error('Checkout error:', err);
-      btn.disabled = false;
-      if (ctaText) ctaText.textContent = originalText;
+      console.error('Add to cart error:', err);
+      if (ctaText) ctaText.textContent = 'Hiba — próbáld újra';
+      setTimeout(() => {
+        if (ctaText) ctaText.textContent = originalCta;
+        addToCartBtn.disabled = false;
+      }, 2000);
     }
   });
 </script>
