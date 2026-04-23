@@ -1,8 +1,12 @@
 // CartDrawer.jsx
-// Standalone slide-in kosár drawer - NEM függ CartContext-től
+// Standalone slide-in kosár drawer — NEM függ CartContext-től.
+// A komponens localStorage-ból olvas, és globális custom event-ekre reagál:
+//   - "openCart"     → kinyitja a drawer-t
+//   - "cartUpdated"  → újratölti a tételeket a localStorage-ból
+//   - "storage"      → cross-tab szinkron
 // Mentsd ide: src/components/cart/CartDrawer.jsx
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 // Shopify konfiguráció
 const SHOPIFY_DOMAIN = 'zephyr-hangover.myshopify.com';
@@ -39,7 +43,7 @@ async function shopifyFetch(query, variables = {}) {
   return json.data;
 }
 
-// Helper: get cart from localStorage
+// Helper: kosár betöltése localStorage-ból
 function getCart() {
   try {
     const saved = localStorage.getItem('zephyr-cart');
@@ -49,13 +53,13 @@ function getCart() {
   }
 }
 
-// Helper: save cart to localStorage
+// Helper: kosár mentése + cartUpdated event broadcast
 function saveCart(items) {
   localStorage.setItem('zephyr-cart', JSON.stringify(items));
   window.dispatchEvent(new CustomEvent('cartUpdated'));
 }
 
-// Format price
+// Ár formázás magyar lokalizációval
 function formatPrice(amount) {
   return amount.toLocaleString('hu-HU') + ' Ft';
 }
@@ -64,42 +68,61 @@ export default function CartDrawer() {
   const [isOpen, setIsOpen] = useState(false);
   const [items, setItems] = useState([]);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const closeBtnRef = useRef(null);
 
-  // Load cart and listen for updates
+  // Kosár betöltése + változás figyelése
   useEffect(() => {
     function loadCart() {
       setItems(getCart());
     }
-    
     loadCart();
-    
     window.addEventListener('cartUpdated', loadCart);
     window.addEventListener('storage', loadCart);
-    
     return () => {
       window.removeEventListener('cartUpdated', loadCart);
       window.removeEventListener('storage', loadCart);
     };
   }, []);
 
-  // Listen for open cart event
+  // openCart event figyelése (Header ikon, Shop "Kosárba" gomb, AddToCartButton)
   useEffect(() => {
     function handleOpenCart() {
-      setItems(getCart()); // Refresh items
+      setItems(getCart()); // friss állapot nyitáskor
       setIsOpen(true);
     }
-    
     window.addEventListener('openCart', handleOpenCart);
     return () => window.removeEventListener('openCart', handleOpenCart);
   }, []);
 
-  // Update quantity
+  // Body scroll lock amíg a drawer nyitva van
+  // (ugyanaz a minta, mint a Header mobile-menu-nél — konzisztens UX)
+  useEffect(() => {
+    if (!isOpen) return;
+    const original = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    // Fókusz a close gombra — keyboard-only user-ek nem ragadnak a háttérben
+    closeBtnRef.current?.focus();
+    return () => {
+      document.body.style.overflow = original;
+    };
+  }, [isOpen]);
+
+  // ESC billentyű bezárja a drawer-t
+  useEffect(() => {
+    if (!isOpen) return;
+    function onKey(e) {
+      if (e.key === 'Escape') setIsOpen(false);
+    }
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [isOpen]);
+
+  // Mennyiség frissítése
   function updateQuantity(variantId, quantity) {
     if (quantity <= 0) {
       removeItem(variantId);
       return;
     }
-    
     const newItems = items.map(item =>
       item.variantId === variantId ? { ...item, quantity } : item
     );
@@ -107,24 +130,23 @@ export default function CartDrawer() {
     saveCart(newItems);
   }
 
-  // Remove item
+  // Tétel törlése
   function removeItem(variantId) {
     const newItems = items.filter(item => item.variantId !== variantId);
     setItems(newItems);
     saveCart(newItems);
   }
 
-  // Get total price
+  // Végösszeg
   function getTotalPrice() {
     return items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   }
 
-  // Checkout
+  // Shopify checkout — minden tétel átküldve
   async function handleCheckout() {
     if (items.length === 0) return;
-    
     setIsCheckingOut(true);
-    
+
     try {
       const lines = items.map(item => ({
         merchandiseId: item.variantId,
@@ -140,7 +162,7 @@ export default function CartDrawer() {
       }
 
       if (data.cartCreate.cart?.checkoutUrl) {
-        // Clear local cart
+        // Lokális kosár ürítése — Shopify checkout átveszi az irányítást
         saveCart([]);
         setItems([]);
         window.location.href = data.cartCreate.cart.checkoutUrl;
@@ -154,17 +176,22 @@ export default function CartDrawer() {
 
   return (
     <>
-      {/* Overlay */}
+      {/* Overlay — z-[2000], a Header z-index:1000 fölött */}
       <div
-        className={`fixed inset-0 bg-black/50 z-[100] transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-black/50 z-[2000] transition-opacity duration-300 ${
           isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
         onClick={() => setIsOpen(false)}
+        aria-hidden="true"
       />
 
-      {/* Drawer */}
-      <div
-        className={`fixed top-0 right-0 h-full w-full max-w-md bg-white z-[101] shadow-2xl transform transition-transform duration-300 ease-out ${
+      {/* Drawer — z-[2001], a site minden eleme fölött */}
+      <aside
+        role="dialog"
+        aria-modal="true"
+        aria-label="Kosár"
+        aria-hidden={!isOpen}
+        className={`fixed top-0 right-0 h-full w-full max-w-md bg-white z-[2001] shadow-2xl transform transition-transform duration-300 ease-out ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -172,9 +199,10 @@ export default function CartDrawer() {
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
           <h2 className="text-xl font-semibold text-gray-900">Kosár</h2>
           <button
+            ref={closeBtnRef}
             onClick={() => setIsOpen(false)}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-            aria-label="Bezárás"
+            aria-label="Kosár bezárása"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -183,7 +211,7 @@ export default function CartDrawer() {
         </div>
 
         {/* Content */}
-        <div className="flex flex-col h-[calc(100%-80px)]">
+        <div className="flex flex-col h-[calc(100%-65px)]">
           {items.length === 0 ? (
             /* Empty state */
             <div className="flex-1 flex flex-col items-center justify-center p-8 text-center">
@@ -228,6 +256,7 @@ export default function CartDrawer() {
                         <button
                           onClick={() => updateQuantity(item.variantId, item.quantity - 1)}
                           className="w-8 h-8 flex items-center justify-center bg-white border border-gray-200 rounded-lg hover:bg-gray-100 transition-colors"
+                          aria-label="Mennyiség csökkentése"
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
@@ -237,6 +266,7 @@ export default function CartDrawer() {
                         <button
                           onClick={() => updateQuantity(item.variantId, item.quantity + 1)}
                           className="w-8 h-8 flex items-center justify-center bg-white border border-gray-200 rounded-lg hover:bg-gray-100 transition-colors"
+                          aria-label="Mennyiség növelése"
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -247,7 +277,7 @@ export default function CartDrawer() {
                         <button
                           onClick={() => removeItem(item.variantId)}
                           className="ml-auto p-2 text-gray-400 hover:text-red-500 transition-colors"
-                          aria-label="Törlés"
+                          aria-label="Termék törlése"
                         >
                           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -309,7 +339,7 @@ export default function CartDrawer() {
             </>
           )}
         </div>
-      </div>
+      </aside>
     </>
   );
 }
