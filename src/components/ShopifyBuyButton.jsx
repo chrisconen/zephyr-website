@@ -3,9 +3,10 @@
 
 import { useState, useEffect } from 'react';
 
-// Shopify konfiguráció - CSERÉLNI a végleges adatokra
-const SHOPIFY_DOMAIN = 'toplexa-demo.myshopify.com'; // TODO: Zephyr domain
-const STOREFRONT_ACCESS_TOKEN = 'e37f65b00f41087b6ea0017d199ec53c'; // TODO: Zephyr token
+// Shopify konfiguráció
+const SHOPIFY_DOMAIN = 'zephyr-hangover.myshopify.com';
+const STOREFRONT_ACCESS_TOKEN = 'a225ffacab411d067a8d8b474e490668';
+const PRODUCT_HANDLE = 'teszt-zephyr-termek';
 
 // GraphQL query a termék lekéréséhez
 const PRODUCT_QUERY = `
