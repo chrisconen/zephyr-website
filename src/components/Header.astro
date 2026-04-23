@@ -30,13 +30,13 @@
           <circle cx="12" cy="7" r="4"></circle>
         </svg>
       </a>
-      <button id="cart-toggle" class="nav-icon cart-icon" aria-label="Kosár">
+      <button id="cart-toggle" class="nav-icon cart-icon" aria-label="Kosár megnyitása">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
           <line x1="3" y1="6" x2="21" y2="6"></line>
           <path d="M16 10a4 4 0 0 1-8 0"></path>
         </svg>
-        <span class="cart-count" id="cart-count">0</span>
+        <span class="cart-count" id="cart-count" data-count="0"></span>
       </button>
     </div>
     
@@ -190,18 +190,21 @@
     position: absolute;
     top: 2px;
     right: 2px;
-    width: 18px;
+    min-width: 18px;
     height: 18px;
+    padding: 0 4px;
     background: #6D2077;
     color: white;
     font-size: 10px;
     font-weight: 600;
-    border-radius: 50%;
+    border-radius: 9px;
     display: flex;
     align-items: center;
     justify-content: center;
+    line-height: 1;
   }
   
+  /* Ha üres vagy 0, rejtve — így soha nem villan be a badge értelmetlenül */
   .cart-count:empty,
   .cart-count[data-count="0"] {
     display: none;
@@ -290,7 +293,9 @@
 </style>
 
 <script>
+  // ─────────────────────────────────────────
   // Scroll effect + auto-hide on mobile
+  // ─────────────────────────────────────────
   const nav = document.getElementById('nav');
   let lastScrollY = 0;
   let ticking = false;
@@ -303,10 +308,8 @@
     // Auto-hide: only on mobile (< 1024px)
     if (window.innerWidth < 1024) {
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down - hide header
         nav?.classList.add('header-hidden');
       } else {
-        // Scrolling up - show header
         nav?.classList.remove('header-hidden');
       }
     } else {
@@ -324,7 +327,9 @@
     }
   });
   
+  // ─────────────────────────────────────────
   // Mobile menu toggle
+  // ─────────────────────────────────────────
   const menuToggle = document.getElementById('menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
   
@@ -334,7 +339,6 @@
     document.body.style.overflow = mobileMenu?.classList.contains('active') ? 'hidden' : '';
   });
   
-  // Close menu when clicking outside
   mobileMenu?.addEventListener('click', (e) => {
     if (e.target === mobileMenu) {
       menuToggle?.classList.remove('active');
@@ -343,7 +347,6 @@
     }
   });
   
-  // Close menu when clicking links
   document.querySelectorAll('.mobile-nav-link').forEach(link => {
     link.addEventListener('click', () => {
       menuToggle?.classList.remove('active');
@@ -351,4 +354,39 @@
       document.body.style.overflow = '';
     });
   });
+  
+  // ─────────────────────────────────────────
+  // Kosár: badge szinkronizáció + drawer nyitás
+  // A CartDrawer (Layout.astro-ban) az `openCart` event-re figyel.
+  // A `cartUpdated` event-et bárki dispatch-elheti (pl. Shop.astro), és a badge frissül.
+  // ─────────────────────────────────────────
+  type CartItem = { variantId: string; title: string; price: number; quantity: number };
+  
+  const cartToggle = document.getElementById('cart-toggle');
+  const cartCount = document.getElementById('cart-count');
+  
+  function updateCartCount() {
+    let count = 0;
+    try {
+      const saved = localStorage.getItem('zephyr-cart');
+      const items: CartItem[] = saved ? JSON.parse(saved) : [];
+      count = items.reduce((sum, item) => sum + (item.quantity || 0), 0);
+    } catch {
+      count = 0;
+    }
+    
+    if (cartCount) {
+      cartCount.textContent = count === 0 ? '' : (count > 9 ? '9+' : String(count));
+      cartCount.setAttribute('data-count', String(count));
+    }
+  }
+  
+  cartToggle?.addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('openCart'));
+  });
+  
+  // Kezdeti szinkron + élő frissítés
+  updateCartCount();
+  window.addEventListener('cartUpdated', updateCartCount);
+  window.addEventListener('storage', updateCartCount); // cross-tab szinkron
 </script>
