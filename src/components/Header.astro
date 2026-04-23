@@ -359,32 +359,37 @@
   // Kosár: badge szinkronizáció + drawer nyitás
   // A CartDrawer (Layout.astro-ban) az `openCart` event-re figyel.
   // A `cartUpdated` event-et bárki dispatch-elheti (pl. Shop.astro), és a badge frissül.
+  // TISZTA JS — semmi TS-típus, hogy ne legyen build-time parsing probléma.
   // ─────────────────────────────────────────
-  type CartItem = { variantId: string; title: string; price: number; quantity: number };
-  
   const cartToggle = document.getElementById('cart-toggle');
   const cartCount = document.getElementById('cart-count');
-  
+
   function updateCartCount() {
     let count = 0;
     try {
       const saved = localStorage.getItem('zephyr-cart');
-      const items: CartItem[] = saved ? JSON.parse(saved) : [];
-      count = items.reduce((sum, item) => sum + (item.quantity || 0), 0);
-    } catch {
+      const items = saved ? JSON.parse(saved) : [];
+      if (Array.isArray(items)) {
+        count = items.reduce(function (sum, item) {
+          return sum + (item && item.quantity ? item.quantity : 0);
+        }, 0);
+      }
+    } catch (e) {
       count = 0;
     }
-    
+
     if (cartCount) {
       cartCount.textContent = count === 0 ? '' : (count > 9 ? '9+' : String(count));
       cartCount.setAttribute('data-count', String(count));
     }
   }
-  
-  cartToggle?.addEventListener('click', () => {
-    window.dispatchEvent(new CustomEvent('openCart'));
-  });
-  
+
+  if (cartToggle) {
+    cartToggle.addEventListener('click', function () {
+      window.dispatchEvent(new CustomEvent('openCart'));
+    });
+  }
+
   // Kezdeti szinkron + élő frissítés
   updateCartCount();
   window.addEventListener('cartUpdated', updateCartCount);
