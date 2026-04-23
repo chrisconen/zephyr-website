@@ -169,7 +169,7 @@
     margin: 0 auto;
   }
   
-  /* Tabs */
+    /* Tabs */
   .tabs-container {
     max-width: 1000px;
     margin: 0 auto;
@@ -201,10 +201,22 @@
   }
   
   .tab-btn.active {
-    background: white;
-    border-color: white;
+    border-color: rgba(255, 255, 255, 0.4);
+    color: white;
+  }
+  
+  .tab-btn.active[data-tab="preventive"] {
+    background: #E879F9;
+    border-color: #E879F9;
     color: #1A1A1A;
   }
+  
+  .tab-btn.active[data-tab="recovery"] {
+    background: #00ecfdff;
+    border-color: #00ecfdff;
+    color: #1A1A1A;
+  }
+
   
   /* Tab Content */
   .tab-content {
