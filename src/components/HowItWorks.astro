@@ -1,7 +1,137 @@
 ---
-// HowItWorks.astro - Zephyr "Hogyan működik" szekció
-// 3 lépés: Preventive → Buli → Recovery
+// HowItWorks.astro - Zephyr "Hogyan működik" teaser szekció a főoldalon
+// Rövid előnézet a /hogyan-mukodik oldalra navigáló CTA-val
+// 
+// MEGJEGYZÉS: A korábbi 3-lépéses verzió (Preventive → Buli → Recovery)
+// a fájl végén kommentben elérhető, ha valaha vissza kellene állítani.
 ---
+
+<section class="how-it-works-teaser" id="how-it-works">
+  <div class="container">
+    
+    <div class="teaser-inner">
+      <span class="section-label">A Tudomány</span>
+      <h2>Két formula. Egy éjszaka.<br><span class="gradient-text">Nulla dráma.</span></h2>
+      <p class="teaser-description">
+        A Zephyr nem csodaszer — célzott támogatás, két lépésben. 
+        A <strong>Preventive</strong> formula még az első korty előtt felkészíti a szervezeted 
+        az acetaldehid lebontására, a <strong>Recovery</strong> pedig másnap reggelre 
+        helyreállítja az egyensúlyt. Tudományos megalapozás, prémium összetevők, mérhető különbség.
+      </p>
+      <a href="/hogyan-mukodik" class="teaser-cta">
+        <span>Tudj meg többet</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+<style>
+  .how-it-works-teaser {
+    padding: 6rem 1.5rem;
+    background: linear-gradient(180deg, #F5F0E8 0%, #FDFBF7 100%);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .teaser-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .section-label {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #6D2077;
+    margin-bottom: 1.25rem;
+  }
+  
+  .teaser-inner h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    color: #1A1A1A;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, #6D2077, #003B5C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .teaser-description {
+    font-size: 1.125rem;
+    color: #4A4A4A;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+  }
+  
+  .teaser-description strong {
+    color: #1A1A1A;
+    font-weight: 600;
+  }
+  
+  .teaser-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1rem 2rem;
+    background: transparent;
+    color: #6D2077;
+    font-weight: 600;
+    font-size: 1rem;
+    border: 2px solid #6D2077;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .teaser-cta:hover {
+    background: #6D2077;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(109, 32, 119, 0.25);
+  }
+  
+  .teaser-cta svg {
+    transition: transform 0.3s ease;
+  }
+  
+  .teaser-cta:hover svg {
+    transform: translateX(3px);
+  }
+  
+  @media (max-width: 640px) {
+    .how-it-works-teaser {
+      padding: 4rem 1.5rem;
+    }
+    
+    .teaser-description {
+      font-size: 1rem;
+    }
+  }
+</style>
+
+<!--
+═══════════════════════════════════════════════════════════════════════
+  ARCHÍV: A korábbi 3-lépéses HowItWorks szekció kódja
+  Ha valaha vissza kell állítani, itt megtalálható.
+  Eltávolítva: 2026.04.27 — átalakítva teaser formátumra,
+  a részletes tartalom most a /hogyan-mukodik oldalon érhető el.
+═══════════════════════════════════════════════════════════════════════
 
 <section class="how-it-works" id="how-it-works">
   <div class="container">
@@ -13,7 +143,6 @@
     
     <div class="steps-grid">
       
-      <!-- Step 1 -->
       <div class="step">
         <div class="step-icon preventive">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -29,7 +158,6 @@
         <div class="step-tag">Ivás előtt</div>
       </div>
       
-      <!-- Step 2 -->
       <div class="step">
         <div class="step-icon party">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -44,7 +172,6 @@
         <div class="step-tag">Buli közben</div>
       </div>
       
-      <!-- Step 3 -->
       <div class="step">
         <div class="step-icon recovery">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -62,177 +189,15 @@
       
     </div>
     
-    <!-- Connection line (desktop) -->
     <div class="steps-connector" aria-hidden="true">
       <div class="connector-line"></div>
     </div>
     
-    <!-- Hydration disclaimer -->
     <div class="hydration-disclaimer">
       <p>*Kiemelten fontos a megfelelő hidratáció, az este előtt, közben és után egyaránt.</p>
     </div>
     
   </div>
 </section>
-
-<style>
-  .how-it-works {
-    padding: 6rem 1.5rem;
-    background: linear-gradient(180deg, #F5F0E8 0%, #FDFBF7 100%);
-    position: relative;
-  }
-  
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-  }
-  
-  .section-header {
-    text-align: center;
-    margin-bottom: 4rem;
-  }
-  
-  .section-label {
-    display: inline-block;
-    font-size: 0.875rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #6D2077;
-    margin-bottom: 1rem;
-  }
-  
-  .section-header h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 600;
-    color: #1A1A1A;
-  }
-  
-  .gradient-text {
-    background: linear-gradient(135deg, #6D2077, #003B5C);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  
-  /* Steps Grid */
-  .steps-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
-    position: relative;
-    z-index: 1;
-  }
-  
-  @media (max-width: 768px) {
-    .steps-grid {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-  }
-  
-  /* Step Card */
-  .step {
-    background: white;
-    border-radius: 24px;
-    padding: 2.5rem 2rem;
-    text-align: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-    position: relative;
-  }
-  
-  .step:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-  }
-  
-  .step-icon {
-    width: 72px;
-    height: 72px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem;
-    color: white;
-  }
-  
-  .step-icon.preventive {
-    background: linear-gradient(135deg, #6D2077, #8B3A96);
-  }
-  
-  .step-icon.party {
-    background: linear-gradient(135deg, #1A1A1A, #2D2D2D);
-  }
-  
-  .step-icon.recovery {
-    background: linear-gradient(135deg, #003B5C, #0A5A85);
-  }
-  
-  .step h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: #1A1A1A;
-    margin-bottom: 1rem;
-  }
-  
-  .step p {
-    font-size: 1rem;
-    color: #4A4A4A;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-  }
-  
-  .step-tag {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background: #F5F0E8;
-    border-radius: 50px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #4A4A4A;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  
-  /* Connector line */
-  .steps-connector {
-    display: none;
-  }
-  
-  /* Hydration disclaimer */
-  .hydration-disclaimer {
-    text-align: center;
-    margin-top: 2.5rem;
-  }
-  
-  .hydration-disclaimer p {
-    font-size: 0.875rem;
-    font-style: italic;
-    color: #6D2077;
-    opacity: 0.8;
-  }
-  
-  @media (min-width: 769px) {
-    .steps-connector {
-      display: block;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 60%;
-      z-index: 0;
-      pointer-events: none;
-    }
-    
-    .connector-line {
-      height: 2px;
-      background: linear-gradient(90deg, #6D2077, #1A1A1A, #003B5C);
-      opacity: 0.2;
-    }
-  }
-</style>
+═══════════════════════════════════════════════════════════════════════
+-->
