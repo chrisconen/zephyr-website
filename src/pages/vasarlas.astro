@@ -1,0 +1,98 @@
+---
+// vasarlas.astro - Zephyr "Vásárlás" dedikált oldal
+// Hero szekció + Shop komponens (a főoldali csomagválasztó áthelyezve)
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Shop from '../components/Shop.astro';
+---
+
+<Layout 
+  title="Vásárlás" 
+  description="Válaszd ki a hozzád illő Zephyr csomagot — Preventive és Recovery dupla formula másnaposság ellen. Ingyenes szállítás 2 doboztól."
+>
+  
+  <Header />
+  
+  <main class="vasarlas-page">
+    
+    <!-- Hero Section -->
+    <section class="vasarlas-hero">
+      <div class="container">
+        <span class="section-label">Vásárlás</span>
+        <h1>Válaszd ki a hozzád illő <span class="gradient-text">csomagot</span></h1>
+        <p class="hero-subtitle">
+          A Zephyr dupla formulája — Preventive és Recovery — egyetlen célt szolgál: 
+          hogy másnap ne bánd meg az átbulizott éjszakákat. 
+          Válaszd ki, hány éjszakára kérsz támogatást, és élvezd az estét úgy, ahogy megérdemled.
+        </p>
+      </div>
+    </section>
+    
+    <!-- Shop Component (csomagválasztó + kosárba rakás) -->
+    <Shop />
+    
+  </main>
+  
+  <Footer />
+  
+</Layout>
+
+<style>
+  .vasarlas-page {
+    background: #FDFBF7;
+    color: #1A1A1A;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  
+  .section-label {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #6D2077;
+    margin-bottom: 1rem;
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, #6D2077, #003B5C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Hero — pontosan a hogyan-mukodik hero stílusát követi */
+  .vasarlas-hero {
+    padding: 10rem 1.5rem 4rem;
+    text-align: center;
+    background: linear-gradient(180deg, #FDFBF7 0%, #F5F0E8 100%);
+  }
+  
+  @media (max-width: 768px) {
+    .vasarlas-hero {
+      padding: 7rem 1.5rem 2.5rem;
+    }
+  }
+  
+  .vasarlas-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 400;
+    color: #1A1A1A;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+    color: #4A4A4A;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+</style>
