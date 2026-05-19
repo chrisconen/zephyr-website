@@ -1,0 +1,994 @@
+---
+// aszf.astro - Zephyr Általános Szerződési Feltételek
+// Statikus jogi oldal sticky tartalomjegyzékkel és PDF letöltéssel
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Tartalomjegyzék konfiguráció - az anchor linkekhez használjuk
+const toc = [
+  { id: 'szolgaltato-adatai', label: '1. Szolgáltató adatai' },
+  { id: 'alapveto-rendelkezesek', label: '2. Alapvető rendelkezések' },
+  { id: 'regisztracio-vasarlas', label: '3. Regisztráció / Vásárlás' },
+  { id: 'termekek-arak', label: '4. Termékek, szolgáltatások, árak' },
+  { id: 'rendeles-menete', label: '5. Rendelés menete' },
+  { id: 'megrendelesek-feldolgozasa', label: '6. Megrendelések feldolgozása' },
+  { id: 'elallas-joga', label: '7. Elállás joga' },
+  { id: 'szavatossag', label: '8. Szavatosság' },
+  { id: 'szavatossagi-igeny', label: '9. Szavatossági igény eljárás' },
+  { id: 'vegyes-rendelkezesek', label: '10. Vegyes rendelkezések' },
+  { id: 'panaszkezeles', label: '11. Panaszkezelés rendje' },
+  { id: 'szerzoi-jogok', label: '12. Szerzői jogok' },
+  { id: 'adatvedelem-link', label: '13. Adatvédelem' },
+];
+---
+
+<Layout 
+  title="Általános Szerződési Feltételek" 
+  description="A Zephyr (Toplexa Kft.) webshop általános szerződési feltételei. Hatályos: 2026. május 18-tól."
+>
+  
+  <Header />
+  
+  <main class="legal-page">
+    
+    <!-- Hero szekció -->
+    <section class="legal-hero">
+      <div class="container">
+        <span class="section-label">Jogi információk</span>
+        <h1>Általános Szerződési Feltételek</h1>
+        <p class="legal-meta">
+          Toplexa Kft. · Hatályos: 2026. május 18-tól · Verzió 1.0
+        </p>
+        <a 
+          href="/legal/zephyr-aszf.pdf" 
+          download="Zephyr_ASZF.pdf"
+          class="pdf-download-btn"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          <span>PDF letöltése</span>
+        </a>
+      </div>
+    </section>
+    
+    <!-- Tartalom + Sticky TOC -->
+    <section class="legal-content-wrapper">
+      <div class="container content-grid">
+        
+        <!-- Sticky tartalomjegyzék -->
+        <aside class="toc-sidebar">
+          <nav class="toc-nav" aria-label="Tartalomjegyzék">
+            <h2 class="toc-title">Tartalom</h2>
+            <ul class="toc-list">
+              {toc.map(item => (
+                <li><a href={`#${item.id}`}>{item.label}</a></li>
+              ))}
+            </ul>
+          </nav>
+        </aside>
+        
+        <!-- Fő tartalom -->
+        <article class="legal-article">
+          
+          <div class="intro-block">
+            <p>
+              Jelen dokumentum alapján létrejött szerződés nem kerül iktatásra (utólag nem hozzáférhető, a szerződés megkötését a rendelési adatok bizonyítják), ráutaló magatartással tett jognyilatkozattal jön létre, nem minősül írásbeli szerződésnek, magyar nyelven íródik, magatartási kódexre nem utal. A webshop működésével, megrendelési és szállítási folyamatával kapcsolatosan felmerülő kérdések esetén a megadott elérhetőségeinken rendelkezésére állunk.
+            </p>
+            <p>
+              Jelen ÁSZF hatálya Szolgáltató weblapján (<a href="https://zephyrhangover.com/">zephyrhangover.com</a>, <a href="https://zephyrhngvr.com/">zephyrhngvr.com</a>) és aldomainjein történő jogviszonyokra terjed ki. Jelen ÁSZF folyamatosan elérhető és letölthető a fenti PDF letöltése gombbal.
+            </p>
+            
+            <div class="definitions-block">
+              <h3>Definíciók</h3>
+              <dl>
+                <dt>Felhasználó</dt>
+                <dd>Bármely természetes, jogi személy vagy szervezet, aki Szolgáltató szolgáltatásait igénybe veszi, Szolgáltatóval szerződést köt.</dd>
+                
+                <dt>Fogyasztó</dt>
+                <dd>Olyan Felhasználó, aki a szakmája, önálló foglalkozása vagy üzleti tevékenysége körén kívül eljáró természetes személy.</dd>
+                
+                <dt>Vállalkozás</dt>
+                <dd>A szakmája, önálló foglalkozása vagy üzleti tevékenysége körében eljáró személy.</dd>
+                
+                <dt>Szolgáltató</dt>
+                <dd>Az információs társadalommal összefüggő szolgáltatást nyújtó természetes, illetve jogi személy vagy jogi személyiség nélküli szervezet, aki a Felhasználó részére szolgáltatást nyújt, aki a Felhasználóval szerződést köt.</dd>
+              </dl>
+            </div>
+          </div>
+          
+          <!-- 1. Szolgáltató adatai -->
+          <section id="szolgaltato-adatai" class="legal-section">
+            <h2>1. Szolgáltató adatai</h2>
+            <dl class="data-list">
+              <dt>Név</dt><dd>Toplexa Kft.</dd>
+              <dt>Székhely</dt><dd>1095 Budapest, Dandár utca 22. B. lház. 7. em. 2. ajtó</dd>
+              <dt>E-mail</dt><dd><a href="mailto:zephyrhangover@gmail.com">zephyrhangover@gmail.com</a></dd>
+              <dt>Telefon</dt><dd><a href="tel:+36302876500">+36 30 287 6500</a></dd>
+              <dt>Cégjegyzékszám</dt><dd>01-09-452035</dd>
+              <dt>Adószám</dt><dd>32970050-1-43</dd>
+              <dt>Nyilvántartó hatóság</dt><dd>Fővárosi Törvényszék Cégbírósága</dd>
+              <dt>Szerződés nyelve</dt><dd>Magyar</dd>
+            </dl>
+            
+            <h3>Tárhely-szolgáltatók</h3>
+            <div class="provider-card">
+              <strong>Shopify Inc.</strong>
+              <p>150 Elgin St, Suite 800, Ottawa, ON, K2P 1L4, Kanada</p>
+              <p>Telefon: +1 888 746 7439 · E-mail: <a href="mailto:support@shopify.com">support@shopify.com</a></p>
+            </div>
+            <div class="provider-card">
+              <strong>Rackhost Zrt.</strong>
+              <p>1132 Budapest, Victor Hugo utca 18-22.</p>
+              <p>Telefon: +36 1 445 1204 · E-mail: <a href="mailto:info@rackhost.hu">info@rackhost.hu</a></p>
+            </div>
+          </section>
+          
+          <!-- 2. Alapvető rendelkezések -->
+          <section id="alapveto-rendelkezesek" class="legal-section">
+            <h2>2. Alapvető rendelkezések</h2>
+            <p>
+              <strong>2.1.</strong> A jelen ÁSZF-ben nem szabályozott kérdésekre, valamint jelen ÁSZF értelmezésére a magyar jog az irányadó, különös tekintettel a Polgári Törvénykönyvről szóló 2013. évi V. törvény ("Ptk.") és az elektronikus kereskedelmi szolgáltatások, az információs társadalommal összefüggő szolgáltatások egyes kérdéseiről szóló 2001. évi CVIII. (Elker. tv.) törvény, valamint a fogyasztó és a vállalkozás közötti szerződések részletes szabályairól szóló 45/2014. (II. 26.) Korm. rendelet rendelkezéseire.
+            </p>
+            <p>
+              <strong>2.2.</strong> A jelen ÁSZF 2026. május 18. napjától hatályos és visszavonásig hatályban marad. A jelen ÁSZF módosításait a Szolgáltató a weboldalon közzéteszi, illetve a regisztrált vagy korábban már vásárló Felhasználókat a változásról e-mailben értesíti. A módosítások nem érintik a korábban megkötött szerződéseket, azaz a módosításoknak nincs visszaható hatálya.
+            </p>
+            <p>
+              <strong>2.3.</strong> Szolgáltató fenntart magának minden jogot a weboldal, annak bármely részlete és az azon megjelenő tartalmak, valamint a weboldal terjesztésének tekintetében. Tilos a weboldalon megjelenő tartalmak vagy azok bármely részletének letöltése, elektronikus tárolása, feldolgozása és értékesítése a Szolgáltató írásos hozzájárulása nélkül.
+            </p>
+            <p>
+              <strong>2.4.</strong> Szolgáltató nem vállal felelősséget a Szolgáltatóhoz nem köthető, a Szolgáltató által nem üzemeltetett más weboldalon közzétett termékek adás-vételével kapcsolatban.
+            </p>
+          </section>
+          
+          <!-- 3. Regisztráció / Vásárlás -->
+          <section id="regisztracio-vasarlas" class="legal-section">
+            <h2>3. Regisztráció / Vásárlás</h2>
+            <p>
+              <strong>3.1.</strong> A szolgáltatás igénybevétele során megadott valótlan vagy más személyhez köthető adatok esetén a létrejövő elektronikus szerződést az arra jogosult fél a bíróság előtt megtámadhatja.
+            </p>
+            <p>
+              <strong>3.2.</strong> A Szolgáltatót a Felhasználó által tévesen és/vagy pontatlanul megadott adatokra visszavezethető szállítási késedelemért, illetve egyéb problémáért, hibáért semminemű felelősség nem terheli. Szolgáltató a Felhasználóval történt egyeztetés és egyértelmű beazonosítás után a tévesen beírt adatokat javíthatja a rendelésben.
+            </p>
+            <p>
+              <strong>3.3.</strong> A Szolgáltatót nem terheli felelősség az abból adódó károkért, ha Felhasználó a jelszavát elfelejti, vagy az illetéktelenek számára bármely nem a Szolgáltatónak felróható okból hozzáférhetővé válik.
+            </p>
+          </section>
+          
+          <!-- 4. Termékek, árak -->
+          <section id="termekek-arak" class="legal-section">
+            <h2>4. Megvásárolható termékek, szolgáltatások köre és árak</h2>
+            <p>
+              <strong>4.1.</strong> A megjelenített termékek a webáruházból online (bizonyos esetekben telefonon) rendelhetők meg. A termékekre vonatkozóan megjelenített árak forintban értendők, bruttó árak (tartalmazzák a törvényben előírt áfát), azonban nem tartalmazzák a szállítással, fizetéssel kapcsolatos díjakat. Külön csomagolási költség nem kerül felszámításra.
+            </p>
+            <p>
+              <strong>4.2.</strong> A webshopban Szolgáltató részletesen feltünteti a termék nevét, leírását, a termékekről fotót jelenít meg.
+            </p>
+            <p>
+              <strong>4.3.</strong> Amennyiben akciós ár kerül bevezetésre, Szolgáltató teljes körűen tájékoztatja a Felhasználókat az akcióról és annak pontos időtartamáról.
+            </p>
+            <p>
+              <strong>4.4.</strong> Hibás ár feltüntetése esetén Szolgáltató nem köteles a megrendelést ezen az áron visszaigazolni, hanem lehetősége van az ajánlat visszautasítására és felajánlhatja a helyes, valós áron történő visszaigazolást.
+            </p>
+            <div class="callout">
+              <strong>Hibás árnak minősül:</strong>
+              <ul>
+                <li>a 0 Ft-os ár</li>
+                <li>az 1 Ft-os ár</li>
+                <li>az olyan akciós ár, amely nem felel meg a feltüntetett kedvezmény százalékos mértékének az eredeti árhoz képest</li>
+              </ul>
+            </div>
+          </section>
+          
+          <!-- 5. Rendelés menete -->
+          <section id="rendeles-menete" class="legal-section">
+            <h2>5. Rendelés menete</h2>
+            <p>
+              <strong>5.1.</strong> Felhasználó regisztráció nélkül is megkezdheti a vásárlást.
+            </p>
+            <p>
+              <strong>5.2.</strong> Felhasználó kosárba helyezi a kiválasztott termékeket. A kosár tartalma bármikor megtekinthető a "kosár" ikonra kattintva.
+            </p>
+            <p>
+              <strong>5.3-5.5.</strong> A Felhasználó beállítja a darabszámot, megadja a szállítási címet, majd kiválasztja a szállítási és fizetési módot.
+            </p>
+            
+            <h3>Fizetési módok</h3>
+            <div class="callout">
+              <p><strong>Fizetés utánvétellel:</strong> A megrendelés végösszege a futárnak vagy a csomagponton fizethető készpénzben vagy bankkártyával a megrendelt termékek átvételekor.</p>
+              <p><strong>Online bankkártyával:</strong> A rendelés összértéke online, bankkártyával fizethető a Szolgáltató által igénybe vett pénzügyi szolgáltató biztonságos fizetési rendszerén keresztül.</p>
+            </div>
+            
+            <h3>Szállítási költségek (bruttó)</h3>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Szállítási mód</th>
+                  <th>Díj</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>GLS futárszolgálat</td><td>1 490 Ft</td></tr>
+                <tr><td>FoxPost csomagpont</td><td>490 Ft</td></tr>
+              </tbody>
+            </table>
+            
+            <p>
+              <strong>5.10.</strong> Felhasználó e-mailben a megrendelés elküldését követően visszaigazolást kap. Amennyiben e visszaigazolás 48 órán belül nem érkezik meg, Felhasználó az ajánlati kötöttség alól mentesül.
+            </p>
+            <p>
+              <strong>5.11.</strong> A szerződés akkor jön létre, amikor a Szolgáltató az automata visszaigazolást követően egy újabb e-mailben értesíti a Felhasználót a megrendelés részleteiről és várható teljesítéséről.
+            </p>
+            <p>
+              <strong>5.12. Vásárlói értékelések:</strong> Webáruházunkban kizárólag olyan fogyasztói értékelések találhatók, amelyeket a terméket megvásárló vagy azt használó fogyasztók küldtek be. Nem válogatunk az értékelések között oly módon, hogy kizárólag a pozitív értékeléseket jelenítjük meg.
+            </p>
+          </section>
+          
+          <!-- 6. Megrendelések feldolgozása -->
+          <section id="megrendelesek-feldolgozasa" class="legal-section">
+            <h2>6. A megrendelések feldolgozása és teljesítése</h2>
+            <p>
+              <strong>6.1.</strong> A megrendelések feldolgozása munkaidőben történik. Szolgáltató minden esetben elektronikus úton visszaigazolja, hogy mikor tudja teljesíteni a megrendelést.
+            </p>
+            <p>
+              <strong>6.2.</strong> <strong>Általános teljesítési határidő:</strong> a szerződés létrejöttétől számított 1–5 munkanapon belül.
+            </p>
+            <p>
+              <strong>6.3-6.6.</strong> Az adásvételi szerződés alapján a Szolgáltató dolog tulajdonjogának átruházására, a Felhasználó a vételár megfizetésére és a dolog átvételére köteles. A kárveszély akkor száll át a vevőre, amikor a vevő vagy az általa kijelölt harmadik személy birtokba veszi a dolgot.
+            </p>
+            <div class="callout warning">
+              <strong>Figyelem!</strong> Amennyiben a Felhasználó nem veszi át a szerződésszerűen teljesített megrendelt termékeket, szerződésszegést követ el (Ptk. 6:156. § (1) bekezdés). Ez esetben a Szolgáltató a termékekhez kapcsolódó tárolási és szállítási költséget (oda-vissza) érvényesítheti, valamint követeléskezelő és/vagy ügyvéd igénybevétele esetén az ebből keletkező egyéb (jogi) költségek megfizetése is a Felhasználót terheli.
+            </div>
+          </section>
+          
+          <!-- 7. Elállás joga -->
+          <section id="elallas-joga" class="legal-section">
+            <h2>7. Elállás joga</h2>
+            <p>
+              <strong>7.1.</strong> Az Európai Parlament és a Tanács 2011/83/EU számú irányelvének, továbbá a 45/2014. (II.26.) Korm. rendelet szabályozása értelmében Fogyasztót indokolás nélküli elállási jog illeti meg.
+            </p>
+            <p>
+              A fogyasztó az elállási vagy felmondási jogát a termék átvételének napjától számított <strong>14 napon belül</strong> gyakorolhatja. Ha a Szolgáltató a jelen tájékoztatásnak nem tesz eleget, a 14 napos elállási határidő tizenkét hónappal meghosszabbodik.
+            </p>
+            <p>
+              <strong>7.5.</strong> A termék visszaküldésének közvetlen költségét a Fogyasztónak kell viselnie.
+            </p>
+            <p>
+              <strong>7.7-7.8. Elállási jog kivételei:</strong>
+            </p>
+            <div class="callout">
+              <p>Nem illeti meg az elállási jog Fogyasztót többek között:</p>
+              <ul>
+                <li>nem előre gyártott, a Fogyasztó kérésére előállított vagy személyre szabott áru esetében</li>
+                <li>romlandó vagy minőségét rövid ideig megőrző áru esetében</li>
+                <li>olyan zárt csomagolású áru esetében, amely egészségvédelmi vagy higiéniai okokból az átadást követő felbontása után nem küldhető vissza</li>
+                <li>olyan áru esetében, amely jellegénél fogva az átadást követően elválaszthatatlanul vegyül más áruval</li>
+              </ul>
+            </div>
+            <p>
+              <strong>7.9-7.16.</strong> Szolgáltató haladéktalanul, de legkésőbb az elállásról való tudomásszerzéstől számított <strong>14 napon belül</strong> visszatéríti a Fogyasztó által ellenszolgáltatásként megfizetett teljes összeget. A visszatérítés során az eredeti ügylet során alkalmazott fizetési móddal egyező fizetési módot alkalmaz. A visszatérítés visszatartható, amíg a Szolgáltató vissza nem kapta az árukat.
+            </p>
+            <p>
+              <strong>7.17.</strong> Amennyiben a Fogyasztó élni szeretne elállási jogával, annak jelzését megteheti a Szolgáltató elérhetőségein írásban, telefonon, vagy személyesen.
+            </p>
+            <p>
+              <strong>7.22.</strong> Az elállási jog csak a Polgári Törvénykönyv szerinti fogyasztónak minősülő Felhasználókat illeti meg. Az elállási jog nem illeti meg a vállalkozást.
+            </p>
+            <div class="callout info">
+              <strong>Elállási nyilatkozat minta</strong>
+              <p>Az ÁSZF teljes PDF verziójának végén megtalálható a hivatalos elállási nyilatkozat minta, amelyet kitöltve és aláírva a Szolgáltató címére kell visszajuttatni.</p>
+              <a href="/legal/zephyr-aszf.pdf" download="Zephyr_ASZF.pdf" class="inline-link">PDF letöltése az elállási nyilatkozat mintával →</a>
+            </div>
+          </section>
+          
+          <!-- 8. Szavatosság -->
+          <section id="szavatossag" class="legal-section">
+            <h2>8. Szavatosság</h2>
+            
+            <h3>Hibás teljesítés</h3>
+            <p>
+              A kötelezett hibásan teljesít, ha a szolgáltatás a teljesítés időpontjában nem felel meg a szerződésben vagy jogszabályban megállapított minőségi követelményeknek. Fogyasztó és vállalkozás közötti szerződésben semmis az a kikötés, amely a kellékszavatosságra és jótállásra vonatkozó rendelkezésektől a Fogyasztó hátrányára tér el.
+            </p>
+            
+            <h3>Kellékszavatosság</h3>
+            <p>
+              <strong>8.1-8.2.</strong> Felhasználó a Szolgáltató hibás teljesítése esetén kellékszavatossági igényt érvényesíthet a Polgári Törvénykönyv szabályai szerint. Felhasználó – választása szerint – kérhet kijavítást vagy kicserélést. Ha ezek nem lehetségesek vagy aránytalanok, igényelheti az ellenszolgáltatás arányos leszállítását vagy – végső esetben – a szerződéstől is elállhat.
+            </p>
+            <p>
+              <strong>8.3. Határidő:</strong> A hibát annak felfedezése után haladéktalanul, de nem később, mint a hiba felfedezésétől számított <strong>kettő hónapon</strong> belül kell közölni. A szerződés teljesítésétől számított <strong>két éves</strong> elévülési határidőn túl kellékszavatossági jogok már nem érvényesíthetők.
+            </p>
+            
+            <h3>Termékszavatosság</h3>
+            <p>
+              <strong>8.6-8.9.</strong> Ingó dolog hibája esetén a Fogyasztó kellékszavatossági jogát gyakorolhatja, vagy termékszavatossági igényt érvényesíthet. Termékszavatossági igényként a Fogyasztó a hibás termék kijavítását vagy kicserélését kérheti a gyártóval szemben. Termékszavatossági igényét a Fogyasztó a termék gyártó általi forgalomba hozatalától számított <strong>két éven belül</strong> érvényesítheti.
+            </p>
+          </section>
+          
+          <!-- 9. Szavatossági igény eljárás -->
+          <section id="szavatossagi-igeny" class="legal-section">
+            <h2>9. A szavatossági igény esetén történő eljárás</h2>
+            <p>
+              <strong>9.2.</strong> A fogyasztó kötelessége a szerződés megkötésének bizonyítása (számlával vagy nyugtával).
+            </p>
+            <p>
+              <strong>9.3.</strong> A szavatossági kötelezettség teljesítésével kapcsolatos költségek a Szolgáltatót terhelik.
+            </p>
+            <p>
+              <strong>9.4-9.7.</strong> A Szolgáltató a bejelentett szavatossági vagy jótállási igényről jegyzőkönyvet köteles felvenni, és annak másolatát haladéktalanul a Fogyasztó rendelkezésére bocsátani. A jegyzőkönyvet annak felvételétől számított három évig köteles megőrizni.
+            </p>
+            <p>
+              <strong>9.8.</strong> A Szolgáltatónak törekednie kell arra, hogy a kijavítást vagy kicserélést legfeljebb <strong>15 napon</strong> belül elvégezze. Ha a kijavítás vagy a kicserélés időtartama a 15 napot meghaladja, a Szolgáltató a fogyasztót tájékoztatni köteles a kijavítás vagy a csere várható időtartamáról.
+            </p>
+          </section>
+          
+          <!-- 10. Vegyes rendelkezések -->
+          <section id="vegyes-rendelkezesek" class="legal-section">
+            <h2>10. Vegyes rendelkezések</h2>
+            <p>
+              <strong>10.1.</strong> Szolgáltató kötelezettsége teljesítéséhez közreműködőt jogosult igénybe venni. Ennek jogellenes magatartásáért teljes felelősséggel tartozik.
+            </p>
+            <p>
+              <strong>10.2-10.3.</strong> Ha a jelen ÁSZF bármely része érvénytelenné válik, az a fennmaradó részek érvényességét nem érinti. Bármilyen jogról történő lemondás csak az erre vonatkozó kifejezett írásbeli nyilatkozat esetén érvényes.
+            </p>
+            <p>
+              <strong>10.4-10.5.</strong> Szolgáltató és Felhasználó vitás ügyeiket békés úton próbálják rendezni. A Szolgáltató webshopja Magyarországon működik, az irányadó jog a magyar jog. Fogyasztóval szemben a Pp. 26. § (1) bekezdése alapján az alperes (Fogyasztó) belföldi lakóhelye szerinti bíróság kizárólagosan illetékes.
+            </p>
+            <p>
+              <strong>10.6-10.8.</strong> Szolgáltató nem alkalmaz eltérő általános hozzáférési feltételeket a Felhasználó állampolgárságával, lakóhelyével vagy letelepedési helyével kapcsolatos okokból, megfelelve az EU 2018/302 rendeletnek.
+            </p>
+          </section>
+          
+          <!-- 11. Panaszkezelés -->
+          <section id="panaszkezeles" class="legal-section">
+            <h2>11. Panaszkezelés rendje</h2>
+            <p>
+              <strong>11.1.</strong> Szolgáltató célja, hogy valamennyi megrendelést megfelelő minőségben, a megrendelő teljes megelégedettsége mellett teljesítsen.
+            </p>
+            <p>
+              <strong>11.2-11.4.</strong> A fogyasztó szóban vagy írásban közölheti panaszát. A szóbeli panaszt a vállalkozás azonnal megvizsgálja és szükség szerint orvosolja. Ha az azonnali kivizsgálás nem lehetséges, jegyzőkönyvet vesz fel.
+            </p>
+            <p>
+              <strong>11.9.</strong> Az írásbeli panaszt a vállalkozás a beérkezését követően <strong>30 napon belül</strong> köteles írásban érdemben megválaszolni. A panaszt elutasító álláspontját indokolni köteles.
+            </p>
+            <p>
+              <strong>11.11.</strong> A vállalkozás a panaszról felvett jegyzőkönyvet és a panaszra adott érdemi válasz másolatát három évig köteles megőrizni.
+            </p>
+            
+            <h3>Panasz elutasítása esetén</h3>
+            <p>
+              <strong>11.15. Fogyasztóvédelmi hatóság:</strong> a kormányhivatal jár el. Elérhetőségek: <a href="https://kormanyhivatalok.hu/kormanyhivatalok" target="_blank" rel="noopener">kormanyhivatalok.hu</a>
+            </p>
+            
+            <h3>Békéltető testületek</h3>
+            <p>
+              A Fogyasztónak panasza esetén lehetősége van békéltető testülethez fordulni. A teljes vármegyei lista a PDF dokumentumban elérhető. Néhány kiemelt testület:
+            </p>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Testület</th>
+                  <th>Cím</th>
+                  <th>Elérhetőség</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Budapesti Békéltető Testület</td>
+                  <td>1016 Budapest, Krisztina krt. 99.</td>
+                  <td>+36 1 488 2131<br/><a href="https://bekeltet.bkik.hu/" target="_blank" rel="noopener">bekeltet.bkik.hu</a></td>
+                </tr>
+                <tr>
+                  <td>Pest Vármegyei Békéltető Testület</td>
+                  <td>1055 Budapest, Balassi Bálint u. 25. IV/2.</td>
+                  <td>+36 1 792 7881<br/><a href="https://www.panaszrendezes.hu" target="_blank" rel="noopener">panaszrendezes.hu</a></td>
+                </tr>
+                <tr>
+                  <td>Baranya Vármegyei Békéltető Testület</td>
+                  <td>7625 Pécs, Majorossy Imre u. 36.</td>
+                  <td>+36 72 507 154<br/><a href="https://www.baranyabekeltetes.hu" target="_blank" rel="noopener">baranyabekeltetes.hu</a></td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="footnote">
+              A teljes 19 vármegyei lista az <a href="/legal/zephyr-aszf.pdf" download="Zephyr_ASZF.pdf">ÁSZF PDF-ben</a> található.
+            </p>
+          </section>
+          
+          <!-- 12. Szerzői jogok -->
+          <section id="szerzoi-jogok" class="legal-section">
+            <h2>12. Szerzői jogok</h2>
+            <p>
+              <strong>12.1-12.5.</strong> A <a href="https://zephyrhangover.com/">zephyrhangover.com</a> mint weboldal szerzői jogi műnek minősül. Tilos a weboldalon megjelenő tartalmak vagy azok bármely részletének letöltése, újra nyilvánossághoz történő közvetítése, más módon való felhasználása, elektronikus tárolása, feldolgozása és értékesítése a Szolgáltató írásos hozzájárulása nélkül (kivéve az ÁSZF-et és az adatkezelési tájékoztatót).
+            </p>
+            <p>
+              <strong>12.6.</strong> Felhasználó tudomásul veszi, hogy a felhasználási engedély nélküli felhasználás esetén Szolgáltatót kötbér illeti meg. A kötbér összege képenként bruttó 60.000 Ft, illetve szavanként bruttó 20.000 Ft.
+            </p>
+          </section>
+          
+          <!-- 13. Adatvédelem link -->
+          <section id="adatvedelem-link" class="legal-section">
+            <h2>13. Adatvédelem</h2>
+            <p>
+              A weboldal adatkezelési tájékoztatója külön oldalon érhető el:
+            </p>
+            <a href="/adatvedelem" class="cta-link">Adatkezelési tájékoztató megtekintése →</a>
+          </section>
+          
+          <div class="legal-footer">
+            <p>Budapest, 2026. május 18.</p>
+            <p class="meta">Verzió 1.0 · Hatályos: visszavonásig</p>
+          </div>
+          
+        </article>
+      </div>
+    </section>
+    
+    <!-- Vissza az elejére floating gomb -->
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Vissza az elejére">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 19V5M5 12l7-7 7 7"/>
+      </svg>
+    </button>
+    
+  </main>
+  
+  <Footer />
+  
+</Layout>
+
+<style>
+  /* ═══════════════════════════════════════════
+     ZEPHYR LEGAL PAGE STYLES
+     Premium wellness brand — cream, aubergine, serif
+     ═══════════════════════════════════════════ */
+  
+  .legal-page {
+    background: #FDFBF7;
+    color: #1A1A1A;
+    min-height: 100vh;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  
+  /* ─── Hero ─── */
+  .legal-hero {
+    padding: 6rem 0 4rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(109, 32, 119, 0.08);
+  }
+  
+  .section-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #6D2077;
+    margin-bottom: 1rem;
+  }
+  
+  .legal-hero h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: #1A1A1A;
+    margin-bottom: 1rem;
+  }
+  
+  .legal-meta {
+    font-size: 0.95rem;
+    color: rgba(26, 26, 26, 0.55);
+    margin-bottom: 2.5rem;
+  }
+  
+  .pdf-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 1.75rem;
+    background: #6D2077;
+    color: white;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .pdf-download-btn:hover {
+    background: #4A1552;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(109, 32, 119, 0.25);
+  }
+  
+  .pdf-download-btn svg {
+    flex-shrink: 0;
+  }
+  
+  /* ─── Content grid ─── */
+  .legal-content-wrapper {
+    padding: 4rem 0 6rem;
+  }
+  
+  .content-grid {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  
+  @media (max-width: 968px) {
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+  
+  /* ─── Sticky TOC sidebar ─── */
+  .toc-sidebar {
+    position: sticky;
+    top: 2rem;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+  }
+  
+  @media (max-width: 968px) {
+    .toc-sidebar {
+      position: static;
+      max-height: none;
+      background: rgba(109, 32, 119, 0.04);
+      padding: 1.5rem;
+      border-radius: 12px;
+    }
+  }
+  
+  .toc-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #6D2077;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(109, 32, 119, 0.15);
+  }
+  
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .toc-list li {
+    margin-bottom: 0.4rem;
+  }
+  
+  .toc-list a {
+    display: block;
+    font-size: 0.85rem;
+    color: rgba(26, 26, 26, 0.65);
+    text-decoration: none;
+    padding: 0.45rem 0.6rem;
+    border-radius: 6px;
+    border-left: 2px solid transparent;
+    transition: all 0.2s ease;
+    line-height: 1.4;
+  }
+  
+  .toc-list a:hover,
+  .toc-list a.active {
+    color: #6D2077;
+    background: rgba(109, 32, 119, 0.05);
+    border-left-color: #6D2077;
+  }
+  
+  /* ─── Article body ─── */
+  .legal-article {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #1A1A1A;
+    max-width: 720px;
+  }
+  
+  .legal-article p {
+    margin-bottom: 1.1rem;
+  }
+  
+  .legal-article a {
+    color: #6D2077;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    transition: color 0.2s ease;
+  }
+  
+  .legal-article a:hover {
+    color: #4A1552;
+  }
+  
+  /* ─── Intro block ─── */
+  .intro-block {
+    padding: 2rem;
+    background: rgba(109, 32, 119, 0.03);
+    border-radius: 12px;
+    margin-bottom: 3rem;
+    border-left: 3px solid #6D2077;
+  }
+  
+  .intro-block p {
+    font-size: 0.95rem;
+    color: rgba(26, 26, 26, 0.75);
+  }
+  
+  .intro-block p:last-of-type {
+    margin-bottom: 0;
+  }
+  
+  /* ─── Definitions ─── */
+  .definitions-block {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(109, 32, 119, 0.1);
+  }
+  
+  .definitions-block h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: #1A1A1A;
+  }
+  
+  dl {
+    margin: 0;
+  }
+  
+  dt {
+    font-weight: 600;
+    color: #6D2077;
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+  }
+  
+  dt:first-child {
+    margin-top: 0;
+  }
+  
+  dd {
+    margin: 0.25rem 0 0 0;
+    font-size: 0.95rem;
+    color: rgba(26, 26, 26, 0.75);
+  }
+  
+  /* ─── Legal sections ─── */
+  .legal-section {
+    padding: 2.5rem 0;
+    border-top: 1px solid rgba(26, 26, 26, 0.08);
+    scroll-margin-top: 2rem;
+  }
+  
+  .legal-section:first-of-type {
+    border-top: none;
+    padding-top: 1rem;
+  }
+  
+  .legal-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 400;
+    color: #1A1A1A;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+  
+  .legal-section h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: #1A1A1A;
+    margin: 2rem 0 0.75rem;
+  }
+  
+  /* ─── Data list (key-value pairs) ─── */
+  .data-list {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 0.5rem 1.5rem;
+    padding: 1.5rem;
+    background: rgba(109, 32, 119, 0.03);
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+  }
+  
+  @media (max-width: 600px) {
+    .data-list {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+    .data-list dd {
+      margin-bottom: 0.5rem;
+    }
+  }
+  
+  .data-list dt {
+    margin-top: 0;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .data-list dd {
+    margin: 0;
+  }
+  
+  /* ─── Provider cards ─── */
+  .provider-card {
+    padding: 1.25rem 1.5rem;
+    background: white;
+    border: 1px solid rgba(109, 32, 119, 0.12);
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+  
+  .provider-card strong {
+    display: block;
+    font-size: 1rem;
+    color: #6D2077;
+    margin-bottom: 0.4rem;
+  }
+  
+  .provider-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba(26, 26, 26, 0.7);
+    line-height: 1.5;
+  }
+  
+  /* ─── Callout boxes ─── */
+  .callout {
+    padding: 1.25rem 1.5rem;
+    background: rgba(109, 32, 119, 0.04);
+    border-left: 3px solid #6D2077;
+    border-radius: 0 8px 8px 0;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  
+  .callout strong {
+    color: #6D2077;
+  }
+  
+  .callout ul {
+    margin: 0.5rem 0 0 1.25rem;
+    padding: 0;
+  }
+  
+  .callout ul li {
+    margin-bottom: 0.35rem;
+  }
+  
+  .callout p {
+    margin-bottom: 0.6rem;
+  }
+  
+  .callout p:last-child {
+    margin-bottom: 0;
+  }
+  
+  .callout.warning {
+    background: rgba(180, 83, 9, 0.05);
+    border-left-color: #B45309;
+  }
+  
+  .callout.warning strong {
+    color: #B45309;
+  }
+  
+  .callout.info {
+    background: rgba(0, 59, 92, 0.04);
+    border-left-color: #003B5C;
+  }
+  
+  .callout.info strong {
+    color: #003B5C;
+  }
+  
+  .inline-link {
+    display: inline-block;
+    margin-top: 0.75rem;
+    color: #6D2077;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none !important;
+  }
+  
+  .inline-link:hover {
+    text-decoration: underline !important;
+  }
+  
+  /* ─── Tables ─── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 0 rgba(26, 26, 26, 0.06);
+  }
+  
+  .data-table thead {
+    background: rgba(109, 32, 119, 0.06);
+  }
+  
+  .data-table th {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #6D2077;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .data-table td {
+    padding: 0.85rem 1rem;
+    border-top: 1px solid rgba(26, 26, 26, 0.05);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  
+  .data-table tbody tr:hover {
+    background: rgba(109, 32, 119, 0.02);
+  }
+  
+  /* ─── CTA link ─── */
+  .cta-link {
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+    color: #6D2077;
+    border: 1.5px solid #6D2077;
+    border-radius: 50px;
+    text-decoration: none !important;
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .cta-link:hover {
+    background: #6D2077;
+    color: white !important;
+    transform: translateY(-1px);
+  }
+  
+  /* ─── Footnotes ─── */
+  .footnote {
+    font-size: 0.85rem;
+    color: rgba(26, 26, 26, 0.55);
+    font-style: italic;
+    margin-top: 0.75rem;
+  }
+  
+  /* ─── Legal footer ─── */
+  .legal-footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(109, 32, 119, 0.15);
+    text-align: center;
+  }
+  
+  .legal-footer p {
+    color: rgba(26, 26, 26, 0.6);
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .legal-footer .meta {
+    font-size: 0.8rem;
+    color: rgba(26, 26, 26, 0.45);
+  }
+  
+  /* ─── Floating scroll-to-top button ─── */
+  .scroll-top-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 44px;
+    height: 44px;
+    background: #6D2077;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(109, 32, 119, 0.3);
+    z-index: 50;
+  }
+  
+  .scroll-top-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .scroll-top-btn:hover {
+    background: #4A1552;
+    transform: translateY(-2px);
+  }
+</style>
+
+<script>
+  // Vissza-az-elejére gomb + aktív TOC link kiemelés
+  // Plain JS (Astro script tag-ben TypeScript szintaktika silent-failure-t okoz)
+  
+  var scrollTopBtn = document.getElementById('scrollTopBtn');
+  var tocLinks = document.querySelectorAll('.toc-list a');
+  var sections = document.querySelectorAll('.legal-section[id]');
+  
+  // Scroll-to-top gomb láthatóság + aktív szekció figyelése
+  function handleScroll() {
+    if (!scrollTopBtn) return;
+    
+    if (window.scrollY > 600) {
+      scrollTopBtn.classList.add('visible');
+    } else {
+      scrollTopBtn.classList.remove('visible');
+    }
+    
+    // Aktív TOC link megtalálása
+    var currentSection = null;
+    var scrollPos = window.scrollY + 150;
+    
+    for (var i = 0; i < sections.length; i++) {
+      var section = sections[i];
+      if (section && section.offsetTop <= scrollPos) {
+        currentSection = section.id;
+      }
+    }
+    
+    if (currentSection) {
+      tocLinks.forEach(function(link) {
+        var href = link.getAttribute('href');
+        if (href === '#' + currentSection) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+  }
+  
+  if (scrollTopBtn) {
+    scrollTopBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  
+  // Throttled scroll listener for performance
+  var scrollTimer = null;
+  window.addEventListener('scroll', function() {
+    if (scrollTimer) return;
+    scrollTimer = setTimeout(function() {
+      handleScroll();
+      scrollTimer = null;
+    }, 100);
+  });
+  
+  // Initial state check
+  handleScroll();
+</script>
