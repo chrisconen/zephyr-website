@@ -1,6 +1,52 @@
 ---
 // Header.astro - Zephyr navigáció
-// Logo középen, menü bal, kosár jobb (wearewild.com / mobilfox.com stílus)
+// Logo középen, menü bal, kosár+lang+login jobb
+// i18n: lang prop ("hu" default | "en")
+interface Props {
+  lang?: 'hu' | 'en';
+}
+
+const { lang = 'hu' } = Astro.props;
+
+// ── Lokalizált szövegek ───────────────────────────────────
+const dict = {
+  hu: {
+    menuLabel: 'Menü megnyitása',
+    accountLabel: 'Fiók',
+    cartLabel: 'Kosár megnyitása',
+    langLabel: 'Nyelv váltása angolra',
+    products: 'Termékek',
+    howItWorks: 'Hogyan működik',
+    ingredients: 'Összetevők',
+    testimonials: 'Vélemények',
+    faq: 'GYIK',
+    buyNow: 'Vásárlás',
+    homeUrl: '/',
+    howItWorksUrl: '/hogyan-mukodik',
+    shopUrl: '/vasarlas',
+    switchLangUrl: '/en',
+    switchLangLabel: 'EN',
+  },
+  en: {
+    menuLabel: 'Open menu',
+    accountLabel: 'Account',
+    cartLabel: 'Open cart',
+    langLabel: 'Switch language to Hungarian',
+    products: 'Products',
+    howItWorks: 'How it Works',
+    ingredients: 'Ingredients',
+    testimonials: 'Reviews',
+    faq: 'FAQ',
+    buyNow: 'Shop Now',
+    homeUrl: '/en',
+    howItWorksUrl: '/en/how-it-works',
+    shopUrl: '/en/shop',
+    switchLangUrl: '/',
+    switchLangLabel: 'HU',
+  },
+};
+
+const t = dict[lang];
 ---
 
 <header id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
@@ -8,7 +54,7 @@
     
     <!-- BAL: Hamburger menü -->
     <div class="nav-left">
-      <button id="menu-toggle" class="menu-toggle" aria-label="Menü megnyitása">
+      <button id="menu-toggle" class="menu-toggle" aria-label={t.menuLabel}>
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
@@ -17,20 +63,25 @@
     
     <!-- KÖZÉP: Logo -->
     <div class="nav-center">
-      <a href="/" class="logo">
+      <a href={t.homeUrl} class="logo">
         <span class="logo-text">Zephyr</span>
       </a>
     </div>
     
-    <!-- JOBB: Kosár + Login -->
+    <!-- JOBB: Lang + Kosár + Login -->
     <div class="nav-right">
-      <a href="#" class="nav-icon" aria-label="Fiók">
+      <!-- Nyelvváltó -->
+      <a href={t.switchLangUrl} class="lang-switch" aria-label={t.langLabel}>
+        <span>{t.switchLangLabel}</span>
+      </a>
+      
+      <a href="#" class="nav-icon" aria-label={t.accountLabel}>
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
           <circle cx="12" cy="7" r="4"></circle>
         </svg>
       </a>
-      <button id="cart-toggle" class="nav-icon cart-icon" aria-label="Kosár megnyitása">
+      <button id="cart-toggle" class="nav-icon cart-icon" aria-label={t.cartLabel}>
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
           <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -46,14 +97,34 @@
   <div id="mobile-menu" class="mobile-menu">
     <div class="mobile-menu-content">
       <nav class="mobile-nav">
-        <a href="#products" class="mobile-nav-link">Termékek</a>
-        <a href="/hogyan-mukodik" class="mobile-nav-link">Hogyan működik</a>
-        <a href="#ingredients" class="mobile-nav-link">Összetevők</a>
-        <a href="#testimonials" class="mobile-nav-link">Vélemények</a>
-        <a href="#faq" class="mobile-nav-link">GYIK</a>
+        {lang === 'hu' ? (
+          <a href="/#products" class="mobile-nav-link">{t.products}</a>
+        ) : (
+          <a href="/en#products" class="mobile-nav-link">{t.products}</a>
+        )}
+        <a href={t.howItWorksUrl} class="mobile-nav-link">{t.howItWorks}</a>
+        {lang === 'hu' ? (
+          <a href="/#ingredients" class="mobile-nav-link">{t.ingredients}</a>
+        ) : (
+          <a href="/en#ingredients" class="mobile-nav-link">{t.ingredients}</a>
+        )}
+        {lang === 'hu' ? (
+          <a href="/#testimonials" class="mobile-nav-link">{t.testimonials}</a>
+        ) : (
+          <a href="/en#testimonials" class="mobile-nav-link">{t.testimonials}</a>
+        )}
+        {lang === 'hu' ? (
+          <a href="/#faq" class="mobile-nav-link">{t.faq}</a>
+        ) : (
+          <a href="/en#faq" class="mobile-nav-link">{t.faq}</a>
+        )}
+        <!-- Mobile nyelvváltó: külön sor -->
+        <a href={t.switchLangUrl} class="mobile-nav-link mobile-lang-link">
+          {lang === 'hu' ? '🌐 English' : '🌐 Magyar'}
+        </a>
       </nav>
       <div class="mobile-menu-cta">
-        <a href="/vasarlas" class="btn-primary w-full text-center">Vásárlás</a>
+        <a href={t.shopUrl} class="btn-primary w-full text-center">{t.buyNow}</a>
       </div>
     </div>
   </div>
@@ -153,14 +224,13 @@
     background-clip: text;
     filter: contrast(1.1);
   }
-
   
   /* Right - Icons */
   .nav-right {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.6rem;
   }
   
   .nav-icon {
@@ -180,6 +250,38 @@
   .nav-icon:hover {
     background: rgba(0, 0, 0, 0.05);
     color: #6D2077;
+  }
+  
+  /* Nyelvváltó */
+  .lang-switch {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 32px;
+    padding: 0 0.65rem;
+    border-radius: 50px;
+    background: rgba(109, 32, 119, 0.06);
+    color: #6D2077;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
+  
+  .lang-switch:hover {
+    background: #6D2077;
+    color: white;
+  }
+  
+  /* Mobilon a desktop nyelvváltó elrejtve, a mobile menüben jelenik meg */
+  @media (max-width: 640px) {
+    .lang-switch {
+      display: none;
+    }
   }
   
   .cart-icon {
@@ -204,7 +306,7 @@
     line-height: 1;
   }
   
-  /* Ha üres vagy 0, rejtve — így soha nem villan be a badge értelmetlenül */
+  /* Ha üres vagy 0, rejtve */
   .cart-count:empty,
   .cart-count[data-count="0"] {
     display: none;
@@ -270,6 +372,15 @@
     color: #6D2077;
   }
   
+  /* Mobile nyelvváltó link kissé eltérő stílusú */
+  .mobile-lang-link {
+    color: #6D2077;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+  }
+  
   .mobile-menu-cta {
     padding-top: 2rem;
   }
@@ -296,31 +407,31 @@
   // ─────────────────────────────────────────
   // Scroll effect + auto-hide on mobile
   // ─────────────────────────────────────────
-  const nav = document.getElementById('nav');
-  let lastScrollY = 0;
-  let ticking = false;
+  var nav = document.getElementById('nav');
+  var lastScrollY = 0;
+  var ticking = false;
   
   function updateHeader() {
-    const currentScrollY = window.scrollY;
+    var currentScrollY = window.scrollY;
     
-    nav?.classList.toggle('scrolled', currentScrollY > 50);
+    if (nav) nav.classList.toggle('scrolled', currentScrollY > 50);
     
     // Auto-hide: only on mobile (< 1024px)
     if (window.innerWidth < 1024) {
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        nav?.classList.add('header-hidden');
+        if (nav) nav.classList.add('header-hidden');
       } else {
-        nav?.classList.remove('header-hidden');
+        if (nav) nav.classList.remove('header-hidden');
       }
     } else {
-      nav?.classList.remove('header-hidden');
+      if (nav) nav.classList.remove('header-hidden');
     }
     
     lastScrollY = currentScrollY;
     ticking = false;
   }
   
-  window.addEventListener('scroll', () => {
+  window.addEventListener('scroll', function() {
     if (!ticking) {
       requestAnimationFrame(updateHeader);
       ticking = true;
@@ -330,45 +441,49 @@
   // ─────────────────────────────────────────
   // Mobile menu toggle
   // ─────────────────────────────────────────
-  const menuToggle = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
+  var menuToggle = document.getElementById('menu-toggle');
+  var mobileMenu = document.getElementById('mobile-menu');
   
-  menuToggle?.addEventListener('click', () => {
-    menuToggle.classList.toggle('active');
-    mobileMenu?.classList.toggle('active');
-    document.body.style.overflow = mobileMenu?.classList.contains('active') ? 'hidden' : '';
-  });
+  if (menuToggle) {
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('active');
+      if (mobileMenu) {
+        mobileMenu.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+      }
+    });
+  }
   
-  mobileMenu?.addEventListener('click', (e) => {
-    if (e.target === mobileMenu) {
-      menuToggle?.classList.remove('active');
-      mobileMenu.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  });
+  if (mobileMenu) {
+    mobileMenu.addEventListener('click', function(e) {
+      if (e.target === mobileMenu) {
+        if (menuToggle) menuToggle.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  }
   
-  document.querySelectorAll('.mobile-nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      menuToggle?.classList.remove('active');
-      mobileMenu?.classList.remove('active');
+  var mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+  for (var i = 0; i < mobileNavLinks.length; i++) {
+    mobileNavLinks[i].addEventListener('click', function() {
+      if (menuToggle) menuToggle.classList.remove('active');
+      if (mobileMenu) mobileMenu.classList.remove('active');
       document.body.style.overflow = '';
     });
-  });
+  }
   
   // ─────────────────────────────────────────
   // Kosár: badge szinkronizáció + drawer nyitás
-  // A CartDrawer (Layout.astro-ban) az `openCart` event-re figyel.
-  // A `cartUpdated` event-et bárki dispatch-elheti (pl. Shop.astro), és a badge frissül.
-  // TISZTA JS — semmi TS-típus, hogy ne legyen build-time parsing probléma.
   // ─────────────────────────────────────────
-  const cartToggle = document.getElementById('cart-toggle');
-  const cartCount = document.getElementById('cart-count');
+  var cartToggle = document.getElementById('cart-toggle');
+  var cartCount = document.getElementById('cart-count');
 
   function updateCartCount() {
-    let count = 0;
+    var count = 0;
     try {
-      const saved = localStorage.getItem('zephyr-cart');
-      const items = saved ? JSON.parse(saved) : [];
+      var saved = localStorage.getItem('zephyr-cart');
+      var items = saved ? JSON.parse(saved) : [];
       if (Array.isArray(items)) {
         count = items.reduce(function (sum, item) {
           return sum + (item && item.quantity ? item.quantity : 0);
