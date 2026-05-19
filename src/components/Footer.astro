@@ -1,5 +1,73 @@
 ---
 // Footer.astro - Zephyr footer
+// i18n: lang prop ("hu" default | "en")
+interface Props {
+  lang?: 'hu' | 'en';
+}
+
+const { lang = 'hu' } = Astro.props;
+
+// ── Lokalizált szövegek ───────────────────────────────────
+const dict = {
+  hu: {
+    newsletterTitle: 'Iratkozz fel hírlevelünkre',
+    newsletterDesc: 'Exkluzív ajánlatok, új termékek és hasznos tippek — közvetlenül a postaládádba.',
+    newsletterPlaceholder: 'Email címed',
+    newsletterBtn: 'Feliratkozom',
+    tagline: 'Két bölcs döntés. Egy jobb reggel.',
+    colProducts: 'Termékek',
+    colInfo: 'Információ',
+    colContact: 'Kapcsolat',
+    productsPreventive: 'Preventive',
+    productsRecovery: 'Recovery',
+    productsPackages: 'Csomagok',
+    howItWorks: 'Hogyan működik',
+    ingredients: 'Összetevők',
+    faq: 'GYIK',
+    copy: '© 2026 Toplexa Kft. Minden jog fenntartva.',
+    credit: 'Weboldal & webáruház készítés',
+    privacy: 'Adatvédelem',
+    terms: 'Felhasználási feltételek',
+    productsAnchor: '/#products',
+    shopUrl: '/vasarlas',
+    howItWorksUrl: '/hogyan-mukodik',
+    ingredientsAnchor: '/#ingredients',
+    faqAnchor: '/#faq',
+    privacyUrl: '/adatvedelem',
+    termsUrl: '/aszf',
+    newsletterAlert: 'Köszönjük a feliratkozást!',
+  },
+  en: {
+    newsletterTitle: 'Subscribe to Our Newsletter',
+    newsletterDesc: 'Exclusive offers, new products, and useful tips — delivered straight to your inbox.',
+    newsletterPlaceholder: 'Your email address',
+    newsletterBtn: 'Subscribe',
+    tagline: 'Two wise choices. One better morning.',
+    colProducts: 'Products',
+    colInfo: 'Information',
+    colContact: 'Contact',
+    productsPreventive: 'Preventive',
+    productsRecovery: 'Recovery',
+    productsPackages: 'Packages',
+    howItWorks: 'How it Works',
+    ingredients: 'Ingredients',
+    faq: 'FAQ',
+    copy: '© 2026 Toplexa Kft. All rights reserved.',
+    credit: 'Website & e-commerce by',
+    privacy: 'Privacy Policy',
+    terms: 'Terms & Conditions',
+    productsAnchor: '/en#products',
+    shopUrl: '/en/shop',
+    howItWorksUrl: '/en/how-it-works',
+    ingredientsAnchor: '/en#ingredients',
+    faqAnchor: '/en#faq',
+    privacyUrl: '/adatvedelem',
+    termsUrl: '/aszf',
+    newsletterAlert: 'Thank you for subscribing!',
+  },
+};
+
+const t = dict[lang];
 ---
 
 <footer class="footer">
@@ -7,16 +75,16 @@
     
     <!-- Newsletter -->
     <div class="newsletter">
-      <h3>Iratkozz fel hírlevelünkre</h3>
-      <p>Exkluzív ajánlatok, új termékek és hasznos tippek — közvetlenül a postaládádba.</p>
-      <form class="newsletter-form" id="newsletter-form">
+      <h3>{t.newsletterTitle}</h3>
+      <p>{t.newsletterDesc}</p>
+      <form class="newsletter-form" id="newsletter-form" data-success-msg={t.newsletterAlert}>
         <input 
           type="email" 
-          placeholder="Email címed" 
+          placeholder={t.newsletterPlaceholder} 
           required 
           class="newsletter-input"
         />
-        <button type="submit" class="newsletter-btn">Feliratkozom</button>
+        <button type="submit" class="newsletter-btn">{t.newsletterBtn}</button>
       </form>
     </div>
     
@@ -28,25 +96,25 @@
       <!-- Logo -->
       <div class="footer-brand">
         <span class="footer-logo">Zephyr</span>
-        <p class="footer-tagline">Két bölcs döntés. Egy jobb reggel.</p>
+        <p class="footer-tagline">{t.tagline}</p>
       </div>
       
       <!-- Links -->
       <nav class="footer-nav">
         <div class="footer-col">
-          <h4>Termékek</h4>
-          <a href="/#products">Preventive</a>
-          <a href="/#products">Recovery</a>
-          <a href="/vasarlas">Csomagok</a>
+          <h4>{t.colProducts}</h4>
+          <a href={t.productsAnchor}>{t.productsPreventive}</a>
+          <a href={t.productsAnchor}>{t.productsRecovery}</a>
+          <a href={t.shopUrl}>{t.productsPackages}</a>
         </div>
         <div class="footer-col">
-          <h4>Információ</h4>
-          <a href="/hogyan-mukodik">Hogyan működik</a>
-          <a href="/#ingredients">Összetevők</a>
-          <a href="/#faq">GYIK</a>
+          <h4>{t.colInfo}</h4>
+          <a href={t.howItWorksUrl}>{t.howItWorks}</a>
+          <a href={t.ingredientsAnchor}>{t.ingredients}</a>
+          <a href={t.faqAnchor}>{t.faq}</a>
         </div>
         <div class="footer-col">
-          <h4>Kapcsolat</h4>
+          <h4>{t.colContact}</h4>
           <a href="mailto:info@zephyr.hu">info@zephyr.hu</a>
           <a href="#">Instagram</a>
           <a href="#">Facebook</a>
@@ -60,14 +128,14 @@
     <!-- Bottom -->
     <div class="footer-bottom">
       <div class="footer-copy-wrap">
-        <p class="footer-copy">© 2026 Toplexa Kft. Minden jog fenntartva.</p>
+        <p class="footer-copy">{t.copy}</p>
         <p class="footer-credit">
-          <a href="https://conendigital.hu" target="_blank" rel="noopener">Weboldal & webáruház készítés</a> — Conen Digital
+          <a href="https://conendigital.hu" target="_blank" rel="noopener">{t.credit}</a> — Conen Digital
         </p>
       </div>
       <div class="footer-legal">
-        <a href="/adatvedelem">Adatvédelem</a>
-        <a href="/aszf">Felhasználási feltételek</a>
+        <a href={t.privacyUrl}>{t.privacy}</a>
+        <a href={t.termsUrl}>{t.terms}</a>
       </div>
     </div>
     
@@ -288,11 +356,14 @@
 </style>
 
 <script>
-  const form = document.getElementById('newsletter-form');
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    // TODO: Integrate with email service (Klaviyo, etc.)
-    alert('Köszönjük a feliratkozást!');
-    form.reset();
-  });
+  var form = document.getElementById('newsletter-form');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var successMsg = form.getAttribute('data-success-msg') || 'Thank you!';
+      // TODO: Integrate with email service (Klaviyo, etc.)
+      alert(successMsg);
+      form.reset();
+    });
+  }
 </script>
