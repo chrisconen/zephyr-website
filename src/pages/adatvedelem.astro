@@ -1,0 +1,1280 @@
+---
+// adatvedelem.astro - Zephyr Adatkezelési tájékoztató
+// Statikus jogi oldal sticky tartalomjegyzékkel és PDF letöltéssel
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Tartalomjegyzék konfiguráció
+const toc = [
+  { id: 'adatkezelo-adatai', label: 'Az adatkezelő és elérhetőségei' },
+  { id: 'fogalmak', label: 'Fogalom meghatározások' },
+  { id: 'alapelvek', label: 'Adatkezelési alapelvek' },
+  { id: 'webaruhaz', label: 'Webáruház működtetés' },
+  { id: 'cookies', label: 'Cookie-k (sütik) kezelése' },
+  { id: 'google-ads', label: 'Google Ads konverziókövetés' },
+  { id: 'google-analytics', label: 'Google Analytics' },
+  { id: 'hirlevel', label: 'Hírlevél és DM tevékenység' },
+  { id: 'panaszkezeles', label: 'Panaszkezelés' },
+  { id: 'cimzettek', label: 'Adatfeldolgozók és címzettek' },
+  { id: 'kozossegi-media', label: 'Közösségi média felületek' },
+  { id: 'facebook-meta', label: 'Facebook / Meta közös adatkezelés' },
+  { id: 'ugyfelkapcsolatok', label: 'Ügyfélkapcsolatok' },
+  { id: 'erintettek-jogai', label: 'Az érintettek jogai' },
+  { id: 'intezkedesi-hatarido', label: 'Intézkedési határidő' },
+  { id: 'adatkezeles-biztonsaga', label: 'Adatkezelés biztonsága' },
+  { id: 'incidens', label: 'Adatvédelmi incidens' },
+  { id: 'panasztetel', label: 'Panasztételi lehetőség' },
+];
+---
+
+<Layout 
+  title="Adatkezelési tájékoztató" 
+  description="A Zephyr (Toplexa Kft.) adatkezelési tájékoztatója a GDPR és a magyar jogszabályok alapján. Hatályos: 2026. május 18-tól."
+>
+  
+  <Header />
+  
+  <main class="legal-page">
+    
+    <!-- Hero szekció -->
+    <section class="legal-hero">
+      <div class="container">
+        <span class="section-label">Jogi információk</span>
+        <h1>Adatkezelési tájékoztató</h1>
+        <p class="legal-meta">
+          Toplexa Kft. · Hatályos: 2026. május 18-tól · Verzió 1.0
+        </p>
+        <a 
+          href="/legal/zephyr-adatvedelem.pdf" 
+          download="Zephyr_Adatkezelesi_Tajekoztato.pdf"
+          class="pdf-download-btn"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          <span>PDF letöltése</span>
+        </a>
+      </div>
+    </section>
+    
+    <!-- Tartalom + Sticky TOC -->
+    <section class="legal-content-wrapper">
+      <div class="container content-grid">
+        
+        <!-- Sticky tartalomjegyzék -->
+        <aside class="toc-sidebar">
+          <nav class="toc-nav" aria-label="Tartalomjegyzék">
+            <h2 class="toc-title">Tartalom</h2>
+            <ul class="toc-list">
+              {toc.map(item => (
+                <li><a href={`#${item.id}`}>{item.label}</a></li>
+              ))}
+            </ul>
+          </nav>
+        </aside>
+        
+        <!-- Fő tartalom -->
+        <article class="legal-article">
+          
+          <div class="intro-block">
+            <p>
+              A <strong>Toplexa Kft.</strong> (1095 Budapest, Dandár utca 22. B. lház. 7. em. 2. ajtó, adószám: 32970050-1-43, cégjegyzékszám: 01-09-452035) (a továbbiakban: <em>Szolgáltató, adatkezelő</em>) jelen adatkezeléseire az alábbi tájékoztatóban foglaltak szerint kerül sor.
+            </p>
+            <p>
+              A természetes személyeknek a személyes adatok kezelése tekintetében történő védelméről és az ilyen adatok szabad áramlásáról szóló <strong>AZ EURÓPAI PARLAMENT ÉS A TANÁCS (EU) 2016/679 RENDELETE</strong> (általános adatvédelmi rendelet, GDPR) szerint az alábbi tájékoztatást adjuk.
+            </p>
+            <p>
+              Jelen adatvédelmi tájékoztató az alábbi oldalak adatkezelését szabályozza: <a href="https://zephyrhangover.com/">zephyrhangover.com</a>, <a href="https://zephyrhngvr.com/">zephyrhngvr.com</a>
+            </p>
+          </div>
+          
+          <!-- Adatkezelő adatai -->
+          <section id="adatkezelo-adatai" class="legal-section">
+            <h2>Az adatkezelő és elérhetőségei</h2>
+            <dl class="data-list">
+              <dt>Név</dt><dd>Toplexa Kft.</dd>
+              <dt>Székhely</dt><dd>1095 Budapest, Dandár utca 22. B. lház. 7. em. 2. ajtó</dd>
+              <dt>E-mail</dt><dd><a href="mailto:zephyrhangover@gmail.com">zephyrhangover@gmail.com</a></dd>
+              <dt>Telefon</dt><dd><a href="tel:+36302876500">+36 30 287 6500</a></dd>
+            </dl>
+          </section>
+          
+          <!-- Fogalmak -->
+          <section id="fogalmak" class="legal-section">
+            <h2>Fogalom meghatározások</h2>
+            <p>A GDPR alapján a tájékoztató szempontjából legfontosabb fogalmak:</p>
+            
+            <dl class="glossary">
+              <dt>Személyes adat</dt>
+              <dd>Azonosított vagy azonosítható természetes személyre („érintett") vonatkozó bármely információ; azonosítható az a természetes személy, aki közvetlen vagy közvetett módon azonosítható (pl. név, szám, helymeghatározó adat, online azonosító alapján).</dd>
+              
+              <dt>Adatkezelés</dt>
+              <dd>A személyes adatokon vagy adatállományokon automatizált vagy nem automatizált módon végzett bármely művelet, így a gyűjtés, rögzítés, rendszerezés, tárolás, átalakítás, lekérdezés, felhasználás, közlés továbbítás, törlés.</dd>
+              
+              <dt>Adatkezelő</dt>
+              <dd>Az a természetes vagy jogi személy, közhatalmi szerv, ügynökség vagy bármely egyéb szerv, amely a személyes adatok kezelésének céljait és eszközeit önállóan vagy másokkal együtt meghatározza.</dd>
+              
+              <dt>Adatfeldolgozó</dt>
+              <dd>Az a természetes vagy jogi személy, aki az adatkezelő nevében személyes adatokat kezel.</dd>
+              
+              <dt>Az érintett hozzájárulása</dt>
+              <dd>Az érintett akaratának önkéntes, konkrét és megfelelő tájékoztatáson alapuló és egyértelmű kinyilvánítása, amellyel beleegyezését adja az őt érintő személyes adatok kezeléséhez.</dd>
+              
+              <dt>Adatvédelmi incidens</dt>
+              <dd>A biztonság olyan sérülése, amely a továbbított, tárolt vagy más módon kezelt személyes adatok véletlen vagy jogellenes megsemmisítését, elvesztését, megváltoztatását, jogosulatlan közlését vagy az azokhoz való jogosulatlan hozzáférést eredményezi.</dd>
+            </dl>
+            
+            <p class="footnote">A fogalmak teljes listája a <a href="/legal/zephyr-adatvedelem.pdf" download>PDF dokumentumban</a> érhető el.</p>
+          </section>
+          
+          <!-- Alapelvek -->
+          <section id="alapelvek" class="legal-section">
+            <h2>A személyes adatok kezelésére vonatkozó elvek</h2>
+            <p>A személyes adatok:</p>
+            <ol class="principles-list">
+              <li><strong>Jogszerűség, tisztességes eljárás és átláthatóság</strong> — kezelésüket jogszerűen és tisztességesen, az érintett számára átlátható módon kell végezni.</li>
+              <li><strong>Célhoz kötöttség</strong> — gyűjtésük csak meghatározott, egyértelmű és jogszerű célból történhet.</li>
+              <li><strong>Adattakarékosság</strong> — az adatkezelés céljai szempontjából megfelelőeknek és relevánsaknak kell lenniük, a szükségesre korlátozva.</li>
+              <li><strong>Pontosság</strong> — pontosnak és szükség esetén naprakésznek kell lenniük.</li>
+              <li><strong>Korlátozott tárolhatóság</strong> — tárolásuk csak a kezelés céljaihoz szükséges ideig történhet.</li>
+              <li><strong>Integritás és bizalmas jelleg</strong> — a megfelelő technikai és szervezési intézkedésekkel biztosítva legyen az adatok biztonsága.</li>
+            </ol>
+            <p>Az adatkezelő felelős a fentiek megfelelésért, továbbá képesnek kell lennie e megfelelés igazolására (<em>elszámoltathatóság</em>).</p>
+          </section>
+          
+          <!-- Webáruház -->
+          <section id="webaruhaz" class="legal-section">
+            <h2>Webáruház működtetéshez kapcsolódó adatkezelés</h2>
+            
+            <h3>Kezelt adatok köre, célja és jogalapja</h3>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Személyes adat</th>
+                  <th>Adatkezelés célja</th>
+                  <th>Jogalap</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Felhasználói név, jelszó</td>
+                  <td>Azonosítás, biztonságos belépés</td>
+                  <td>Hozzájárulás (GDPR 6. cikk (1) a)</td>
+                </tr>
+                <tr>
+                  <td>Vezeték- és keresztnév</td>
+                  <td>Kapcsolatfelvétel, vásárlás, számla kiállítása</td>
+                  <td>Szerződés teljesítése (GDPR 6. cikk (1) b)</td>
+                </tr>
+                <tr>
+                  <td>E-mail cím</td>
+                  <td>Kapcsolattartás</td>
+                  <td>Szerződés teljesítése</td>
+                </tr>
+                <tr>
+                  <td>Telefonszám</td>
+                  <td>Kapcsolattartás, számlázási / szállítási egyeztetés</td>
+                  <td>Szerződés teljesítése</td>
+                </tr>
+                <tr>
+                  <td>Számlázási név és cím</td>
+                  <td>Szabályszerű számla kiállítása</td>
+                  <td>Jogi kötelezettség (GDPR 6. cikk (1) c)<br/><small>2000. évi C. tv. 169. § (2)</small></td>
+                </tr>
+                <tr>
+                  <td>Szállítási név és cím</td>
+                  <td>Házhoz szállítás</td>
+                  <td>Szerződés teljesítése</td>
+                </tr>
+                <tr>
+                  <td>Vásárlás / regisztráció időpontja és IP címe</td>
+                  <td>Technikai művelet</td>
+                  <td>Szerződés teljesítése</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <h3>Érintettek köre</h3>
+            <p>A webshop weboldalon regisztrált / vásárló valamennyi érintett.</p>
+            
+            <h3>Adatkezelés időtartama</h3>
+            <p>Az érintett törlési kérelméig tart. Kivétel a számviteli bizonylatok esetében: a 2000. évi C. törvény 169. § (2) bekezdése alapján <strong>8 évig</strong> meg kell őrizni ezeket az adatokat. A szerződéses adatok a polgárjogi elévülési idő leteltével törölhetőek.</p>
+            
+            <h3>Adatkezeléssel kapcsolatos kérelem benyújtása</h3>
+            <div class="callout">
+              <p>A személyes adatokhoz való hozzáférést, azok törlését, módosítását, vagy kezelésének korlátozását, az adatok hordozhatóságát az alábbi módokon kezdeményezheti:</p>
+              <ul>
+                <li>Postai úton: 1095 Budapest, Dandár utca 22. B. lház. 7. em. 2. ajtó</li>
+                <li>E-mail: <a href="mailto:zephyrhangover@gmail.com">zephyrhangover@gmail.com</a></li>
+                <li>Telefon: <a href="tel:+36302876500">+36 30 287 6500</a></li>
+              </ul>
+            </div>
+          </section>
+          
+          <!-- Cookies -->
+          <section id="cookies" class="legal-section">
+            <h2>Cookie-k (sütik) kezelése</h2>
+            <p>
+              A jelszóval védett munkamenethez használt cookie-k, bevásárlókosárhoz szükséges cookie-k, biztonsági cookie-k, szükségszerű és funkcionális cookie-k, valamint a weboldal statisztikájának kezeléséért felelős cookie-k használatához nem szükséges előzetes hozzájárulást kérni az érintettektől.
+            </p>
+            <p><strong>Az adatkezelés célja:</strong> a felhasználók azonosítása, látogatók nyomon követése, testre szabott működés biztosítása.</p>
+            
+            <h3>Cookie típusok és időtartam</h3>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Süti típusa</th>
+                  <th>Jogalap</th>
+                  <th>Időtartam</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Munkamenet sütik (session)</td>
+                  <td>Adatkezelés nem történik</td>
+                  <td>Munkamenet lezárásáig (böngésző bezárása)</td>
+                </tr>
+                <tr>
+                  <td>Statisztikai, marketing sütik</td>
+                  <td>Hozzájárulás (GDPR 6. cikk (1) a)</td>
+                  <td>1 nap – 2 év, a süti tájékoztatónak megfelelően</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <div class="callout">
+              <strong>Cookie kezelés a böngészőben</strong>
+              <p>A legtöbb böngésző lehetővé teszi annak beállítását, hogy mely cookie-kat kell menteni. Erre vonatkozó beállítások:</p>
+              <ul>
+                <li><a href="https://support.google.com/chrome/answer/95647?hl=hu" target="_blank" rel="noopener">Google Chrome</a></li>
+                <li><a href="https://support.microsoft.com/" target="_blank" rel="noopener">Microsoft Edge</a></li>
+                <li><a href="https://support.mozilla.org/hu/kb/sutik-engedelyezese-es-tiltasa-amit-weboldak-haszn" target="_blank" rel="noopener">Firefox</a></li>
+                <li><a href="https://support.apple.com/hu-hu/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari</a></li>
+              </ul>
+            </div>
+          </section>
+          
+          <!-- Google Ads -->
+          <section id="google-ads" class="legal-section">
+            <h2>Google Ads konverziókövetés használata</h2>
+            <p>Az adatkezelő a „Google Ads" nevű online reklámprogramot használja, valamint igénybe veszi a Google konverziókövető szolgáltatását (Google Inc., 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA).</p>
+            <p>
+              Amikor a felhasználó egy weboldalt Google-hirdetés által ér el, egy konverziókövetéshez szükséges cookie kerül a számítógépére. Ezek a cookie-k <strong>nem tartalmaznak személyes adatot</strong>, a felhasználó nem azonosítható általuk.
+            </p>
+            <p>
+              A <strong>Google Consent Mode v2</strong> alapján két új cookie típust is használ a Google: <code>ad_user_data</code> és <code>ad_personalization</code>, amelyek az érintett hozzájárulásán alapulnak. Adatkezelő biztosítja a cookie bannerén a megfelelő hozzájárulások beszerzését, illetve visszavonását.
+            </p>
+            <p>További információ: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></p>
+          </section>
+          
+          <!-- Google Analytics -->
+          <section id="google-analytics" class="legal-section">
+            <h2>A Google Analytics alkalmazása</h2>
+            <p>Ez a honlap a Google Analytics alkalmazást használja, amely a Google Inc. webelemző szolgáltatása. A Google Analytics „cookie-kat", szövegfájlokat használ, amelyek elősegítik a weblap használatának elemzését.</p>
+            <p>
+              Az <strong>IP-anonimizálás</strong> weboldali aktiválásával a Google a felhasználó IP-címét az Európai Unió tagállamain belül vagy az EGT-ről szóló megállapodásban részes más államokban előzőleg megrövidíti.
+            </p>
+            <p>
+              A Google Analytics keretein belül a böngésző által továbbított IP-címet nem vezeti össze a Google más adataival. A cookie-k tárolása megakadályozható a böngésző megfelelő beállításával.
+            </p>
+            <p>Letiltó plugin: <a href="https://tools.google.com/dlpage/gaoptout?hl=hu" target="_blank" rel="noopener">tools.google.com/dlpage/gaoptout</a></p>
+          </section>
+          
+          <!-- Hírlevél -->
+          <section id="hirlevel" class="legal-section">
+            <h2>Hírlevél, DM tevékenység hozzájárulás alapján</h2>
+            <p>
+              A gazdasági reklámtevékenységről szóló 2008. évi XLVIII. törvény 6. §-a értelmében reklám természetes személynek elektronikus levelezés vagy azzal egyenértékű kommunikációs eszköz útján kizárólag akkor közölhető, ha ahhoz a reklám címzettje előzetesen egyértelműen és kifejezetten hozzájárult.
+            </p>
+            <p>
+              <strong>A Szolgáltató nem küld kéretlen reklámüzenetet</strong>, és a Felhasználó korlátozás és indokolás nélkül, ingyenesen leiratkozhat az ajánlatok küldéséről. A leiratkozás az üzenetben lévő linkre kattintva történhet.
+            </p>
+            
+            <h3>Kezelt adatok</h3>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Személyes adat</th>
+                  <th>Adatkezelés célja</th>
+                  <th>Jogalap</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Név, e-mail cím</td>
+                  <td>Azonosítás, hírlevélre / akciós kuponokra való feliratkozás</td>
+                  <td rowspan="3">Hozzájárulás (GDPR 6. cikk (1) a)</td>
+                </tr>
+                <tr>
+                  <td>Feliratkozás időpontja</td>
+                  <td>Technikai művelet</td>
+                </tr>
+                <tr>
+                  <td>Feliratkozás kori IP cím</td>
+                  <td>Technikai művelet</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <p>
+              <strong>Adatkezelés időtartama:</strong> Hozzájárulás visszavonásáig (leiratkozásig) vagy a hírlevél megszűnéséig tart az adatkezelés.
+            </p>
+          </section>
+          
+          <!-- Panaszkezelés -->
+          <section id="panaszkezeles" class="legal-section">
+            <h2>Panaszkezelés</h2>
+            <p>A panaszkezeléshez az alábbi adatokat kezeljük:</p>
+            <ul class="bullet-list">
+              <li><strong>Vezeték- és keresztnév</strong> — azonosítás, kapcsolattartás</li>
+              <li><strong>E-mail cím, telefonszám</strong> — kapcsolattartás</li>
+              <li><strong>Számlázási név és cím</strong> — azonosítás, kifogások és problémák kezelése</li>
+            </ul>
+            <p><strong>Jogalap:</strong> Jogi kötelezettség teljesítése (GDPR 6. cikk (1) c), 1997. évi CLV. törvény 17/A. § (7).</p>
+            <p>
+              <strong>Adatkezelés időtartama:</strong> A kifogásról felvett jegyzőkönyv, átirat és az arra adott válasz másolati példányait a fogyasztóvédelmi törvény alapján <strong>3 évig</strong> meg kell őrizni.
+            </p>
+          </section>
+          
+          <!-- Címzettek - Adatfeldolgozók -->
+          <section id="cimzettek" class="legal-section">
+            <h2>Adatfeldolgozók és címzettek</h2>
+            <p>
+              Az adatkezelő kizárólag olyan adatfeldolgozókat vesz igénybe, akik megfelelő garanciákat nyújtanak a GDPR-ban foglalt követelményeknek való megfelelést és az érintettek jogainak védelmét biztosító technikai és szervezési intézkedések végrehajtására.
+            </p>
+            
+            <h3>Tárhely-szolgáltatás</h3>
+            <div class="provider-card">
+              <strong>Shopify Inc.</strong>
+              <p>150 Elgin St, Suite 800, Ottawa, ON, K2P 1L4, Kanada</p>
+              <p>Telefon: +1 888 746 7439 · E-mail: <a href="mailto:support@shopify.com">support@shopify.com</a></p>
+            </div>
+            <div class="provider-card">
+              <strong>Rackhost Zrt.</strong>
+              <p>1132 Budapest, Victor Hugo utca 18-22.</p>
+              <p>Telefon: +36 1 445 1204 · E-mail: <a href="mailto:info@rackhost.hu">info@rackhost.hu</a></p>
+            </div>
+            
+            <h3>Egyéb adatfeldolgozók</h3>
+            <div class="provider-card">
+              <strong>Meta Platforms Ireland Limited</strong>
+              <p>Merrion Road, Dublin 4, D04 X2K5, Írország · Tel.: +353 1 5530588</p>
+            </div>
+            <div class="provider-card">
+              <strong>Cloudflare, Inc.</strong>
+              <p>101 Townsend St, San Francisco, CA 94107, USA · Tel.: +1 888 274 3482</p>
+            </div>
+            <div class="provider-card">
+              <strong>Számlázz.hu (KBOSS.hu Kft.)</strong>
+              <p>Online számlázás · <a href="https://www.szamlazz.hu" target="_blank" rel="noopener">szamlazz.hu</a> · <a href="mailto:info@szamlazz.hu">info@szamlazz.hu</a></p>
+            </div>
+            
+            <h3>Adattovábbítás harmadik fél részére</h3>
+            <p>A harmadik fél adatkezelők a saját nevükben, a saját adatvédelmi szabályzatuknak megfelelően kezelik az általunk közölt személyes adatokat.</p>
+            
+            <h4>Fuvarozás</h4>
+            <div class="provider-card">
+              <strong>GLS General Logistics Systems Hungary Kft.</strong>
+              <p>2351 Alsónémedi, Európa u. 2. · <a href="mailto:info@gls-hungary.com">info@gls-hungary.com</a> · +36 29 88 66 94</p>
+            </div>
+            <div class="provider-card">
+              <strong>FoxPost Zrt.</strong>
+              <p>1068 Budapest, Dózsa György út 84. B. ép. · <a href="mailto:info@foxpost.hu">info@foxpost.hu</a> · +36 1 999 0 369</p>
+            </div>
+            <div class="provider-card">
+              <strong>MPL Magyar Posta Logisztika Kft.</strong>
+              <p>1138 Budapest, Dunavirág utca 2-6. · <a href="mailto:ugyfelszolgalat@posta.hu">ugyfelszolgalat@posta.hu</a> · +36 1 767 82 82</p>
+            </div>
+            
+            <h4>Online fizetés</h4>
+            <div class="provider-card">
+              <strong>Shopify Payments</strong>
+              <p>Shopify International Limited, 2nd Floor, Victoria Buildings, 1-2 Haddington Road, Dublin 4, D04 XN32, Ireland</p>
+            </div>
+            <div class="provider-card">
+              <strong>Apple Pay</strong>
+              <p>Apple Inc., One Apple Park Way, Cupertino, CA 95014, USA</p>
+            </div>
+            <div class="provider-card">
+              <strong>Google Pay</strong>
+              <p>Google Inc., 1600 Amphitheatre Parkway, Mountain View, California 94043, USA</p>
+            </div>
+          </section>
+          
+          <!-- Közösségi média -->
+          <section id="kozossegi-media" class="legal-section">
+            <h2>Közösségi média felületek</h2>
+            <p>Az adatkezelő közösségi média felületeken is jelen van annak érdekében, hogy szolgáltatásait bemutassa, valamint kapcsolatot tartson az érdeklődőkkel és ügyfelekkel.</p>
+            
+            <h3>Kezelt adatok köre</h3>
+            <ul class="bullet-list">
+              <li>Név (felhasználónév)</li>
+              <li>Nyilvános profilkép</li>
+              <li>Az érintett által közzétett, illetve az adatkezelő oldalával kapcsolatos interakciók (pl. hozzászólás, üzenet)</li>
+            </ul>
+            
+            <p><strong>Jogalap:</strong> Az érintett önkéntes hozzájárulása személyes adatai kezeléséhez a közösségi oldalakon.</p>
+            <p><strong>Időtartam:</strong> Az érintett interakciójának fennállásáig, illetve a tartalom törléséig. Az üzeneteket legfeljebb <strong>2 évig</strong> őrizzük meg.</p>
+            <p class="footnote">A közösségi média platformok saját adatkezelőként kezelik a felhasználók adatait saját adatvédelmi szabályzatuk szerint.</p>
+          </section>
+          
+          <!-- Facebook / Meta -->
+          <section id="facebook-meta" class="legal-section">
+            <h2>Facebook / Meta közös adatkezelés</h2>
+            <p>
+              Az adatkezelő Facebook / Meta profillal rendelkezik. A Facebook közösségi oldalon megvalósított statisztikai célú adatkezelés az Adatkezelő és a <strong>Facebook Ireland Ltd.</strong> (4 Grand Canal Square, Grand Canal Harbour, D2 Dublin, Írország) <strong>közös adatkezelése</strong>.
+            </p>
+            <p>
+              A közös adatkezelési megállapodás részletei az <a href="https://www.facebook.com/legal/terms/page_controller_addendum" target="_blank" rel="noopener">Oldalelemzések függelékében</a> érhetők el.
+            </p>
+            
+            <h3>Érintettek kategóriái</h3>
+            <ul class="bullet-list">
+              <li>Aki regisztrált a közösségi oldalon és „lájkolta" az Adatkezelő profiloldalát</li>
+              <li>Aki a közösségi oldalon privát üzenetben felkeresi az Adatkezelőt</li>
+            </ul>
+            
+            <h3>Kezelt adatok köre</h3>
+            <ul class="bullet-list">
+              <li>Érintett regisztrált neve</li>
+              <li>Érintett felhasználó nyilvános profilképe</li>
+              <li>Egyéb, az érintett által megadott, megosztott nyilvános adatok</li>
+            </ul>
+            
+            <p><strong>Időtartam:</strong> Az érintett hozzájárulásának visszavonásáig; üzenetváltás esetén <strong>2 év</strong>.</p>
+            <p>
+              <strong>Automatizált döntéshozatal:</strong> Az adatkezelés során automatizált döntéshozatalra, ideértve a profilalkotást is, <strong>nem kerül sor</strong>.
+            </p>
+          </section>
+          
+          <!-- Ügyfélkapcsolatok -->
+          <section id="ugyfelkapcsolatok" class="legal-section">
+            <h2>Ügyfélkapcsolatok és egyéb adatkezelések</h2>
+            <p>Amennyiben a szolgáltatások igénybevétele során kérdés merülne fel, az érintett a honlapon megadott módokon (telefon, e-mail, közösségi oldalak) kapcsolatba léphet az adatkezelővel.</p>
+            <p>
+              <strong>Adatkezelés időtartama:</strong> Az adatkezelő a beérkezett e-maileket, üzeneteket az adatközléstől számított legfeljebb <strong>2 év</strong> elteltével törli.
+            </p>
+            <p>
+              Kivételes hatósági megkeresésre, illetőleg jogszabály felhatalmazása alapján más szervek megkeresése esetén a Szolgáltató köteles tájékoztatás adására, adatok közlésére. Ezen esetekben a megkereső részére – amennyiben az a pontos célt és az adatok körét megjelölte – személyes adatot csak annyit és olyan mértékben ad ki, amely a megkeresés céljának megvalósításához elengedhetetlenül szükséges.
+            </p>
+          </section>
+          
+          <!-- Érintettek jogai -->
+          <section id="erintettek-jogai" class="legal-section">
+            <h2>Az érintettek jogai</h2>
+            
+            <div class="rights-grid">
+              <div class="right-card">
+                <h4>1. A hozzáférés joga</h4>
+                <p>Visszajelzést kapni arra vonatkozóan, hogy a személyes adatok kezelése folyamatban van-e, és hozzáférést kapni az adatokhoz.</p>
+              </div>
+              
+              <div class="right-card">
+                <h4>2. A helyesbítéshez való jog</h4>
+                <p>Kérni a pontatlan személyes adatok helyesbítését, illetve a hiányos adatok kiegészítését.</p>
+              </div>
+              
+              <div class="right-card">
+                <h4>3. A törléshez való jog</h4>
+                <p>Kérni a személyes adatok indokolatlan késedelem nélküli törlését meghatározott feltételek esetén.</p>
+              </div>
+              
+              <div class="right-card">
+                <h4>4. Az elfeledtetéshez való jog</h4>
+                <p>Nyilvánosságra hozott adatok esetén az adatokra mutató linkek vagy másolatok törlése.</p>
+              </div>
+              
+              <div class="right-card">
+                <h4>5. Korlátozáshoz való jog</h4>
+                <p>Kérni az adatkezelés korlátozását meghatározott esetekben (pl. vitatott pontosság, jogellenes kezelés).</p>
+              </div>
+              
+              <div class="right-card">
+                <h4>6. Adathordozhatósághoz való jog</h4>
+                <p>Megkapni a személyes adatokat tagolt, géppel olvasható formátumban, és továbbítani egy másik adatkezelőnek.</p>
+              </div>
+              
+              <div class="right-card">
+                <h4>7. A tiltakozáshoz való jog</h4>
+                <p>Tiltakozni a jogos érdeken alapuló adatkezelés ellen, ideértve a profilalkotást is.</p>
+              </div>
+              
+              <div class="right-card">
+                <h4>8. Tiltakozás üzletszerzés ellen</h4>
+                <p>Bármikor tiltakozni a közvetlen üzletszerzés céljából történő adatkezelés ellen.</p>
+              </div>
+              
+              <div class="right-card">
+                <h4>9. Automatizált döntéshozatal</h4>
+                <p>Nem terjedhet ki rá kizárólag automatizált adatkezelésen alapuló döntés, amely jogi vagy jelentős hatással van rá.</p>
+              </div>
+            </div>
+          </section>
+          
+          <!-- Intézkedési határidő -->
+          <section id="intezkedesi-hatarido" class="legal-section">
+            <h2>Intézkedési határidő</h2>
+            <p>
+              Az adatkezelő indokolatlan késedelem nélkül, de mindenféleképpen a kérelem beérkezésétől számított <strong>1 hónapon belül</strong> tájékoztatja az érintettet a kérelmek nyomán hozott intézkedésekről.
+            </p>
+            <p>
+              Szükség esetén ez <strong>2 hónappal meghosszabbítható</strong>. A határidő meghosszabbításáról az adatkezelő a kérelem kézhezvételétől számított 1 hónapon belül tájékoztatja az érintettet, megjelölve a késedelem okát.
+            </p>
+            <p>
+              Ha az adatkezelő nem tesz intézkedéseket az érintett kérelme nyomán, legkésőbb a kérelem beérkezésétől számított egy hónapon belül tájékoztatja az érintettet az intézkedés elmaradásának okairól, valamint arról, hogy panaszt nyújthat be valamely felügyeleti hatóságnál, és élhet bírósági jogorvoslati jogával.
+            </p>
+          </section>
+          
+          <!-- Adatkezelés biztonsága -->
+          <section id="adatkezeles-biztonsaga" class="legal-section">
+            <h2>Az adatkezelés biztonsága</h2>
+            <p>
+              Az adatkezelő és az adatfeldolgozó megfelelő technikai és szervezési intézkedéseket hajt végre annak érdekében, hogy a kockázat mértékének megfelelő szintű adatbiztonságot garantálja.
+            </p>
+            
+            <h3>Konkrét adatbiztonsági intézkedések</h3>
+            
+            <h4>Fizikai védelem</h4>
+            <ul class="bullet-list">
+              <li>A dokumentumokat biztonságos, jól zárható, száraz helyiségben tároljuk</li>
+              <li>A személyes adatokat csak az arra jogosult személyek ismerhetik meg</li>
+              <li>A Szolgáltató épülete és helyiségei tűzvédelmi és vagyonvédelmi berendezéssel vannak ellátva</li>
+            </ul>
+            
+            <h4>Informatikai védelem</h4>
+            <ul class="bullet-list">
+              <li>A számítógépes rendszer <strong>vírusvédelemmel</strong> van ellátva</li>
+              <li>A digitálisan tárolt adatok biztonsága érdekében <strong>adatmentéseket és archiválásokat</strong> alkalmazunk</li>
+              <li>A központi szerver géphez csak megfelelő jogosultsággal, az arra kijelölt személyek férhetnek hozzá</li>
+              <li>A számítógépeken található adatokhoz <strong>felhasználónévvel és jelszóval</strong> lehet csak hozzáférni</li>
+            </ul>
+          </section>
+          
+          <!-- Adatvédelmi incidens -->
+          <section id="incidens" class="legal-section">
+            <h2>Az érintett tájékoztatása az adatvédelmi incidensről</h2>
+            <p>
+              Ha az adatvédelmi incidens valószínűsíthetően <strong>magas kockázattal</strong> jár a természetes személyek jogaira és szabadságaira nézve, az adatkezelő indokolatlan késedelem nélkül tájékoztatja az érintettet.
+            </p>
+            <p>A tájékoztatás világosan és közérthetően ismerteti:</p>
+            <ul class="bullet-list">
+              <li>Az adatvédelmi incidens jellegét</li>
+              <li>Az adatvédelmi tisztviselő vagy kapcsolattartó nevét és elérhetőségeit</li>
+              <li>Az adatvédelmi incidensből eredő, valószínűsíthető következményeket</li>
+              <li>Az adatkezelő által tett vagy tervezett intézkedéseket az incidens orvoslására</li>
+            </ul>
+            
+            <h3>Bejelentés a hatóságnak</h3>
+            <div class="callout warning">
+              <p>Az adatvédelmi incidenst az adatkezelő indokolatlan késedelem nélkül, és ha lehetséges, legkésőbb <strong>72 órával</strong> azután, hogy az adatvédelmi incidens a tudomására jutott, bejelenti az illetékes felügyeleti hatóságnak, kivéve, ha az adatvédelmi incidens valószínűsíthetően nem jár kockázattal a természetes személyek jogaira és szabadságaira nézve.</p>
+            </div>
+          </section>
+          
+          <!-- Panasztétel -->
+          <section id="panasztetel" class="legal-section">
+            <h2>Panasztételi lehetőség</h2>
+            <p>Az adatkezelő esetleges jogsértése ellen panasszal a Nemzeti Adatvédelmi és Információszabadság Hatóságnál lehet élni:</p>
+            
+            <div class="authority-card">
+              <h3>Nemzeti Adatvédelmi és Információszabadság Hatóság (NAIH)</h3>
+              <dl class="data-list">
+                <dt>Cím</dt><dd>1055 Budapest, Falk Miksa utca 9-11.</dd>
+                <dt>Levelezési cím</dt><dd>1363 Budapest, Pf. 9.</dd>
+                <dt>Telefon</dt><dd><a href="tel:+3613911400">+36 1 391 1400</a></dd>
+                <dt>Fax</dt><dd>+36 1 391 1410</dd>
+                <dt>E-mail</dt><dd><a href="mailto:ugyfelszolgalat@naih.hu">ugyfelszolgalat@naih.hu</a></dd>
+              </dl>
+            </div>
+          </section>
+          
+          <div class="legal-footer">
+            <p>Budapest, 2026. május 18.</p>
+            <p class="meta">Verzió 1.0 · Hatályos: visszavonásig</p>
+            <p class="meta">
+              <a href="/aszf">Általános Szerződési Feltételek megtekintése →</a>
+            </p>
+          </div>
+          
+        </article>
+      </div>
+    </section>
+    
+    <!-- Vissza az elejére floating gomb -->
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Vissza az elejére">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 19V5M5 12l7-7 7 7"/>
+      </svg>
+    </button>
+    
+  </main>
+  
+  <Footer />
+  
+</Layout>
+
+<style>
+  /* ═══════════════════════════════════════════
+     ZEPHYR LEGAL PAGE STYLES
+     Premium wellness brand — cream, aubergine, serif
+     ═══════════════════════════════════════════ */
+  
+  .legal-page {
+    background: #FDFBF7;
+    color: #1A1A1A;
+    min-height: 100vh;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  
+  /* ─── Hero ─── */
+  .legal-hero {
+    padding: 6rem 0 4rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(109, 32, 119, 0.08);
+  }
+  
+  .section-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #6D2077;
+    margin-bottom: 1rem;
+  }
+  
+  .legal-hero h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: #1A1A1A;
+    margin-bottom: 1rem;
+  }
+  
+  .legal-meta {
+    font-size: 0.95rem;
+    color: rgba(26, 26, 26, 0.55);
+    margin-bottom: 2.5rem;
+  }
+  
+  .pdf-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 1.75rem;
+    background: #6D2077;
+    color: white;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .pdf-download-btn:hover {
+    background: #4A1552;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(109, 32, 119, 0.25);
+  }
+  
+  .pdf-download-btn svg {
+    flex-shrink: 0;
+  }
+  
+  /* ─── Content grid ─── */
+  .legal-content-wrapper {
+    padding: 4rem 0 6rem;
+  }
+  
+  .content-grid {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  
+  @media (max-width: 968px) {
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+  
+  /* ─── Sticky TOC sidebar ─── */
+  .toc-sidebar {
+    position: sticky;
+    top: 2rem;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+  }
+  
+  @media (max-width: 968px) {
+    .toc-sidebar {
+      position: static;
+      max-height: none;
+      background: rgba(109, 32, 119, 0.04);
+      padding: 1.5rem;
+      border-radius: 12px;
+    }
+  }
+  
+  .toc-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #6D2077;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(109, 32, 119, 0.15);
+  }
+  
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .toc-list li {
+    margin-bottom: 0.4rem;
+  }
+  
+  .toc-list a {
+    display: block;
+    font-size: 0.85rem;
+    color: rgba(26, 26, 26, 0.65);
+    text-decoration: none;
+    padding: 0.45rem 0.6rem;
+    border-radius: 6px;
+    border-left: 2px solid transparent;
+    transition: all 0.2s ease;
+    line-height: 1.4;
+  }
+  
+  .toc-list a:hover,
+  .toc-list a.active {
+    color: #6D2077;
+    background: rgba(109, 32, 119, 0.05);
+    border-left-color: #6D2077;
+  }
+  
+  /* ─── Article body ─── */
+  .legal-article {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #1A1A1A;
+    max-width: 720px;
+  }
+  
+  .legal-article p {
+    margin-bottom: 1.1rem;
+  }
+  
+  .legal-article a {
+    color: #6D2077;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    transition: color 0.2s ease;
+  }
+  
+  .legal-article a:hover {
+    color: #4A1552;
+  }
+  
+  .legal-article code {
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+    font-size: 0.85em;
+    padding: 0.15rem 0.4rem;
+    background: rgba(109, 32, 119, 0.08);
+    border-radius: 4px;
+    color: #6D2077;
+  }
+  
+  /* ─── Intro block ─── */
+  .intro-block {
+    padding: 2rem;
+    background: rgba(109, 32, 119, 0.03);
+    border-radius: 12px;
+    margin-bottom: 3rem;
+    border-left: 3px solid #6D2077;
+  }
+  
+  .intro-block p {
+    font-size: 0.95rem;
+    color: rgba(26, 26, 26, 0.75);
+  }
+  
+  .intro-block p:last-of-type {
+    margin-bottom: 0;
+  }
+  
+  /* ─── Legal sections ─── */
+  .legal-section {
+    padding: 2.5rem 0;
+    border-top: 1px solid rgba(26, 26, 26, 0.08);
+    scroll-margin-top: 2rem;
+  }
+  
+  .legal-section:first-of-type {
+    border-top: none;
+    padding-top: 1rem;
+  }
+  
+  .legal-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 400;
+    color: #1A1A1A;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+  
+  .legal-section h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: #1A1A1A;
+    margin: 2rem 0 0.75rem;
+  }
+  
+  .legal-section h4 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #6D2077;
+    margin: 1.5rem 0 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  /* ─── Data list (key-value pairs) ─── */
+  .data-list {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 0.5rem 1.5rem;
+    padding: 1.5rem;
+    background: rgba(109, 32, 119, 0.03);
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+  }
+  
+  @media (max-width: 600px) {
+    .data-list {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+    .data-list dd {
+      margin-bottom: 0.5rem;
+    }
+  }
+  
+  .data-list dt {
+    margin-top: 0;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    color: #6D2077;
+  }
+  
+  .data-list dd {
+    margin: 0;
+    font-size: 0.95rem;
+    color: rgba(26, 26, 26, 0.85);
+  }
+  
+  /* ─── Glossary ─── */
+  .glossary dt {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #6D2077;
+    margin-top: 1.25rem;
+  }
+  
+  .glossary dt:first-child {
+    margin-top: 0;
+  }
+  
+  .glossary dd {
+    margin: 0.4rem 0 0 0;
+    font-size: 0.95rem;
+    color: rgba(26, 26, 26, 0.75);
+    line-height: 1.65;
+  }
+  
+  /* ─── Principles list ─── */
+  .principles-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+    counter-reset: principle;
+  }
+  
+  .principles-list li {
+    counter-increment: principle;
+    position: relative;
+    padding: 1rem 1rem 1rem 3.5rem;
+    margin-bottom: 0.75rem;
+    background: rgba(109, 32, 119, 0.03);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .principles-list li::before {
+    content: counter(principle);
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.75rem;
+    height: 1.75rem;
+    background: #6D2077;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+  
+  .principles-list strong {
+    color: #6D2077;
+  }
+  
+  /* ─── Provider cards ─── */
+  .provider-card {
+    padding: 1.25rem 1.5rem;
+    background: white;
+    border: 1px solid rgba(109, 32, 119, 0.12);
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+  
+  .provider-card strong {
+    display: block;
+    font-size: 1rem;
+    color: #6D2077;
+    margin-bottom: 0.4rem;
+  }
+  
+  .provider-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba(26, 26, 26, 0.7);
+    line-height: 1.5;
+  }
+  
+  /* ─── Authority card (special highlight) ─── */
+  .authority-card {
+    padding: 2rem;
+    background: white;
+    border: 2px solid #6D2077;
+    border-radius: 12px;
+    margin-top: 1.5rem;
+    box-shadow: 0 4px 12px rgba(109, 32, 119, 0.08);
+  }
+  
+  .authority-card h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #6D2077;
+  }
+  
+  .authority-card .data-list {
+    margin-bottom: 0;
+    background: rgba(109, 32, 119, 0.02);
+  }
+  
+  /* ─── Callout boxes ─── */
+  .callout {
+    padding: 1.25rem 1.5rem;
+    background: rgba(109, 32, 119, 0.04);
+    border-left: 3px solid #6D2077;
+    border-radius: 0 8px 8px 0;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  
+  .callout strong {
+    color: #6D2077;
+  }
+  
+  .callout ul {
+    margin: 0.5rem 0 0 1.25rem;
+    padding: 0;
+  }
+  
+  .callout ul li {
+    margin-bottom: 0.35rem;
+  }
+  
+  .callout p {
+    margin-bottom: 0.6rem;
+  }
+  
+  .callout p:last-child {
+    margin-bottom: 0;
+  }
+  
+  .callout.warning {
+    background: rgba(180, 83, 9, 0.05);
+    border-left-color: #B45309;
+  }
+  
+  .callout.warning strong {
+    color: #B45309;
+  }
+  
+  /* ─── Bullet list ─── */
+  .bullet-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+  
+  .bullet-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .bullet-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7rem;
+    width: 6px;
+    height: 6px;
+    background: #6D2077;
+    border-radius: 50%;
+  }
+  
+  /* ─── Tables ─── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 0 rgba(26, 26, 26, 0.06);
+  }
+  
+  .data-table thead {
+    background: rgba(109, 32, 119, 0.06);
+  }
+  
+  .data-table th {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #6D2077;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .data-table td {
+    padding: 0.85rem 1rem;
+    border-top: 1px solid rgba(26, 26, 26, 0.05);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  
+  .data-table td small {
+    display: block;
+    font-size: 0.78rem;
+    color: rgba(26, 26, 26, 0.55);
+    margin-top: 0.25rem;
+  }
+  
+  .data-table tbody tr:hover {
+    background: rgba(109, 32, 119, 0.02);
+  }
+  
+  /* ─── Rights grid (érintettek jogai) ─── */
+  .rights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .right-card {
+    padding: 1.25rem 1.5rem;
+    background: white;
+    border: 1px solid rgba(109, 32, 119, 0.12);
+    border-radius: 10px;
+    transition: all 0.2s ease;
+  }
+  
+  .right-card:hover {
+    border-color: rgba(109, 32, 119, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(109, 32, 119, 0.06);
+  }
+  
+  .right-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #6D2077;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  
+  .right-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba(26, 26, 26, 0.7);
+    line-height: 1.55;
+  }
+  
+  /* ─── Footnotes ─── */
+  .footnote {
+    font-size: 0.85rem;
+    color: rgba(26, 26, 26, 0.55);
+    font-style: italic;
+    margin-top: 0.75rem;
+  }
+  
+  /* ─── Legal footer ─── */
+  .legal-footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(109, 32, 119, 0.15);
+    text-align: center;
+  }
+  
+  .legal-footer p {
+    color: rgba(26, 26, 26, 0.6);
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .legal-footer .meta {
+    font-size: 0.8rem;
+    color: rgba(26, 26, 26, 0.45);
+  }
+  
+  .legal-footer .meta a {
+    color: #6D2077;
+    text-decoration: none;
+  }
+  
+  .legal-footer .meta a:hover {
+    text-decoration: underline;
+  }
+  
+  /* ─── Floating scroll-to-top button ─── */
+  .scroll-top-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 44px;
+    height: 44px;
+    background: #6D2077;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(109, 32, 119, 0.3);
+    z-index: 50;
+  }
+  
+  .scroll-top-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .scroll-top-btn:hover {
+    background: #4A1552;
+    transform: translateY(-2px);
+  }
+</style>
+
+<script>
+  // Vissza-az-elejére gomb + aktív TOC link kiemelés
+  // Plain JS (Astro script tag-ben TypeScript szintaktika silent-failure-t okoz)
+  
+  var scrollTopBtn = document.getElementById('scrollTopBtn');
+  var tocLinks = document.querySelectorAll('.toc-list a');
+  var sections = document.querySelectorAll('.legal-section[id]');
+  
+  // Scroll-to-top gomb láthatóság + aktív szekció figyelése
+  function handleScroll() {
+    if (!scrollTopBtn) return;
+    
+    if (window.scrollY > 600) {
+      scrollTopBtn.classList.add('visible');
+    } else {
+      scrollTopBtn.classList.remove('visible');
+    }
+    
+    // Aktív TOC link megtalálása
+    var currentSection = null;
+    var scrollPos = window.scrollY + 150;
+    
+    for (var i = 0; i < sections.length; i++) {
+      var section = sections[i];
+      if (section && section.offsetTop <= scrollPos) {
+        currentSection = section.id;
+      }
+    }
+    
+    if (currentSection) {
+      tocLinks.forEach(function(link) {
+        var href = link.getAttribute('href');
+        if (href === '#' + currentSection) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+  }
+  
+  if (scrollTopBtn) {
+    scrollTopBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  
+  // Throttled scroll listener for performance
+  var scrollTimer = null;
+  window.addEventListener('scroll', function() {
+    if (scrollTimer) return;
+    scrollTimer = setTimeout(function() {
+      handleScroll();
+      scrollTimer = null;
+    }, 100);
+  });
+  
+  // Initial state check
+  handleScroll();
+</script>
