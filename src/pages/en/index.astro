@@ -1,0 +1,33 @@
+---
+// en/index.astro - Zephyr homepage (English)
+// Imports the en/ versions of all section components
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/en/Hero.astro';
+import Products from '../../components/en/Products.astro';
+import HowItWorks from '../../components/en/HowItWorks.astro';
+import Ingredients from '../../components/en/Ingredients.astro';
+import Testimonials from '../../components/en/Testimonials.astro';
+import FAQ from '../../components/en/FAQ.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout 
+  title="Two formulas. One night. Zero drama."
+  description="Zephyr's dual formula provides evening preparation and morning recovery for those rough nights. Developed by pharmacists, backed by science."
+>
+  
+  <Header lang="en" />
+  
+  <main>
+    <Hero />
+    <Products />
+    <HowItWorks />
+    <Ingredients />
+    <Testimonials />
+    <FAQ />
+  </main>
+  
+  <Footer lang="en" />
+  
+</Layout>
