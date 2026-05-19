@@ -70,8 +70,8 @@ const t = dict[lang];
     
     <!-- JOBB: Lang + Kosár + Login -->
     <div class="nav-right">
-      <!-- Nyelvváltó -->
-      <a href={t.switchLangUrl} class="lang-switch" aria-label={t.langLabel}>
+      <!-- Nyelvváltó (href dinamikusan frissül kliens-oldalon) -->
+      <a href={t.switchLangUrl} class="lang-switch" id="lang-switch-desktop" aria-label={t.langLabel}>
         <span>{t.switchLangLabel}</span>
       </a>
       
@@ -119,7 +119,7 @@ const t = dict[lang];
           <a href="/en#faq" class="mobile-nav-link">{t.faq}</a>
         )}
         <!-- Mobile nyelvváltó: külön sor -->
-        <a href={t.switchLangUrl} class="mobile-nav-link mobile-lang-link">
+        <a href={t.switchLangUrl} class="mobile-nav-link mobile-lang-link" id="lang-switch-mobile">
           {lang === 'hu' ? '🌐 English' : '🌐 Magyar'}
         </a>
       </nav>
@@ -404,6 +404,45 @@ const t = dict[lang];
 </style>
 
 <script>
+  // ─────────────────────────────────────────
+  // Nyelvváltó: dinamikus URL kalkulál ás
+  // Az aktuális oldal angol/magyar megfelelőjére irányít, nem mindig a homepage-re.
+  // Ha nincs párja az oldalnak (pl. /aszf), homepage-re esik vissza.
+  // ─────────────────────────────────────────
+  var pathMap = {
+    // Magyar → Angol
+    '/': '/en',
+    '/hogyan-mukodik': '/en/how-it-works',
+    '/vasarlas': '/en/shop',
+    // Angol → Magyar
+    '/en': '/',
+    '/en/how-it-works': '/hogyan-mukodik',
+    '/en/shop': '/vasarlas'
+  };
+  
+  function updateLangSwitchUrls() {
+    var currentPath = window.location.pathname;
+    // Normalizáljuk a trailing slash-eket: /vasarlas/ → /vasarlas
+    if (currentPath.length > 1 && currentPath.charAt(currentPath.length - 1) === '/') {
+      currentPath = currentPath.slice(0, -1);
+    }
+    
+    var targetUrl = pathMap[currentPath];
+    
+    // Ha nincs explicit mapping (pl. /aszf, /adatvedelem), homepage-re visszük
+    if (!targetUrl) {
+      var isOnEnglish = currentPath === '/en' || currentPath.indexOf('/en/') === 0;
+      targetUrl = isOnEnglish ? '/' : '/en';
+    }
+    
+    var desktopSwitch = document.getElementById('lang-switch-desktop');
+    var mobileSwitch = document.getElementById('lang-switch-mobile');
+    if (desktopSwitch) desktopSwitch.setAttribute('href', targetUrl);
+    if (mobileSwitch) mobileSwitch.setAttribute('href', targetUrl);
+  }
+  
+  updateLangSwitchUrls();
+  
   // ─────────────────────────────────────────
   // Scroll effect + auto-hide on mobile
   // ─────────────────────────────────────────
