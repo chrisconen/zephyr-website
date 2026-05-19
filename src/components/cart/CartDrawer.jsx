@@ -59,16 +59,72 @@ function saveCart(items) {
   window.dispatchEvent(new CustomEvent('cartUpdated'));
 }
 
-// Ár formázás magyar lokalizációval
-function formatPrice(amount) {
+// Ár formázás — nyelvfüggő (HU: "7 990 Ft" / EN: "7,990 HUF")
+function formatPrice(amount, lang) {
+  if (lang === 'en') {
+    return amount.toLocaleString('en-US') + ' HUF';
+  }
   return amount.toLocaleString('hu-HU') + ' Ft';
 }
+
+// Nyelv detektálása az URL alapján — /en vagy /en/... → 'en', minden más → 'hu'
+function detectLang() {
+  if (typeof window === 'undefined') return 'hu';
+  const path = window.location.pathname;
+  return path === '/en' || path.startsWith('/en/') ? 'en' : 'hu';
+}
+
+// Lokalizált UI szövegek
+const DICT = {
+  hu: {
+    cartTitle: 'Kosár',
+    closeAria: 'Kosár bezárása',
+    cartAria: 'Kosár',
+    empty: 'A kosarad üres',
+    backToShop: 'Vissza a vásárláshoz',
+    decreaseAria: 'Mennyiség csökkentése',
+    increaseAria: 'Mennyiség növelése',
+    removeAria: 'Termék törlése',
+    total: 'Összesen:',
+    redirecting: 'Átirányítás...',
+    checkout: 'Fizetés',
+    secure: 'Biztonságos',
+    payment: 'Kártya / Apple Pay',
+  },
+  en: {
+    cartTitle: 'Cart',
+    closeAria: 'Close cart',
+    cartAria: 'Cart',
+    empty: 'Your cart is empty',
+    backToShop: 'Back to shopping',
+    decreaseAria: 'Decrease quantity',
+    increaseAria: 'Increase quantity',
+    removeAria: 'Remove item',
+    total: 'Total:',
+    redirecting: 'Redirecting...',
+    checkout: 'Checkout',
+    secure: 'Secure',
+    payment: 'Card / Apple Pay',
+  },
+};
 
 export default function CartDrawer() {
   const [isOpen, setIsOpen] = useState(false);
   const [items, setItems] = useState([]);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const [lang, setLang] = useState('hu');
   const closeBtnRef = useRef(null);
+  const t = DICT[lang];
+
+  // Nyelv detektálása az URL alapján — frissül navigáláskor is
+  useEffect(() => {
+    setLang(detectLang());
+    function handleNav() {
+      setLang(detectLang());
+    }
+    window.addEventListener('popstate', handleNav);
+    return () => window.removeEventListener('popstate', handleNav);
+  }, []);
 
   // Kosár betöltése + változás figyelése
   useEffect(() => {
@@ -189,7 +245,7 @@ export default function CartDrawer() {
       <aside
         role="dialog"
         aria-modal="true"
-        aria-label="Kosár"
+        aria-label={t.cartAria}
         aria-hidden={!isOpen}
         className={`fixed top-0 right-0 h-full w-full max-w-md bg-white z-[2001] shadow-2xl transform transition-transform duration-300 ease-out ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
@@ -197,12 +253,12 @@ export default function CartDrawer() {
       >
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
-          <h2 className="text-xl font-semibold text-gray-900">Kosár</h2>
+          <h2 className="text-xl font-semibold text-gray-900">{t.cartTitle}</h2>
           <button
             ref={closeBtnRef}
             onClick={() => setIsOpen(false)}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-            aria-label="Kosár bezárása"
+            aria-label={t.closeAria}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -220,12 +276,12 @@ export default function CartDrawer() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
               </div>
-              <p className="text-gray-500 mb-4">A kosarad üres</p>
+              <p className="text-gray-500 mb-4">{t.empty}</p>
               <button
                 onClick={() => setIsOpen(false)}
                 className="text-[#6D2077] font-medium hover:underline"
               >
-                Vissza a vásárláshoz
+                {t.backToShop}
               </button>
             </div>
           ) : (
@@ -248,7 +304,7 @@ export default function CartDrawer() {
                         {item.title}
                       </h3>
                       <p className="text-[#6D2077] font-semibold">
-                        {formatPrice(item.price)}
+                        {formatPrice(item.price, lang)}
                       </p>
 
                       {/* Quantity controls */}
@@ -256,7 +312,7 @@ export default function CartDrawer() {
                         <button
                           onClick={() => updateQuantity(item.variantId, item.quantity - 1)}
                           className="w-8 h-8 flex items-center justify-center bg-white border border-gray-200 rounded-lg hover:bg-gray-100 transition-colors"
-                          aria-label="Mennyiség csökkentése"
+                          aria-label={t.decreaseAria}
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
@@ -266,7 +322,7 @@ export default function CartDrawer() {
                         <button
                           onClick={() => updateQuantity(item.variantId, item.quantity + 1)}
                           className="w-8 h-8 flex items-center justify-center bg-white border border-gray-200 rounded-lg hover:bg-gray-100 transition-colors"
-                          aria-label="Mennyiség növelése"
+                          aria-label={t.increaseAria}
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -277,7 +333,7 @@ export default function CartDrawer() {
                         <button
                           onClick={() => removeItem(item.variantId)}
                           className="ml-auto p-2 text-gray-400 hover:text-red-500 transition-colors"
-                          aria-label="Termék törlése"
+                          aria-label={t.removeAria}
                         >
                           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -293,9 +349,9 @@ export default function CartDrawer() {
               <div className="border-t border-gray-200 p-4 space-y-4 bg-white">
                 {/* Total */}
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-600">Összesen:</span>
+                  <span className="text-gray-600">{t.total}</span>
                   <span className="text-2xl font-bold text-gray-900">
-                    {formatPrice(getTotalPrice())}
+                    {formatPrice(getTotalPrice(), lang)}
                   </span>
                 </div>
 
@@ -308,11 +364,11 @@ export default function CartDrawer() {
                   {isCheckingOut ? (
                     <>
                       <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                      Átirányítás...
+                      {t.redirecting}
                     </>
                   ) : (
                     <>
-                      Fizetés
+                      {t.checkout}
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                       </svg>
@@ -326,13 +382,13 @@ export default function CartDrawer() {
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                     </svg>
-                    Biztonságos
+                    {t.secure}
                   </span>
                   <span className="flex items-center gap-1">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                     </svg>
-                    Kártya / Apple Pay
+                    {t.payment}
                   </span>
                 </div>
               </div>
