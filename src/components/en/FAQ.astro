@@ -19,7 +19,7 @@
         </summary>
         <div class="faq-answer">
           <p>Zephyr is a premium dual-formula dietary supplement developed specifically to support fresh and energetic mornings after evening socializing.</p>
-          <p>It consists of two targeted formulas: <strong>Preventive</strong> before the evening begins, and <strong>Recovery</strong> after the evening or the next morning to help restore your body's balance. Developed by pharmacists, scientifically grounded, with carefully selected ingredients.</p>
+          <p>It consists of two targeted formulas: <strong>Preventive</strong> before the evening begins, and <strong class="recovery-color">Recovery</strong> after the evening or the next morning to help restore your body's balance. Developed by pharmacists, scientifically grounded, with carefully selected ingredients.</p>
         </div>
       </details>
       
@@ -41,21 +41,21 @@
         <div class="faq-answer">
           <p>Using Zephyr is simple and practical. For maximum effectiveness, the dual-formula system works in two phases:</p>
           <p><strong>Preventive (Prevention):</strong> Dissolve in 1–2 dl of water before your first alcoholic drink.</p>
-          <p><strong>Recovery (Regeneration):</strong> Dissolve in 1–2 dl of water after your last alcoholic drink (before bed) or right after waking up.</p>
+          <p><strong class="recovery-color">Recovery (Regeneration):</strong> Dissolve in 1–2 dl of water after your last alcoholic drink (before bed) or right after waking up.</p>
           <p>The taste may vary depending on the amount of water used (1–2 dl), but this does not affect effectiveness. Generous hydration is key to both your body's balance and the product's effectiveness.</p>
         </div>
       </details>
       
       <details class="faq-item">
         <summary class="faq-question">
-          <span>What is the difference between the Preventive and Recovery formulas?</span>
+          <span>What is the difference between the Preventive and <span class="recovery-color">Recovery</span> formulas?</span>
           <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
         </summary>
         <div class="faq-answer">
           <p>Zephyr's two targeted formulas support your body at different times and for different purposes:</p>
           <p><strong>Preventive — before the evening</strong><br>This formula prepares you before the night out. It loads your body with strong antioxidants (L-cysteine, myricetin), electrolytes, taurine, vitamin C, and probiotics to discreetly support internal balance throughout the evening.</p>
-          <p><strong>Recovery — after the evening or next morning</strong><br>This regenerative formula takes over after the night or in the morning. With glutathione, milk thistle (silymarin), vitamin B1, L-alanyl-L-glutamine, and phosphatidylcholine, it supports liver regeneration, mineral replenishment, and faster restoration.</p>
-          <p>In short: <strong>Preventive</strong> helps you prepare; <strong>Recovery</strong> helps you recover.</p>
+          <p><strong class="recovery-color">Recovery — after the evening or next morning</strong><br>This regenerative formula takes over after the night or in the morning. With glutathione, milk thistle (silymarin), vitamin B1, L-alanyl-L-glutamine, and phosphatidylcholine, it supports liver regeneration, mineral replenishment, and faster restoration.</p>
+          <p>In short: <strong>Preventive</strong> helps you prepare; <strong class="recovery-color">Recovery</strong> helps you recover.</p>
         </div>
       </details>
       
@@ -65,8 +65,8 @@
           <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
         </summary>
         <div class="faq-answer">
-          <p>Yes. Both Zephyr Preventive and Recovery formulas were developed by pharmacists using scientifically backed ingredients.</p>
-          <p>Preventive contains strong antioxidants, electrolytes, taurine, and probiotics. Recovery contains glutathione, silymarin, regenerative amino acids, and B-vitamins. These ingredients are based on decades of research and have been carefully selected to support your body's natural balance before and after evening socializing.</p>
+          <p>Yes. Both Zephyr Preventive and <span class="recovery-color">Recovery</span> formulas were developed by pharmacists using scientifically backed ingredients.</p>
+          <p>Preventive contains strong antioxidants, electrolytes, taurine, and probiotics. <span class="recovery-color">Recovery</span> contains glutathione, silymarin, regenerative amino acids, and B-vitamins. These ingredients are based on decades of research and have been carefully selected to support your body's natural balance before and after evening socializing.</p>
           <p>Individual results may vary. We fully stand behind the quality and offer a 30-day unconditional satisfaction guarantee.</p>
         </div>
       </details>
@@ -89,7 +89,7 @@
         </summary>
         <div class="faq-answer">
           <p>Zephyr's powder formula dissolves easily in water, allowing electrolytes and amino acids to be absorbed by the body faster than with traditional capsule or tablet preparations.</p>
-          <p>The Preventive formula discreetly supports your internal balance during the evening, while Recovery aids regeneration and mineral replenishment during rest. It's important to note that perceived effects vary from person to person, depending on age, body composition, and the intensity of the evening.</p>
+          <p>The Preventive formula discreetly supports your internal balance during the evening, while <span class="recovery-color">Recovery</span> aids regeneration and mineral replenishment during rest. It's important to note that perceived effects vary from person to person, depending on age, body composition, and the intensity of the evening.</p>
         </div>
       </details>
       
@@ -121,7 +121,7 @@
         </summary>
         <div class="faq-answer">
           <p>Yes, both formulas are 100% vegan and gluten-free.</p>
-          <p>Both Zephyr Preventive and Recovery are made from plant-based ingredients with no animal-derived components. They also contain no gluten, making them safe for gluten-sensitive individuals.</p>
+          <p>Both Zephyr Preventive and <span class="recovery-color">Recovery</span> are made from plant-based ingredients with no animal-derived components. They also contain no gluten, making them safe for gluten-sensitive individuals.</p>
         </div>
       </details>
       
@@ -248,6 +248,12 @@
   
   .faq-answer strong {
     color: #6D2077;
+  }
+  
+  /* Recovery brand color — blue, emphasizes the two distinct formulas */
+  .faq-answer strong.recovery-color,
+  .faq-answer .recovery-color {
+    color: #003B5C;
   }
   
   @keyframes fadeIn {
