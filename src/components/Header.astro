@@ -394,6 +394,34 @@ const t = dict[lang];
   .btn-primary:hover {
     background: #4A1552;
   }
+/* ═══════════════════════════════════════════════════════════
+   PROGRESS-NAV MOBILE BUG FIX
+   Add this CSS block to the END of the <style> block in:
+     - src/pages/hogyan-mukodik.astro
+     - src/pages/en/how-it-works.astro
+   
+   Why it's needed:
+   The .progress-nav element (with its absolute positioning at left: -70px)
+   sometimes peeks into the viewport on mobile, creating a vertical
+   gradient stripe that doesn't belong there. The existing 
+   @media (max-width: 1200px) { display: none } rule should have
+   handled this, but for some reason it doesn't in all cases.
+   
+   This brute-force override guarantees the elements stay hidden
+   on any viewport below 1201px, regardless of cascade conflicts.
+   ═══════════════════════════════════════════════════════════ */
+ 
+@media (max-width: 1200px) {
+  .progress-nav,
+  .progress-track,
+  .progress-fill,
+  .progress-dots,
+  .progress-dot {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}
+
 </style>
 
 <script>
