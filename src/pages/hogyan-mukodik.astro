@@ -201,20 +201,20 @@ import Footer from '../components/Footer.astro';
                   </g>
                   
                   <!-- Central Liver chip -->
-                  <!-- Central Liver chip -->
                   <g class="liver-chip" transform="translate(100, 250)">
                     <rect x="-45" y="-45" width="90" height="90" rx="16" fill="#2a2a3a" stroke="#4a4a5a" stroke-width="2"/>
                     <rect class="chip-glow" x="-45" y="-45" width="90" height="90" rx="16" fill="none" stroke="#DC2626" stroke-width="2" opacity="0"/>
                     
-                    <!-- Liver image — public/images/maj.webp -->
-                    <image 
-                      href="/images/maj.webp" 
-                      x="-35" 
-                      y="-32" 
-                      width="70" 
-                      height="52"
-                      preserveAspectRatio="xMidYMid meet"
-                    />
+                    <!-- Twemoji liver SVG (anatómiai rajz, vektoros) -->
+                    <g transform="translate(-22, -28) scale(1.25)">
+                      <path fill="#F4ABBA" d="M11.885 12.863c.117-2.127.233-2.966.1-4.537-.147-1.44-.397-2.495-.75-3.522s-3.313-.626-2.959 1.138c.353 1.764.593 6.809.451 8.45 1.548-.984 3.158-1.529 3.158-1.529z"/>
+                      <path fill="#BE1931" d="M10.275 13.408c-2.139 1.07-4.278 3.209-4.278 6.417 0 8.735 7.83 10.749 14.248 12.888 6.417 2.139 7.181 1.578 9.283-.053 1.07-2.139.414-13.672-2.795-17.95-2.314-3.085-11.58-3.741-16.458-1.302z"/>
+                      <path fill="#A0041E" d="M10.275 13.408c-2.139 1.07-4.278 3.209-4.278 6.417 0 8.735 9.83 13.581 13.353 14.415 6.275 1.486 9.108.559 10.177-1.58-1.783 1.113-9.316-.614-13.309-4.172-4.187-3.732-6.074-10.238-3.383-13.552.071-1.036-.118-1.587-.118-2.416-.886.228-1.713.523-2.442.888z"/>
+                      <path fill="#EA596E" d="M12.836 14.936c-1.413-2.139-2.156-6.05.648-9.015 2.65-2.802 7.77-2.842 10.224.973 2.086 3.243.471 9.722.471 9.722s-4.804-4.98-6.248-2.649c-1.442 2.332-4.872 1.306-5.095.969z"/>
+                      <path fill="#F4ABBA" d="M23.951 17.58c1.156-1.632 1.156-4.168 1.156-4.168s.323-1.489 3.701-.538c.33.093 1.339-1.479.707-1.718-2.296-.869-3.93-.309-3.93-.309s1.129-.835 2.772-1.033c.652-.079.123-1.37-.525-1.357-.7.014-1.337.184-2.092.514-.353.154-.72-.109-.852-.24-1.988-1.975-4.223-1.689-5.587-1.083-1.455.647-2.06 2.478-1.165 3.718s.013 2.178-.543 3.169c-.9 1.602 4.831 5.201 6.358 3.045z"/>
+                      <path fill="#EA596E" d="M15.252 6.673c-.744-1.708-1.59-2.473-2.694-3.533s.751-2.384 1.943-1.236 2.296 3.312 2.473 3.842-1.278 1.945-1.722.927z"/>
+                      <path fill="#EA596E" d="M16.219 4.228c1.134-.593 1.506-2.235 1.594-2.765.088-.53 1.722-.574 1.545.574s.013 1.919.013 1.919.87-1.483 1.753-2.234 1.896.443 1.41 1.142-.579 1.98-.35 2.433c.229.453-2.242 1.022-3.815.713-1.571-.308-2.15-1.782-2.15-1.782z"/>
+                    </g>
                     
                     <text x="0" y="32" text-anchor="middle" fill="#6a6a7a" font-size="10" font-weight="600">MÁJ</text>
                   </g>
@@ -1943,6 +1943,30 @@ import Footer from '../components/Footer.astro';
     /* Tartalom eltolása jobbra, hogy a pill ne lógjon bele */
     .scroll-container {
       padding-left: 4.5rem;
+    }
+    
+    /* Feature-items mobile fix — felülírja a desktop absolute positioning-et,
+       hogy mind a 4 step látszódjon stack-elve, és a section természetes magasságot kapjon */
+    .feature-item {
+      position: relative !important;
+      top: auto !important;
+      left: auto !important;
+      transform: none !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      min-height: 60vh;  /* Minden step legalább viewport 60%-a, hogy időt adjon az olvasásra */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .feature-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
     }
   }
 </style>
