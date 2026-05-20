@@ -52,13 +52,19 @@ const t = dict[lang];
 <header id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
   <nav class="nav-inner">
     
-    <!-- BAL: Hamburger menü -->
+    <!-- BAL: Hamburger menü + User ikon -->
     <div class="nav-left">
       <button id="menu-toggle" class="menu-toggle" aria-label={t.menuLabel}>
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
       </button>
+      <a href="#" class="nav-icon" aria-label={t.accountLabel}>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </a>
     </div>
     
     <!-- KÖZÉP: Logo -->
@@ -68,19 +74,13 @@ const t = dict[lang];
       </a>
     </div>
     
-    <!-- JOBB: Lang + Kosár + Login -->
+    <!-- JOBB: Lang + Kosár -->
     <div class="nav-right">
       <!-- Nyelvváltó (href dinamikusan frissül kliens-oldalon) -->
       <a href={t.switchLangUrl} class="lang-switch" id="lang-switch-desktop" aria-label={t.langLabel}>
         <span>{t.switchLangLabel}</span>
       </a>
       
-      <a href="#" class="nav-icon" aria-label={t.accountLabel}>
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-          <circle cx="12" cy="7" r="4"></circle>
-        </svg>
-      </a>
       <button id="cart-toggle" class="nav-icon cart-icon" aria-label={t.cartLabel}>
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
@@ -118,10 +118,6 @@ const t = dict[lang];
         ) : (
           <a href="/en#faq" class="mobile-nav-link">{t.faq}</a>
         )}
-        <!-- Mobile nyelvváltó: külön sor -->
-        <a href={t.switchLangUrl} class="mobile-nav-link mobile-lang-link" id="lang-switch-mobile">
-          {lang === 'hu' ? '🌐 English' : '🌐 Magyar'}
-        </a>
       </nav>
       <div class="mobile-menu-cta">
         <a href={t.shopUrl} class="btn-primary w-full text-center">{t.buyNow}</a>
@@ -163,10 +159,12 @@ const t = dict[lang];
     margin: 0 auto;
   }
   
-  /* Left - Menu */
+  /* Left - Menu + User icon */
   .nav-left {
     display: flex;
     justify-content: flex-start;
+    align-items: center;
+    gap: 0.4rem;
   }
   
   .menu-toggle {
@@ -277,12 +275,7 @@ const t = dict[lang];
     color: white;
   }
   
-  /* Mobilon a desktop nyelvváltó elrejtve, a mobile menüben jelenik meg */
-  @media (max-width: 640px) {
-    .lang-switch {
-      display: none;
-    }
-  }
+  /* A nyelvváltó pill MINDEN viewporton látszik (desktop + mobile) */
   
   .cart-icon {
     position: relative;
@@ -436,9 +429,7 @@ const t = dict[lang];
     }
     
     var desktopSwitch = document.getElementById('lang-switch-desktop');
-    var mobileSwitch = document.getElementById('lang-switch-mobile');
     if (desktopSwitch) desktopSwitch.setAttribute('href', targetUrl);
-    if (mobileSwitch) mobileSwitch.setAttribute('href', targetUrl);
   }
   
   updateLangSwitchUrls();
