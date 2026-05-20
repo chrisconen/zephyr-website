@@ -1885,6 +1885,82 @@ import Footer from '../../components/Footer.astro';
     transform: translateY(-3px);
     box-shadow: 0 15px 40px rgba(255,255,255,0.2);
   }
+  
+  /* ═══════════════════════════════════════════════════════════
+     MOBILE PROGRESS-NAV — floating left-edge indicator
+     Visible only when the scroll-section is in viewport (JS toggle)
+     ═══════════════════════════════════════════════════════════ */
+  @media (max-width: 1024px) {
+    .progress-nav {
+      display: flex !important;
+      
+      position: fixed;
+      left: 0.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      
+      z-index: 50;
+      
+      padding: 0.75rem 0.4rem;
+      background: rgba(26, 26, 36, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    
+    .progress-nav.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    .progress-nav .progress-track {
+      height: 120px;
+    }
+    
+    .progress-nav .progress-dot {
+      width: 28px;
+      height: 28px;
+      font-size: 0.65rem;
+    }
+    
+    /* Push content right so the pill doesn't overlap text */
+    .scroll-container {
+      padding-left: 4.5rem;
+    }
+    
+    /* Feature-items mobile fix — overrides desktop absolute positioning
+       so all 4 steps render stacked and the section gets natural height */
+    .feature-item {
+      position: relative !important;
+      top: auto !important;
+      left: auto !important;
+      transform: none !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      min-height: 60vh;  /* Each step at least 60% of viewport, giving time to read */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .feature-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+  }
 </style>
 
 <!-- GSAP -->
@@ -1906,6 +1982,52 @@ document.addEventListener('DOMContentLoaded', function() {
   var featureVisuals = document.querySelectorAll('.feature-visual');
   var progressDots = document.querySelectorAll('.progress-dot');
   var progressFill = document.querySelector('.progress-fill');
+  
+  // ═══════════════════════════════════════════════════════════
+  // MOBILE PROGRESS-NAV VISIBILITY TOGGLE
+  // Shows only when the scroll-section is in the middle area of viewport
+  // ═══════════════════════════════════════════════════════════
+  (function setupMobileProgressNavToggle() {
+    var progressNav = document.querySelector('.progress-nav');
+    var scrollSection = document.querySelector('.scroll-section');
+    
+    if (!progressNav || !scrollSection) return;
+    
+    function isMobile() {
+      return window.innerWidth <= 1024;
+    }
+    
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!isMobile()) {
+          progressNav.classList.remove('is-visible');
+          return;
+        }
+        
+        if (entry.isIntersecting) {
+          progressNav.classList.add('is-visible');
+        } else {
+          progressNav.classList.remove('is-visible');
+        }
+      });
+    }, {
+      threshold: 0,
+      // Top 30% and bottom 30% of viewport excluded — only triggers in middle 40%
+      rootMargin: '-30% 0px -30% 0px'
+    });
+    
+    observer.observe(scrollSection);
+    
+    var resizeTimer = null;
+    window.addEventListener('resize', function() {
+      if (resizeTimer) clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() {
+        if (!isMobile()) {
+          progressNav.classList.remove('is-visible');
+        }
+      }, 200);
+    });
+  })();
   
   // Create flowing pulse animations for toxin paths
   function createToxinPulseAnimations() {
