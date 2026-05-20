@@ -200,22 +200,24 @@ import Footer from '../components/Footer.astro';
                     <path id="toxinPulse3" class="pulse-line" d="M100,250 Q150,250 180,300 Q210,350 250,350" fill="none" stroke="url(#toxinPulseGrad)" stroke-width="5" stroke-linecap="round"/>
                   </g>
                   
-                  <!-- ═══════════════════════════════════════════════════════════
-                   LIVER CHIP - JAVÍTOTT VERZIÓ (Twemoji SVG)
-                   Cseréld le a teljes <g class="liver-chip"> blokkot erre.
-                   Helyszín: hogyan-mukodik.astro ~204-211. sor
-                   
-                   Az eredeti 🫀 emoji helyett a Twitter Twemoji projektjének
-                   vektoros máj SVG-je (CC-BY 4.0 licenc). Platform-függetlenül
-                   ugyanúgy renderelődik laptopon és mobilon is.
-                   ═══════════════════════════════════════════════════════════ -->
-              
                   <!-- Central Liver chip -->
-                  <img src="/public/images/maj.webp" alt="máj">
-  
-                      <!-- "MÁJ" felirat -->
-                      <text x="0" y="32" text-anchor="middle" fill="#6a6a7a" font-size="10" font-weight="600">MÁJ</text>
+                  <g class="liver-chip" transform="translate(100, 250)">
+                    <rect x="-45" y="-45" width="90" height="90" rx="16" fill="#2a2a3a" stroke="#4a4a5a" stroke-width="2"/>
+                    <rect class="chip-glow" x="-45" y="-45" width="90" height="90" rx="16" fill="none" stroke="#DC2626" stroke-width="2" opacity="0"/>
+                    
+                    <!-- Twemoji liver SVG (anatómiai rajz, vektoros) -->
+                    <g transform="translate(-22, -28) scale(1.25)">
+                      <path fill="#F4ABBA" d="M11.885 12.863c.117-2.127.233-2.966.1-4.537-.147-1.44-.397-2.495-.75-3.522s-3.313-.626-2.959 1.138c.353 1.764.593 6.809.451 8.45 1.548-.984 3.158-1.529 3.158-1.529z"/>
+                      <path fill="#BE1931" d="M10.275 13.408c-2.139 1.07-4.278 3.209-4.278 6.417 0 8.735 7.83 10.749 14.248 12.888 6.417 2.139 7.181 1.578 9.283-.053 1.07-2.139.414-13.672-2.795-17.95-2.314-3.085-11.58-3.741-16.458-1.302z"/>
+                      <path fill="#A0041E" d="M10.275 13.408c-2.139 1.07-4.278 3.209-4.278 6.417 0 8.735 9.83 13.581 13.353 14.415 6.275 1.486 9.108.559 10.177-1.58-1.783 1.113-9.316-.614-13.309-4.172-4.187-3.732-6.074-10.238-3.383-13.552.071-1.036-.118-1.587-.118-2.416-.886.228-1.713.523-2.442.888z"/>
+                      <path fill="#EA596E" d="M12.836 14.936c-1.413-2.139-2.156-6.05.648-9.015 2.65-2.802 7.77-2.842 10.224.973 2.086 3.243.471 9.722.471 9.722s-4.804-4.98-6.248-2.649c-1.442 2.332-4.872 1.306-5.095.969z"/>
+                      <path fill="#F4ABBA" d="M23.951 17.58c1.156-1.632 1.156-4.168 1.156-4.168s.323-1.489 3.701-.538c.33.093 1.339-1.479.707-1.718-2.296-.869-3.93-.309-3.93-.309s1.129-.835 2.772-1.033c.652-.079.123-1.37-.525-1.357-.7.014-1.337.184-2.092.514-.353.154-.72-.109-.852-.24-1.988-1.975-4.223-1.689-5.587-1.083-1.455.647-2.06 2.478-1.165 3.718s.013 2.178-.543 3.169c-.9 1.602 4.831 5.201 6.358 3.045z"/>
+                      <path fill="#EA596E" d="M15.252 6.673c-.744-1.708-1.59-2.473-2.694-3.533s.751-2.384 1.943-1.236 2.296 3.312 2.473 3.842-1.278 1.945-1.722.927z"/>
+                      <path fill="#EA596E" d="M16.219 4.228c1.134-.593 1.506-2.235 1.594-2.765.088-.53 1.722-.574 1.545.574s.013 1.919.013 1.919.87-1.483 1.753-2.234 1.896.443 1.41 1.142-.579 1.98-.35 2.433c.229.453-2.242 1.022-3.815.713-1.571-.308-2.15-1.782-2.15-1.782z"/>
                     </g>
+                    
+                    <text x="0" y="32" text-anchor="middle" fill="#6a6a7a" font-size="10" font-weight="600">MÁJ</text>
+                  </g>
                   
                   <!-- Toxin molecule nodes -->
                   <g class="toxin-nodes">
@@ -847,8 +849,8 @@ import Footer from '../components/Footer.astro';
         <div class="cta-box">
           <h2>Készen állsz kipróbálni?</h2>
           <p>30 napos elégedettségi garancia. Ha nem vagy elégedett, visszaadjuk a pénzed.</p>
-            <a href="/vasarlas" class="btn-primary">
-              Vásárlás
+          <a href="/#shop" class="btn-primary">
+            Vásárlás
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
@@ -902,12 +904,6 @@ import Footer from '../components/Footer.astro';
     padding: 10rem 1.5rem 5rem;
     text-align: center;
     background: linear-gradient(180deg, #FDFBF7 0%, #F5F0E8 100%);
-  }
-  
-  @media (max-width: 768px) {
-    .hiw-hero {
-      padding: 7rem 1.5rem 3rem;
-    }
   }
   
   .hiw-hero h1 {
@@ -971,53 +967,39 @@ import Footer from '../components/Footer.astro';
     .scroll-container {
       grid-template-columns: 1fr;
       padding: 0 1.5rem;
-      gap: 0;
+      position: relative;
+      top: auto;
+      height: auto;
+      align-items: stretch;
     }
     
-    .visual-side {
-      display: none;
+    .scroll-section {
+      min-height: auto;
     }
+    
+    .visual-side { display: none; }
     
     .content-side {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 80px 0 2rem;
+      height: auto;
+      padding: 4rem 0;
     }
     
     .feature-item {
-      padding-right: 0;
+      position: relative;
+      top: auto;
+      left: auto;
+      transform: none;
+      opacity: 1;
+      pointer-events: auto;
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
     
-    .feature-label {
-      font-size: 0.7rem;
-      padding: 0.4rem 0.75rem;
-      margin-bottom: 0.75rem;
-    }
-    
-    .feature-title {
-      font-size: 1.6rem;
-      margin-bottom: 0.75rem;
-    }
-    
-    .feature-description {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-      max-width: 100%;
-    }
-    
-    .feature-stats {
-      gap: 2.5rem;
-    }
-    
-    .stat-value {
-      font-size: 2rem;
-    }
-    
-    .stat-label {
-      font-size: 0.8rem;
+    .feature-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
     }
     
     .progress-nav { display: none; }
@@ -1166,7 +1148,7 @@ import Footer from '../components/Footer.astro';
     margin-bottom: 1.5rem;
     line-height: 1.15;
   }
- 
+  
   .feature-description {
     font-size: 1.1rem;
     color: rgba(255,255,255,0.65);
@@ -1184,6 +1166,29 @@ import Footer from '../components/Footer.astro';
     gap: 3rem;
   }
   
+  @media (max-width: 768px) {
+    .feature-title {
+      font-size: 1.75rem;
+    }
+    
+    .feature-description {
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    
+    .feature-stats {
+      gap: 2rem;
+    }
+    
+    .stat-value {
+      font-size: 2rem;
+    }
+    
+    .hiw-hero {
+      padding: 7rem 1.5rem 3rem;
+    }
+  }
+  
   .stat-value {
     font-family: 'Cormorant Garamond', serif;
     font-size: 2.5rem;
@@ -1196,21 +1201,6 @@ import Footer from '../components/Footer.astro';
     font-size: 0.85rem;
     color: rgba(255,255,255,0.5);
   }
-
-  @media (max-width: 468px) {
-    .feature-title {
-      font-size: 20px;
-      }
-    .feature-description {
-      font-size: 14px;
-      }
-    .stat-value {
-      font-size: 20px;
-      }
-    .content-side {
-      margin-bottom: -180px
-      }
-   }
   
   /* ═══════════════════════════════════════════
      VISUAL SIDE
@@ -1228,11 +1218,6 @@ import Footer from '../components/Footer.astro';
     width: 100%;
     height: 100%;
     overflow: hidden;
-  }
-@media (max-width: 468px) {
-   .visual-container {
-    margin-top: -120px;
-    }
   }
   
   .feature-visual {
@@ -1901,85 +1886,65 @@ import Footer from '../components/Footer.astro';
     transform: translateY(-3px);
     box-shadow: 0 15px 40px rgba(255,255,255,0.2);
   }
-
-/* ═══════════════════════════════════════════════════════════
-   PROGRESS-NAV MOBILE VISIBILITY FIX
-   Replaces the previous "hide on mobile" patch.
-   
-   Add this CSS to the END of the <style> block in:
-     - src/pages/hogyan-mukodik.astro
-     - src/pages/en/how-it-works.astro
-   
-   IMPORTANT: If the previous patch (progress-nav-mobile-fix.css with
-   display: none !important) has already been applied, REMOVE it first.
-   That earlier fix was based on a misinterpretation.
-   
-   What this does:
-   On mobile (≤1200px), the progress-nav floats on the left edge
-   of the viewport using position: fixed. The 4 dots (01-04) and
-   the gradient progress fill remain visible and animated, matching
-   the desktop behavior.
-   
-   Desktop (1201px+) behavior is UNCHANGED — the existing rules apply.
-   ═══════════════════════════════════════════════════════════ */
-
-@media (max-width: 1200px) {
-  /* OVERRIDE: remove the display:none from earlier rules */
-  .progress-nav {
-    display: flex !important;
-    visibility: visible !important;
-    
-    /* Float on the left edge of the viewport instead of next to content */
-    position: fixed;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    
-    /* Slightly smaller scale for mobile to be less intrusive */
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    
-    /* Stack above content */
-    z-index: 50;
-    
-    /* Smooth show/hide transition (controlled by JS) */
-    opacity: 0;
-    visibility: hidden !important;
-    pointer-events: none;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-  }
   
-  /* Visible state — toggled by JS when scroll-section is in viewport */
-  .progress-nav.is-visible {
-    opacity: 1;
-    visibility: visible !important;
-    pointer-events: auto;
+  /* ═══════════════════════════════════════════════════════════
+     MOBILE PROGRESS-NAV — bal szélen lebegő floating indikátor
+     Csak a scroll-section szekcióban látszik (JS toggle)
+     ═══════════════════════════════════════════════════════════ */
+  @media (max-width: 1024px) {
+    .progress-nav {
+      /* Felülírjuk a korábbi display: none szabályokat */
+      display: flex !important;
+      
+      /* Viewport-ra rögzítjük, nem a content-side-ra */
+      position: fixed;
+      left: 0.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      
+      /* Tartalom fölé */
+      z-index: 50;
+      
+      /* Háttér pill — olvasható maradjon bármilyen tartalom felett */
+      padding: 0.75rem 0.4rem;
+      background: rgba(26, 26, 36, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      
+      /* Alapból elrejtve — JS adja hozzá .is-visible-t, amikor a scroll-section látszik */
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    
+    .progress-nav.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    /* Rövidebb track mobilon */
+    .progress-nav .progress-track {
+      height: 120px;
+    }
+    
+    /* Kompaktabb dot-ok, de még tap-elhető (28px) */
+    .progress-nav .progress-dot {
+      width: 28px;
+      height: 28px;
+      font-size: 0.65rem;
+    }
+    
+    /* Tartalom eltolása jobbra, hogy a pill ne lógjon bele */
+    .scroll-container {
+      padding-left: 4.5rem;
+    }
   }
-  
-  /* Track slightly shorter on mobile */
-  .progress-nav .progress-track {
-    height: 120px;
-  }
-  
-  /* Dots: smaller but still tappable (min 32px target) */
-  .progress-nav .progress-dot {
-    width: 32px;
-    height: 32px;
-    font-size: 0.7rem;
-  }
-  
-  /* Subtle background pill so it stays readable over any section content */
-  .progress-nav {
-    padding: 0.75rem 0.5rem;
-    background: rgba(26, 26, 36, 0.85);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-  }
-}
-
 </style>
 
 <!-- GSAP -->
@@ -2001,6 +1966,52 @@ document.addEventListener('DOMContentLoaded', function() {
   var featureVisuals = document.querySelectorAll('.feature-visual');
   var progressDots = document.querySelectorAll('.progress-dot');
   var progressFill = document.querySelector('.progress-fill');
+  
+  // ═══════════════════════════════════════════════════════════
+  // MOBILE PROGRESS-NAV VISIBILITY TOGGLE
+  // Csak akkor jelenik meg, ha a scroll-section a viewport középső területén van
+  // ═══════════════════════════════════════════════════════════
+  (function setupMobileProgressNavToggle() {
+    var progressNav = document.querySelector('.progress-nav');
+    var scrollSection = document.querySelector('.scroll-section');
+    
+    if (!progressNav || !scrollSection) return;
+    
+    function isMobile() {
+      return window.innerWidth <= 1024;
+    }
+    
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!isMobile()) {
+          progressNav.classList.remove('is-visible');
+          return;
+        }
+        
+        if (entry.isIntersecting) {
+          progressNav.classList.add('is-visible');
+        } else {
+          progressNav.classList.remove('is-visible');
+        }
+      });
+    }, {
+      threshold: 0,
+      // A viewport tetejéből és aljából 30% levágva — csak a középső 40%-ban triggerel
+      rootMargin: '-30% 0px -30% 0px'
+    });
+    
+    observer.observe(scrollSection);
+    
+    var resizeTimer = null;
+    window.addEventListener('resize', function() {
+      if (resizeTimer) clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() {
+        if (!isMobile()) {
+          progressNav.classList.remove('is-visible');
+        }
+      }, 200);
+    });
+  })();
   
   // Create flowing pulse animations for toxin paths
   function createToxinPulseAnimations() {
@@ -2199,72 +2210,4 @@ document.addEventListener('DOMContentLoaded', function() {
   ScrollTrigger.refresh();
   console.log('Zephyr EPIC animations initialized');
 });
-
-// ═══════════════════════════════════════════════════════════
-// PROGRESS-NAV MOBILE VISIBILITY TOGGLE
-// 
-// Add this code INSIDE the existing <script> block in:
-//   - src/pages/hogyan-mukodik.astro
-//   - src/pages/en/how-it-works.astro
-// 
-// Place it AFTER the existing `var progressFill = document.querySelector('.progress-fill');`
-// line (around line 1916 in the original file), but anywhere within the
-// same script tag works — order doesn't matter much.
-// 
-// What it does:
-// On mobile (≤1200px), shows the floating progress-nav only when the
-// .scroll-section is actually in the viewport. Off-section, it fades out
-// so it doesn't clutter the rest of the page.
-// 
-// Desktop is unaffected — the CSS only adds .is-visible behavior
-// inside the max-width: 1200px media query.
-// ═══════════════════════════════════════════════════════════
-
-(function setupMobileProgressNavToggle() {
-  var progressNav = document.querySelector('.progress-nav');
-  var scrollSection = document.querySelector('.scroll-section');
-  
-  if (!progressNav || !scrollSection) return;
-  
-  // Only run on mobile breakpoint
-  function isMobile() {
-    return window.innerWidth <= 1200;
-  }
-  
-  // IntersectionObserver: simpler and more performant than scroll listener
-  // Triggers when at least 10% of the scroll-section is in view
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (!isMobile()) {
-        // On desktop, the CSS handles visibility — don't touch the class
-        progressNav.classList.remove('is-visible');
-        return;
-      }
-      
-      if (entry.isIntersecting) {
-        progressNav.classList.add('is-visible');
-      } else {
-        progressNav.classList.remove('is-visible');
-      }
-    });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px'
-  });
-  
-  observer.observe(scrollSection);
-  
-  // On resize, re-check if mobile state changed
-  var resizeTimer = null;
-  window.addEventListener('resize', function() {
-    if (resizeTimer) clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function() {
-      if (!isMobile()) {
-        progressNav.classList.remove('is-visible');
-      }
-    }, 200);
-  });
-})();
-
-
 </script>
