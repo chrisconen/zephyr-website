@@ -394,9 +394,154 @@ const t = dict[lang];
   .btn-primary:hover {
     background: #4A1552;
   }
+
+/* ═══════════════════════════════════════════════════════════
+   PROGRESS-NAV MOBILE VISIBILITY FIX
+   Replaces the previous "hide on mobile" patch.
+   
+   Add this CSS to the END of the <style> block in:
+     - src/pages/hogyan-mukodik.astro
+     - src/pages/en/how-it-works.astro
+   
+   IMPORTANT: If the previous patch (progress-nav-mobile-fix.css with
+   display: none !important) has already been applied, REMOVE it first.
+   That earlier fix was based on a misinterpretation.
+   
+   What this does:
+   On mobile (≤1200px), the progress-nav floats on the left edge
+   of the viewport using position: fixed. The 4 dots (01-04) and
+   the gradient progress fill remain visible and animated, matching
+   the desktop behavior.
+   
+   Desktop (1201px+) behavior is UNCHANGED — the existing rules apply.
+   ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 1200px) {
+  /* OVERRIDE: remove the display:none from earlier rules */
+  .progress-nav {
+    display: flex !important;
+    visibility: visible !important;
+    
+    /* Float on the left edge of the viewport instead of next to content */
+    position: fixed;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    /* Slightly smaller scale for mobile to be less intrusive */
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    
+    /* Stack above content */
+    z-index: 50;
+    
+    /* Smooth show/hide transition (controlled by JS) */
+    opacity: 0;
+    visibility: hidden !important;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  /* Visible state — toggled by JS when scroll-section is in viewport */
+  .progress-nav.is-visible {
+    opacity: 1;
+    visibility: visible !important;
+    pointer-events: auto;
+  }
+  
+  /* Track slightly shorter on mobile */
+  .progress-nav .progress-track {
+    height: 120px;
+  }
+  
+  /* Dots: smaller but still tappable (min 32px target) */
+  .progress-nav .progress-dot {
+    width: 32px;
+    height: 32px;
+    font-size: 0.7rem;
+  }
+  
+  /* Subtle background pill so it stays readable over any section content */
+  .progress-nav {
+    padding: 0.75rem 0.5rem;
+    background: rgba(26, 26, 36, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
+
 </style>
 
 <script>
+// ═══════════════════════════════════════════════════════════
+// PROGRESS-NAV MOBILE VISIBILITY TOGGLE
+// 
+// Add this code INSIDE the existing <script> block in:
+//   - src/pages/hogyan-mukodik.astro
+//   - src/pages/en/how-it-works.astro
+// 
+// Place it AFTER the existing `var progressFill = document.querySelector('.progress-fill');`
+// line (around line 1916 in the original file), but anywhere within the
+// same script tag works — order doesn't matter much.
+// 
+// What it does:
+// On mobile (≤1200px), shows the floating progress-nav only when the
+// .scroll-section is actually in the viewport. Off-section, it fades out
+// so it doesn't clutter the rest of the page.
+// 
+// Desktop is unaffected — the CSS only adds .is-visible behavior
+// inside the max-width: 1200px media query.
+// ═══════════════════════════════════════════════════════════
+
+(function setupMobileProgressNavToggle() {
+  var progressNav = document.querySelector('.progress-nav');
+  var scrollSection = document.querySelector('.scroll-section');
+  
+  if (!progressNav || !scrollSection) return;
+  
+  // Only run on mobile breakpoint
+  function isMobile() {
+    return window.innerWidth <= 1200;
+  }
+  
+  // IntersectionObserver: simpler and more performant than scroll listener
+  // Triggers when at least 10% of the scroll-section is in view
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!isMobile()) {
+        // On desktop, the CSS handles visibility — don't touch the class
+        progressNav.classList.remove('is-visible');
+        return;
+      }
+      
+      if (entry.isIntersecting) {
+        progressNav.classList.add('is-visible');
+      } else {
+        progressNav.classList.remove('is-visible');
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px'
+  });
+  
+  observer.observe(scrollSection);
+  
+  // On resize, re-check if mobile state changed
+  var resizeTimer = null;
+  window.addEventListener('resize', function() {
+    if (resizeTimer) clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+      if (!isMobile()) {
+        progressNav.classList.remove('is-visible');
+      }
+    }, 200);
+  });
+})();
+
   // ─────────────────────────────────────────
   // Nyelvváltó: dinamikus URL kalkulál ás
   // Az aktuális oldal angol/magyar megfelelőjére irányít, nem mindig a homepage-re.
