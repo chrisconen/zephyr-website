@@ -984,19 +984,7 @@ import Footer from '../components/Footer.astro';
       padding: 0 1.5rem;
       gap: 0;
     }
-    
-    .visual-side {
-      display: none;
-    }
-    
-    .content-side {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 80px 0 2rem;
-    }
-    
+
     .feature-item {
       padding-right: 0;
     }
@@ -1217,9 +1205,6 @@ import Footer from '../components/Footer.astro';
       }
     .stat-value {
       font-size: 20px;
-      }
-    .content-side {
-      margin-bottom: -180px
       }
    }
   
@@ -1983,6 +1968,49 @@ import Footer from '../components/Footer.astro';
     -webkit-backdrop-filter: blur(8px);
     border-radius: 30px;
     border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MOBIL SCROLL-SZEKCIÓ LAYOUT — VÉGLEGES FELÜLÍRÁS
+   ───────────────────────────────────────────────────────────
+   A fájlban a desktop .content-side / .visual-side alapszabályok
+   a forrásban KÉSŐBB állnak, mint a @media (max-width:1024px) blokk,
+   ezért azonos specificitásnál felülírták a mobil szabályokat
+   (ezért nem érvényesült korábban a 100vh→auto és a vizuál
+   pozíciója). Megnövelt specificitással (.scroll-section …) és a
+   stíluslap végén garantáltan nyerünk a cascade-ben.
+
+   Cél: a szöveg a pinned konténer tetején, közvetlenül alatta a
+   vizuál — fix, kontrollált hézaggal, negatív margin nélkül.
+   Így a 3. lépés SVG felső köre (L-CYS) sem lóghat a szövegre.
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .scroll-section .scroll-container {
+    align-items: start;
+  }
+
+  .scroll-section .content-side {
+    height: auto;
+    justify-content: flex-start;
+    padding: 100px 0 0;
+    margin-bottom: 0;
+  }
+
+  /* A vizuál mobilon is látszik (Vajk kérése). Az abszolút
+     pozícionált .feature-visual rétegek miatt a konténernek
+     explicit magasság kell, különben 0px-re omlik. */
+  .scroll-section .visual-side {
+    display: flex;
+    height: 50vh;
+    min-height: 300px;
+    margin-top: 0.5rem;
+  }
+
+  /* Desktopon a vizuál top:10%-kal feljebb ül; mobilon a saját
+     konténere tetejéhez igazítjuk, hogy ne lóghasson felfelé. */
+  .scroll-section .feature-visual {
+    top: 0;
   }
 }
 
