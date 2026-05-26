@@ -2026,12 +2026,37 @@ import Footer from '../components/Footer.astro';
     display: flex;
     height: auto;
     min-height: 0;
-    margin-top: 3.5rem;
+    margin-top: 0;
   }
 
   .scroll-section .visual-container {
-    height: 34vh;
-    min-height: 210px;
+    height: 200px;
+    min-height: 0;
+  }
+
+  /* A teljes vizuál (animáció + status-badge) arányos kicsinyítése a
+     wrapper szélességének korlátozásával. A négyzetes SVG így
+     alacsonyabb, és a badge-dzsel együtt befér a szöveg alatti
+     helyre — méret-torzítás nélkül (vektoros, éles marad). Ez minden
+     lépésre egységesen hat (a 2. lépés magas pohár-ábrájára is). */
+  .scroll-section .visual-wrapper {
+    max-width: 200px;
+  }
+
+  /* A status-badge arányosan kisebb a kisebb vizuálhoz, egy sorban
+     (nowrap), a vizuál alsó pereméhez igazítva — teljesen látszik a
+     viewporton belül, nem lóg ki és nem tördelődik. */
+  .scroll-section .visual-badge {
+    bottom: 0;
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    gap: 0.5rem;
+    white-space: nowrap;
+  }
+
+  .scroll-section .visual-badge .badge-dot {
+    width: 8px;
+    height: 8px;
   }
 
   /* Desktopon a vizuál top:10%-kal feljebb ül; mobilon a saját
