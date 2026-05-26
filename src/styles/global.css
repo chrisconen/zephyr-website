@@ -14,6 +14,10 @@
 
 html {
     scroll-behavior: smooth;
+    /* Fix header magasságát kompenzáljuk minden horgonyugrásnál
+       (#shop, #products, #ingredients, #faq stb.), hogy a header
+       ne takarja el a célszekció tetejét. */
+    scroll-padding-top: 90px;
 }
 
 body {
