@@ -2015,12 +2015,37 @@ import Footer from '../../components/Footer.astro';
     display: flex;
     height: auto;
     min-height: 0;
-    margin-top: 3.5rem;
+    margin-top: 0;
   }
 
   .scroll-section .visual-container {
-    height: 34vh;
-    min-height: 210px;
+    height: 200px;
+    min-height: 0;
+  }
+
+  /* Scale the whole visual (animation + status badge) down by
+     constraining the wrapper width. The square SVG becomes shorter,
+     so it fits — with the badge — into the space below the text
+     without distortion (vector, stays crisp). Applies uniformly to
+     every step, including step 2's tall glass illustration. */
+  .scroll-section .visual-wrapper {
+    max-width: 200px;
+  }
+
+  /* Status badge scaled proportionally to the smaller visual, on a
+     single line (nowrap), pinned to the visual's lower edge — fully
+     visible within the viewport, never clipped or wrapped. */
+  .scroll-section .visual-badge {
+    bottom: 0;
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    gap: 0.5rem;
+    white-space: nowrap;
+  }
+
+  .scroll-section .visual-badge .badge-dot {
+    width: 8px;
+    height: 8px;
   }
 
   .scroll-section .feature-visual {
