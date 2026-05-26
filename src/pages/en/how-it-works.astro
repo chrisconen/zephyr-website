@@ -985,18 +985,6 @@ import Footer from '../../components/Footer.astro';
       gap: 0;
     }
     
-    .visual-side {
-      display: none;
-    }
-    
-    .content-side {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 80px 0 2rem;
-    }
-    
     .feature-item {
       padding-right: 0;
     }
@@ -1004,23 +992,23 @@ import Footer from '../../components/Footer.astro';
     .feature-label {
       font-size: 0.7rem;
       padding: 0.4rem 0.75rem;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
     }
     
     .feature-title {
       font-size: 1.6rem;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
     }
     
     .feature-description {
       font-size: 0.95rem;
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
+      line-height: 1.55;
+      margin-bottom: 1rem;
       max-width: 100%;
     }
     
     .feature-stats {
-      gap: 2.5rem;
+      gap: 1rem;
     }
     
     .stat-value {
@@ -1218,9 +1206,6 @@ import Footer from '../../components/Footer.astro';
     .stat-value {
       font-size: 20px;
       }
-    .content-side {
-      margin-bottom: -180px
-      }
    }
   
   /* ═══════════════════════════════════════════
@@ -1239,11 +1224,6 @@ import Footer from '../../components/Footer.astro';
     width: 100%;
     height: 100%;
     overflow: hidden;
-  }
-@media (max-width: 468px) {
-   .visual-container {
-    margin-top: -90px;
-    }
   }
   
   .feature-visual {
@@ -1988,6 +1968,63 @@ import Footer from '../../components/Footer.astro';
     -webkit-backdrop-filter: blur(8px);
     border-radius: 30px;
     border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MOBILE SCROLL-SECTION LAYOUT — FINAL OVERRIDE
+   ───────────────────────────────────────────────────────────
+   The desktop .content-side / .visual-side base rules appear LATER
+   in the source than the @media (max-width:1024px) block, so at
+   equal specificity they overrode the mobile rules. With increased
+   specificity (.scroll-section …) and placement at the end of the
+   stylesheet we reliably win the cascade.
+
+   Goal: text pinned at the top (below the fixed header), the visual
+   directly beneath with a fixed, controlled gap — no negative
+   margins. The .feature-item is position:absolute (top:50% by
+   default) so content-side padding-top doesn't affect it; we offset
+   it below the fixed header (~72px) via `top`. The left padding
+   leaves room for the fixed progress-nav pill (01–04).
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .scroll-section .scroll-container {
+    align-items: start;
+  }
+
+  .scroll-section .content-side {
+    height: auto;
+    min-height: 420px;
+    justify-content: flex-start;
+    padding: 0;
+    margin-bottom: 0;
+  }
+
+  .scroll-section .feature-item {
+    top: 90px;
+    transform: none;
+    left: 0;
+    padding-left: 60px;
+  }
+
+  .scroll-section .feature-item.active {
+    transform: none;
+  }
+
+  .scroll-section .visual-side {
+    display: flex;
+    height: auto;
+    min-height: 0;
+    margin-top: 3.5rem;
+  }
+
+  .scroll-section .visual-container {
+    height: 34vh;
+    min-height: 210px;
+  }
+
+  .scroll-section .feature-visual {
+    top: 0;
   }
 }
 
