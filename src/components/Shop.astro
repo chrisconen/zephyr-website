@@ -20,7 +20,7 @@
       <!-- Jobb: Vásárlás -->
       <div class="shop-content">
         <span class="section-label">Vásárlás</span>
-        <h2>Válaszd ki a<span class="gradient-text">csomagod</span></h2>
+        <h2>Válaszd ki a <span class="gradient-text">csomagod</span></h2>
         <p class="shop-description">
           Minden doboz 3 Preventive + 3 Recovery tasakot tartalmaz. 
           Minél többet veszel, annál többet spórolsz éjszakánként — ráadásul a 2. szinttől ingyenes a szállítás.
@@ -113,6 +113,8 @@
   .shop {
     padding: 6rem 1.5rem;
     background: linear-gradient(180deg, #F5F0E8 0%, #FDFBF7 100%);
+    /* Horgonyugrás (#shop) esetén a fix header ne takarja el a tetejét */
+    scroll-margin-top: 90px;
   }
   
   .container {
