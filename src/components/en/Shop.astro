@@ -1,0 +1,528 @@
+﻿---
+// en/Shop.astro - SALUTÉ shop section (English)
+// 3 packages: SALUTÉ Breeze / Flow / Pro (Shopify 1/2/3 box variants)
+---
+
+<section class="shop">
+  <div class="container">
+    
+    <div class="shop-layout">
+      
+      <!-- Bal: Termék kép -->
+      <div class="shop-visual">
+        <img 
+          src="/images/SALUTÉ_stick_latvany.webp" 
+          alt="SALUTÉ box" 
+          class="product-image"
+        />
+      </div>
+      
+      <!-- Right: Shop -->
+      <div class="shop-content" id="shop">
+        <span class="section-label">Shop</span>
+        <h2>Choose Your <span class="gradient-text">Package</span></h2>
+        <p class="shop-description">
+          Every box contains 3 Preventive + 3 Recovery sachets. 
+          The more you buy, the more you save per night — plus free shipping from the 2nd tier onward.
+        </p>
+        
+        <!-- Package Options -->
+        <div class="package-options" id="package-options">
+          
+          <!-- Option 1 -->
+          <label class="package-option selected" data-quantity="1" data-price="7990">
+            <input type="radio" name="package" value="1" checked />
+            <div class="package-radio"></div>
+            <div class="package-info">
+              <span class="package-name">SALUTÉ Breeze</span>
+              <span class="package-desc">1 box • 3 nights</span>
+            </div>
+            <div class="package-price">
+              <span class="price-current">7,990 HUF</span>
+              <span class="price-per">3,160 HUF/night</span>
+              <span class="price-shipping">+1,490 HUF shipping</span>
+            </div>
+          </label>
+          
+          <!-- Option 2 - Popular -->
+          <label class="package-option" data-quantity="2" data-price="14990">
+            <span class="package-badge">Most Popular</span>
+            <input type="radio" name="package" value="2" />
+            <div class="package-radio"></div>
+            <div class="package-info">
+              <span class="package-name">SALUTÉ Flow</span>
+              <span class="package-desc">2 boxes • 6 nights</span>
+            </div>
+            <div class="package-price">
+              <span class="price-current">14,990 HUF</span>
+              <span class="price-per">2,498 HUF/night</span>
+              <span class="price-save">Save 20.9% + free shipping</span>
+            </div>
+          </label>
+          
+          <!-- Option 3 - Best Value -->
+          <label class="package-option" data-quantity="3" data-price="19990">
+            <span class="package-badge best">Best Value</span>
+            <input type="radio" name="package" value="3" />
+            <div class="package-radio"></div>
+            <div class="package-info">
+              <span class="package-name">SALUTÉ Pro</span>
+              <span class="package-desc">3 boxes • 9 nights</span>
+            </div>
+            <div class="package-price">
+              <span class="price-current">19,990 HUF</span>
+              <span class="price-per">2,220 HUF/night</span>
+              <span class="price-save">Save 29.7% + free shipping</span>
+            </div>
+          </label>
+          
+        </div>
+        
+        <!-- CTA Button -->
+        <button class="btn-primary shop-cta" id="add-to-cart">
+          <span id="cta-text">Add to Cart — 7,990 HUF</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+        
+        <!-- Trust -->
+        <div class="shop-trust">
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+            </svg>
+            <span>Secure Payment</span>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/>
+            </svg>
+            <span>Free Shipping</span>
+          </div>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+  </div>
+</section>
+
+<style>
+  .shop {
+    padding: 6rem 1.5rem;
+    background: linear-gradient(180deg, #F5F0E8 0%, #FDFBF7 100%);
+    /* Anchor jump (#shop) — keep top clear of the fixed header */
+    scroll-margin-top: 90px;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .shop-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  
+  @media (max-width: 968px) {
+    .shop-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* Visual */
+  .shop-visual {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .product-image {
+    max-width: 400px;
+    width: 100%;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+    animation: float 4s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+  
+  /* Content */
+  .section-label {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6D2077;
+    margin-bottom: 1rem;
+  }
+  
+  .shop-content h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 400;
+    color: #1A1A1A;
+    margin-bottom: 1rem;
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, #6D2077, #003B5C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .shop-description {
+    font-size: 1rem;
+    color: #4A4A4A;
+    margin-bottom: 2rem;
+  }
+  
+  /* Package Options */
+  .package-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .package-option {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: white;
+    border: 2px solid #E5E5E5;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .package-option:hover {
+    border-color: #6D2077;
+  }
+  
+  .package-option.selected {
+    border-color: #6D2077;
+    background: rgba(109, 32, 119, 0.03);
+  }
+  
+  .package-option input {
+    display: none;
+  }
+  
+  .package-radio {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #E5E5E5;
+    border-radius: 50%;
+    position: relative;
+    transition: all 0.2s ease;
+  }
+  
+  .package-option.selected .package-radio {
+    border-color: #6D2077;
+  }
+  
+  .package-option.selected .package-radio::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background: #6D2077;
+    border-radius: 50%;
+  }
+  
+  .package-badge {
+    position: absolute;
+    top: -10px;
+    right: 16px;
+    padding: 0.25rem 0.75rem;
+    background: #6D2077;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 50px;
+  }
+  
+  .package-badge.best {
+    background: linear-gradient(135deg, #6D2077, #003B5C);
+  }
+  
+  .package-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .package-name {
+    font-weight: 600;
+    color: #1A1A1A;
+  }
+  
+  .package-desc {
+    font-size: 0.8rem;
+    color: #8A8A8A;
+    white-space: nowrap;
+  }
+  
+  .package-price {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .price-current {
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: #1A1A1A;
+  }
+  
+  .price-per {
+    font-size: 0.75rem;
+    color: #8A8A8A;
+  }
+  
+  .price-save {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #6D2077;
+    text-transform: uppercase;
+  }
+  
+  .price-shipping {
+    font-size: 0.7rem;
+    color: #8A8A8A;
+  }
+  
+  /* CTA */
+  .shop-cta {
+    width: 100%;
+    padding: 1.25rem 2rem;
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: #6D2077;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background: #4A1552;
+    transform: translateY(-2px);
+  }
+  
+  .btn-primary:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  /* Trust */
+  .shop-trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+  }
+  
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #4A4A4A;
+  }
+  
+  .trust-item svg {
+    width: 20px;
+    height: 20px;
+    color: #6D2077;
+  }
+</style>
+
+<script>
+  // ─────────────────────────────────────────
+  // 1) Package selection (UI)
+  // ─────────────────────────────────────────
+  const options = document.querySelectorAll<HTMLElement>('.package-option');
+  const ctaText = document.getElementById('cta-text');
+  
+  const prices: Record<string, string> = {
+    '1': '7,990',
+    '2': '14,990',
+    '3': '19,990'
+  };
+  
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      options.forEach(o => o.classList.remove('selected'));
+      option.classList.add('selected');
+      
+      const radio = option.querySelector('input');
+      if (radio) (radio as HTMLInputElement).checked = true;
+      
+      const quantity = option.getAttribute('data-quantity') || '1';
+      if (ctaText) ctaText.textContent = `Add to Cart — ${prices[quantity]} HUF`;
+    });
+  });
+  
+  // ─────────────────────────────────────────
+  // 2) Shopify variants — lazy load + cache
+  //    Csak akkor kérjük le az API-t, ha a user tényleg vásárol.
+  // ─────────────────────────────────────────
+  const SHOPIFY_DOMAIN = 'SALUTÉ-hangover.myshopify.com';
+  const STOREFRONT_TOKEN = 'a225ffacab411d067a8d8b474e490668';
+  const PRODUCT_HANDLE = 'teszt-SALUTÉ-termek';
+
+  const PRODUCT_QUERY = `
+    query getProduct($handle: String!) {
+      product(handle: $handle) {
+        title
+        variants(first: 10) {
+          edges {
+            node {
+              id
+              title
+              price { amount }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  type Variant = {
+    id: string;
+    title: string;
+    price: { amount: string };
+  };
+
+  async function shopifyFetch(query: string, variables = {}) {
+    const res = await fetch(`https://${SHOPIFY_DOMAIN}/api/2024-10/graphql.json`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Storefront-Access-Token': STOREFRONT_TOKEN,
+      },
+      body: JSON.stringify({ query, variables }),
+    });
+    const json = await res.json();
+    if (json.errors) throw new Error(json.errors[0].message);
+    return json.data;
+  }
+
+  let variantsCache: Variant[] | null = null;
+  let productTitle = 'SALUTÉ';
+
+  async function loadVariants(): Promise<Variant[]> {
+    if (variantsCache) return variantsCache;
+    try {
+      const data = await shopifyFetch(PRODUCT_QUERY, { handle: PRODUCT_HANDLE });
+      productTitle = data.product?.title || 'SALUTÉ';
+      variantsCache = data.product?.variants?.edges?.map((e: any) => e.node) || [];
+    } catch (err) {
+      console.error('Shopify product fetch error:', err);
+      variantsCache = [];
+    }
+    return variantsCache!;
+  }
+  
+  // ─────────────────────────────────────────
+  // 3) Kosárba gomb — localStorage + event dispatch
+  //    A CartDrawer (Layout.astro-ban) az `openCart` + `cartUpdated` event-eket figyeli.
+  //    Ugyanaz a localStorage kulcs és adatszerkezet, mint az AddToCartButton.jsx-ben.
+  // ─────────────────────────────────────────
+  type CartItem = {
+    variantId: string;
+    title: string;
+    price: number;
+    quantity: number;
+  };
+
+  const addToCartBtn = document.getElementById('add-to-cart') as HTMLButtonElement | null;
+
+  addToCartBtn?.addEventListener('click', async () => {
+    const selected = document.querySelector('.package-option.selected');
+    const quantityStr = selected?.getAttribute('data-quantity') || '1';
+    const variantIndex = parseInt(quantityStr) - 1; // 1 doboz → variant 0, 2 doboz → variant 1, 3 doboz → variant 2
+    
+    // Loading state
+    addToCartBtn.disabled = true;
+    const originalCta = ctaText?.textContent || '';
+    if (ctaText) ctaText.textContent = 'Adding...';
+    
+    try {
+      const variants = await loadVariants();
+      const variant = variants[variantIndex];
+      
+      if (!variant) {
+        console.error('Variant not found for package:', quantityStr);
+        if (ctaText) ctaText.textContent = 'An error occurred';
+        setTimeout(() => {
+          if (ctaText) ctaText.textContent = originalCta;
+          addToCartBtn.disabled = false;
+        }, 1500);
+        return;
+      }
+      
+      // LocalStorage frissítése
+      const saved = localStorage.getItem('SALUTÉ-cart');
+      const items: CartItem[] = saved ? JSON.parse(saved) : [];
+      
+      const existing = items.find(item => item.variantId === variant.id);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        items.push({
+          variantId: variant.id,
+          title: `${productTitle} — ${variant.title}`,
+          price: parseFloat(variant.price.amount),
+          quantity: 1,
+        });
+      }
+      
+      localStorage.setItem('SALUTÉ-cart', JSON.stringify(items));
+      
+      // Events: Header badge frissül, Drawer megnyílik
+      window.dispatchEvent(new CustomEvent('cartUpdated'));
+      window.dispatchEvent(new CustomEvent('openCart'));
+      
+      // Gomb visszaállítása (a drawer ekkor már takarja, de ha bezárják, újra használható)
+      if (ctaText) ctaText.textContent = originalCta;
+      addToCartBtn.disabled = false;
+    } catch (err) {
+      console.error('Add to cart error:', err);
+      if (ctaText) ctaText.textContent = 'Error — please try again';
+      setTimeout(() => {
+        if (ctaText) ctaText.textContent = originalCta;
+        addToCartBtn.disabled = false;
+      }, 2000);
+    }
+  });
+</script>

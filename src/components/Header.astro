@@ -1,0 +1,543 @@
+﻿---
+// Header.astro - SALUTÉ navigáció
+// Logo középen, menü bal, kosár+lang+login jobb
+// i18n: lang prop ("hu" default | "en")
+interface Props {
+  lang?: 'hu' | 'en';
+}
+
+const { lang = 'hu' } = Astro.props;
+
+// ── Lokalizált szövegek ───────────────────────────────────
+const dict = {
+  hu: {
+    menuLabel: 'Menü megnyitása',
+    accountLabel: 'Fiók',
+    cartLabel: 'Kosár megnyitása',
+    langLabel: 'Nyelv váltása angolra',
+    products: 'Termékek',
+    howItWorks: 'Hogyan működik?',
+    ingredients: 'Összetevők',
+    testimonials: 'Vélemények',
+    faq: 'GYIK',
+    buyNow: 'Vásárlás',
+    homeUrl: '/',
+    howItWorksUrl: '/hogyan-mukodik',
+    shopUrl: '/vasarlas#shop',
+    switchLangUrl: '/en',
+    switchLangLabel: 'EN',
+  },
+  en: {
+    menuLabel: 'Open menu',
+    accountLabel: 'Account',
+    cartLabel: 'Open cart',
+    langLabel: 'Switch language to Hungarian',
+    products: 'Products',
+    howItWorks: 'How it Works',
+    ingredients: 'Ingredients',
+    testimonials: 'Reviews',
+    faq: 'FAQ',
+    buyNow: 'Shop Now',
+    homeUrl: '/en',
+    howItWorksUrl: '/en/how-it-works',
+    shopUrl: '/en/shop#shop',
+    switchLangUrl: '/',
+    switchLangLabel: 'HU',
+  },
+};
+
+const t = dict[lang];
+---
+
+<header id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <nav class="nav-inner">
+    
+    <!-- BAL: Hamburger menü + User ikon -->
+    <div class="nav-left">
+      <button id="menu-toggle" class="menu-toggle" aria-label={t.menuLabel}>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <a href="#" class="nav-icon" aria-label={t.accountLabel}>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </a>
+    </div>
+    
+    <!-- KÖZÉP: Logo -->
+    <div class="nav-center">
+      <a href={t.homeUrl} class="logo">
+        <span class="logo-text">SALUTÉ</span>
+      </a>
+    </div>
+    
+    <!-- JOBB: Lang + Kosár -->
+    <div class="nav-right">
+      <!-- Nyelvváltó (href dinamikusan frissül kliens-oldalon) -->
+      <a href={t.switchLangUrl} class="lang-switch" id="lang-switch-desktop" aria-label={t.langLabel}>
+        <span>{t.switchLangLabel}</span>
+      </a>
+      
+      <button id="cart-toggle" class="nav-icon cart-icon" aria-label={t.cartLabel}>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+        <span class="cart-count" id="cart-count" data-count="0"></span>
+      </button>
+    </div>
+    
+  </nav>
+  
+  <!-- Mobile Menu Drawer -->
+  <div id="mobile-menu" class="mobile-menu">
+    <div class="mobile-menu-content">
+      <nav class="mobile-nav">
+        {lang === 'hu' ? (
+          <a href="/#products" class="mobile-nav-link">{t.products}</a>
+        ) : (
+          <a href="/en#products" class="mobile-nav-link">{t.products}</a>
+        )}
+        <a href={t.howItWorksUrl} class="mobile-nav-link">{t.howItWorks}</a>
+        {lang === 'hu' ? (
+          <a href="/#ingredients" class="mobile-nav-link">{t.ingredients}</a>
+        ) : (
+          <a href="/en#ingredients" class="mobile-nav-link">{t.ingredients}</a>
+        )}
+        {lang === 'hu' ? (
+          <a href="/#testimonials" class="mobile-nav-link">{t.testimonials}</a>
+        ) : (
+          <a href="/en#testimonials" class="mobile-nav-link">{t.testimonials}</a>
+        )}
+        {lang === 'hu' ? (
+          <a href="/#faq" class="mobile-nav-link">{t.faq}</a>
+        ) : (
+          <a href="/en#faq" class="mobile-nav-link">{t.faq}</a>
+        )}
+      </nav>
+      <div class="mobile-menu-cta">
+        <a href={t.shopUrl} class="btn-primary w-full text-center">{t.buyNow}</a>
+      </div>
+    </div>
+  </div>
+  
+</header>
+
+<style>
+  /* Header base */
+  header {
+    padding: 1rem 1.5rem;
+    background: rgba(253, 251, 247, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+  }
+  
+  header.header-hidden {
+    transform: translateY(-100%);
+  }
+  
+  header.scrolled {
+    padding: 0.75rem 1.5rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+  }
+  
+  .nav-inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Left - Menu + User icon */
+  .nav-left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .menu-toggle:hover {
+    opacity: 0.7;
+  }
+  
+  .hamburger-line {
+    width: 24px;
+    height: 2px;
+    background: #1A1A1A;
+    transition: all 0.3s ease;
+  }
+  
+  .menu-toggle.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  .menu-toggle.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .menu-toggle.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+  
+  /* Center - Logo */
+  .nav-center {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .logo {
+    text-decoration: none;
+  }
+  
+  .logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    background: linear-gradient(135deg, #6D2077, #003B5C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: contrast(1.1);
+  }
+  
+  /* Right - Icons */
+  .nav-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  
+  .nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #1A1A1A;
+    transition: all 0.2s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .nav-icon:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: #6D2077;
+  }
+  
+  /* Nyelvváltó */
+  .lang-switch {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 32px;
+    padding: 0 0.65rem;
+    border-radius: 50px;
+    background: rgba(109, 32, 119, 0.06);
+    color: #6D2077;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
+  
+  .lang-switch:hover {
+    background: #6D2077;
+    color: white;
+  }
+  
+  /* A nyelvváltó pill MINDEN viewporton látszik (desktop + mobile) */
+  
+  .cart-icon {
+    position: relative;
+  }
+  
+  .cart-count {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    background: #6D2077;
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+  
+  /* Ha üres vagy 0, rejtve */
+  .cart-count:empty,
+  .cart-count[data-count="0"] {
+    display: none;
+  }
+  
+  /* Mobile Menu Drawer */
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 100;
+  }
+  
+  .mobile-menu.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .mobile-menu-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 320px;
+    max-width: 85%;
+    height: 100%;
+    background: #FDFBF7;
+    padding: 5rem 2rem 2rem;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .mobile-menu.active .mobile-menu-content {
+    transform: translateX(0);
+  }
+  
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+  }
+  
+  .mobile-nav-link {
+    display: block;
+    padding: 1rem 0;
+    font-size: 1.25rem;
+    font-family: 'Cormorant Garamond', serif;
+    color: #1A1A1A;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    transition: color 0.2s ease;
+  }
+  
+  .mobile-nav-link:hover {
+    color: #6D2077;
+  }
+  
+  /* Mobile nyelvváltó link kissé eltérő stílusú */
+  .mobile-lang-link {
+    color: #6D2077;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+  }
+  
+  .mobile-menu-cta {
+    padding-top: 2rem;
+  }
+  
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    background: #6D2077;
+    color: white;
+    font-weight: 600;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background: #4A1552;
+  }
+
+</style>
+
+<script>
+  // ─────────────────────────────────────────
+  // Nyelvváltó: dinamikus URL kalkulál ás
+  // Az aktuális oldal angol/magyar megfelelőjére irányít, nem mindig a homepage-re.
+  // Ha nincs párja az oldalnak (pl. /aszf), homepage-re esik vissza.
+  // ─────────────────────────────────────────
+  var pathMap = {
+    // Magyar → Angol
+    '/': '/en',
+    '/hogyan-mukodik': '/en/how-it-works',
+    '/vasarlas': '/en/shop',
+    // Angol → Magyar
+    '/en': '/',
+    '/en/how-it-works': '/hogyan-mukodik',
+    '/en/shop': '/vasarlas'
+  };
+  
+  function updateLangSwitchUrls() {
+    var currentPath = window.location.pathname;
+    // Normalizáljuk a trailing slash-eket: /vasarlas/ → /vasarlas
+    if (currentPath.length > 1 && currentPath.charAt(currentPath.length - 1) === '/') {
+      currentPath = currentPath.slice(0, -1);
+    }
+    
+    var targetUrl = pathMap[currentPath];
+    
+    // Ha nincs explicit mapping (pl. /aszf, /adatvedelem), homepage-re visszük
+    if (!targetUrl) {
+      var isOnEnglish = currentPath === '/en' || currentPath.indexOf('/en/') === 0;
+      targetUrl = isOnEnglish ? '/' : '/en';
+    }
+    
+    var desktopSwitch = document.getElementById('lang-switch-desktop');
+    if (desktopSwitch) desktopSwitch.setAttribute('href', targetUrl);
+  }
+  
+  updateLangSwitchUrls();
+  
+  // ─────────────────────────────────────────
+  // Scroll effect + auto-hide on mobile
+  // ─────────────────────────────────────────
+  var nav = document.getElementById('nav');
+  var lastScrollY = 0;
+  var ticking = false;
+  
+  function updateHeader() {
+    var currentScrollY = window.scrollY;
+    
+    if (nav) nav.classList.toggle('scrolled', currentScrollY > 50);
+    
+    // Auto-hide: only on mobile (< 1024px)
+    if (window.innerWidth < 1024) {
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        if (nav) nav.classList.add('header-hidden');
+      } else {
+        if (nav) nav.classList.remove('header-hidden');
+      }
+    } else {
+      if (nav) nav.classList.remove('header-hidden');
+    }
+    
+    lastScrollY = currentScrollY;
+    ticking = false;
+  }
+  
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(updateHeader);
+      ticking = true;
+    }
+  });
+  
+  // ─────────────────────────────────────────
+  // Mobile menu toggle
+  // ─────────────────────────────────────────
+  var menuToggle = document.getElementById('menu-toggle');
+  var mobileMenu = document.getElementById('mobile-menu');
+  
+  if (menuToggle) {
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('active');
+      if (mobileMenu) {
+        mobileMenu.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+      }
+    });
+  }
+  
+  if (mobileMenu) {
+    mobileMenu.addEventListener('click', function(e) {
+      if (e.target === mobileMenu) {
+        if (menuToggle) menuToggle.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+  
+  var mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+  for (var i = 0; i < mobileNavLinks.length; i++) {
+    mobileNavLinks[i].addEventListener('click', function() {
+      if (menuToggle) menuToggle.classList.remove('active');
+      if (mobileMenu) mobileMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  }
+  
+  // ─────────────────────────────────────────
+  // Kosár: badge szinkronizáció + drawer nyitás
+  // ─────────────────────────────────────────
+  var cartToggle = document.getElementById('cart-toggle');
+  var cartCount = document.getElementById('cart-count');
+
+  function updateCartCount() {
+    var count = 0;
+    try {
+      var saved = localStorage.getItem('SALUTÉ-cart');
+      var items = saved ? JSON.parse(saved) : [];
+      if (Array.isArray(items)) {
+        count = items.reduce(function (sum, item) {
+          return sum + (item && item.quantity ? item.quantity : 0);
+        }, 0);
+      }
+    } catch (e) {
+      count = 0;
+    }
+
+    if (cartCount) {
+      cartCount.textContent = count === 0 ? '' : (count > 9 ? '9+' : String(count));
+      cartCount.setAttribute('data-count', String(count));
+    }
+  }
+
+  if (cartToggle) {
+    cartToggle.addEventListener('click', function () {
+      window.dispatchEvent(new CustomEvent('openCart'));
+    });
+  }
+
+  // Kezdeti szinkron + élő frissítés
+  updateCartCount();
+  window.addEventListener('cartUpdated', updateCartCount);
+  window.addEventListener('storage', updateCartCount); // cross-tab szinkron
+</script>

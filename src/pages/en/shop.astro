@@ -1,0 +1,98 @@
+﻿---
+// en/shop.astro - SALUTÉ "Shop" dedicated page (English)
+// Hero section + Shop component
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Shop from '../../components/en/Shop.astro';
+---
+
+<Layout 
+  title="Shop" 
+  description="Choose the SALUTÉ package that suits you — Preventive and Recovery dual formula against hangovers. Free shipping from 2 boxes."
+>
+  
+  <Header lang="en" />
+  
+  <main class="vasarlas-page">
+    
+    <!-- Hero Section -->
+    <section class="vasarlas-hero">
+      <div class="container">
+        <span class="section-label">Shop</span>
+        <h1>Choose the package <span class="gradient-text">that suits you</span></h1>
+        <p class="hero-subtitle">
+          SALUTÉ's dual formula — Preventive and Recovery — serves one goal: 
+          so you don't regret the nights you partied through the next day. 
+          Choose how many nights of support you need and enjoy the evening the way you deserve.
+        </p>
+      </div>
+    </section>
+    
+    <!-- Shop Component (package selector + add to cart) -->
+    <Shop />
+    
+  </main>
+  
+  <Footer lang="en" />
+  
+</Layout>
+
+<style>
+  .vasarlas-page {
+    background: #FDFBF7;
+    color: #1A1A1A;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  
+  .section-label {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #6D2077;
+    margin-bottom: 1rem;
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, #6D2077, #003B5C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Hero — same style as hogyan-mukodik hero */
+  .vasarlas-hero {
+    padding: 10rem 1.5rem 4rem;
+    text-align: center;
+    background: linear-gradient(180deg, #FDFBF7 0%, #F5F0E8 100%);
+  }
+  
+  @media (max-width: 768px) {
+    .vasarlas-hero {
+      padding: 7rem 1.5rem 2.5rem;
+    }
+  }
+  
+  .vasarlas-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 400;
+    color: #1A1A1A;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+    color: #4A4A4A;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+</style>
