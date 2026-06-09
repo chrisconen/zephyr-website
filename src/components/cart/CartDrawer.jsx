@@ -1,4 +1,4 @@
-﻿// CartDrawer.jsx
+// CartDrawer.jsx
 // Standalone slide-in kosár drawer — NEM függ CartContext-től.
 // A komponens localStorage-ból olvas, és globális custom event-ekre reagál:
 //   - "openCart"     → kinyitja a drawer-t

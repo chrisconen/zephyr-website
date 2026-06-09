@@ -1,4 +1,4 @@
-﻿// CartIconStandalone.jsx
+// CartIconStandalone.jsx
 // Önálló kosár ikon ami közvetlenül localStorage-ból olvas
 // Mentsd ide: src/components/cart/CartIconStandalone.jsx
 

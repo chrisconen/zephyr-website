@@ -1,4 +1,4 @@
-﻿// AddToCartButton.jsx
+// AddToCartButton.jsx
 // Standalone kosárba gomb - NEM függ CartContext-től
 // Mentsd ide: src/components/cart/AddToCartButton.jsx
 

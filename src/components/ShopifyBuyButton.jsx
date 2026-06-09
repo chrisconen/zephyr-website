@@ -1,4 +1,4 @@
-﻿// ShopifyBuyButton.jsx
+// ShopifyBuyButton.jsx
 // SALUTÉ Shopify Storefront API integráció
 
 import { useState, useEffect } from 'react';
