@@ -5,9 +5,9 @@
 import { useState, useEffect } from 'react';
 
 // Shopify konfiguráció
-const SHOPIFY_DOMAIN = 'zephyr-hangover.myshopify.com';
+const SHOPIFY_DOMAIN = 'SALUTÉ-hangover.myshopify.com';
 const STOREFRONT_ACCESS_TOKEN = 'a225ffacab411d067a8d8b474e490668';
-const PRODUCT_HANDLE = 'teszt-zephyr-termek';
+const PRODUCT_HANDLE = 'teszt-SALUTÉ-termek';
 
 // GraphQL query
 const PRODUCT_QUERY = `
@@ -50,7 +50,7 @@ async function shopifyFetch(query, variables = {}) {
 // Helper: get cart from localStorage
 function getCart() {
   try {
-    const saved = localStorage.getItem('zephyr-cart');
+    const saved = localStorage.getItem('salute-cart');
     return saved ? JSON.parse(saved) : [];
   } catch {
     return [];
@@ -59,7 +59,7 @@ function getCart() {
 
 // Helper: save cart to localStorage
 function saveCart(items) {
-  localStorage.setItem('zephyr-cart', JSON.stringify(items));
+  localStorage.setItem('salute-cart', JSON.stringify(items));
   // Notify other components
   window.dispatchEvent(new CustomEvent('cartUpdated'));
 }

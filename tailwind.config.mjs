@@ -4,9 +4,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        'zephyr-purple': '#6D2077',
-        'zephyr-blue': '#003B5C',
-        'zephyr-cream': '#FDFBF7',
+        'SALUTÉ-purple': '#6D2077',
+        'SALUTÉ-blue': '#003B5C',
+        'SALUTÉ-cream': '#FDFBF7',
       },
       fontFamily: {
         'display': ['Cormorant Garamond', 'serif'],

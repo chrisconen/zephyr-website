@@ -9,7 +9,7 @@
 import { useState, useEffect, useRef } from 'react';
 
 // Shopify konfiguráció
-const SHOPIFY_DOMAIN = 'zephyr-hangover.myshopify.com';
+const SHOPIFY_DOMAIN = 'SALUTÉ-hangover.myshopify.com';
 const STOREFRONT_ACCESS_TOKEN = 'a225ffacab411d067a8d8b474e490668';
 
 // Cart létrehozása mutation
@@ -46,7 +46,7 @@ async function shopifyFetch(query, variables = {}) {
 // Helper: kosár betöltése localStorage-ból
 function getCart() {
   try {
-    const saved = localStorage.getItem('zephyr-cart');
+    const saved = localStorage.getItem('salute-cart');
     return saved ? JSON.parse(saved) : [];
   } catch {
     return [];
@@ -55,7 +55,7 @@ function getCart() {
 
 // Helper: kosár mentése + cartUpdated event broadcast
 function saveCart(items) {
-  localStorage.setItem('zephyr-cart', JSON.stringify(items));
+  localStorage.setItem('salute-cart', JSON.stringify(items));
   window.dispatchEvent(new CustomEvent('cartUpdated'));
 }
 

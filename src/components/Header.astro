@@ -1,5 +1,5 @@
 ---
-// Header.astro - Zephyr navigáció
+// Header.astro - SALUTÉ navigáció
 // Logo középen, menü bal, kosár+lang+login jobb
 // i18n: lang prop ("hu" default | "en")
 interface Props {
@@ -70,7 +70,7 @@ const t = dict[lang];
     <!-- KÖZÉP: Logo -->
     <div class="nav-center">
       <a href={t.homeUrl} class="logo">
-        <span class="logo-text">Zephyr</span>
+        <span class="logo-text">SALUTÉ</span>
       </a>
     </div>
     
@@ -513,7 +513,7 @@ const t = dict[lang];
   function updateCartCount() {
     var count = 0;
     try {
-      var saved = localStorage.getItem('zephyr-cart');
+      var saved = localStorage.getItem('salute-cart');
       var items = saved ? JSON.parse(saved) : [];
       if (Array.isArray(items)) {
         count = items.reduce(function (sum, item) {

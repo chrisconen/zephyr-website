@@ -1,10 +1,10 @@
 // ShopifyBuyButton.jsx
-// Zephyr Shopify Storefront API integráció
+// SALUTÉ Shopify Storefront API integráció
 
 import { useState, useEffect } from 'react';
 
 // Shopify konfiguráció - CSERÉLNI a végleges adatokra
-const SHOPIFY_DOMAIN = 'zephyr-hangover.myshopify.com';
+const SHOPIFY_DOMAIN = 'SALUTÉ-hangover.myshopify.com';
 const STOREFRONT_ACCESS_TOKEN = 'a225ffacab411d067a8d8b474e490668';
 
 // GraphQL query a termék lekéréséhez
@@ -70,7 +70,7 @@ async function shopifyFetch(query, variables = {}) {
 }
 
 export default function ShopifyBuyButton({
-  productHandle = 'teszt-zephyr-termek',
+  productHandle = 'teszt-SALUTÉ-termek',
   quantity = 1,
   buttonText = 'Megrendelem',
   className = '',

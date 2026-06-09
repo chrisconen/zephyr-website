@@ -11,7 +11,7 @@ export default function CartIconStandalone() {
     // Load initial count
     function updateCount() {
       try {
-        const saved = localStorage.getItem('zephyr-cart');
+        const saved = localStorage.getItem('salute-cart');
         if (saved) {
           const items = JSON.parse(saved);
           const count = items.reduce((sum, item) => sum + item.quantity, 0);

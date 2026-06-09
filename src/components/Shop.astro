@@ -1,6 +1,6 @@
 ---
-// Shop.astro - Zephyr vásárlás szekció
-// 3 csomag: Zephyr Breeze / Flow / Pro (Shopify 1/2/3 doboz variánsok)
+// Shop.astro - SALUTÉ vásárlás szekció
+// 3 csomag: SALUTÉ Breeze / Flow / Pro (Shopify 1/2/3 doboz variánsok)
 ---
 
 <section class="shop">
@@ -11,8 +11,8 @@
       <!-- Bal: Termék kép -->
       <div class="shop-visual">
         <img 
-          src="/images/Zephyr_stick_latvany.webp" 
-          alt="Zephyr doboz" 
+          src="/images/SALUTÉ_stick_latvany.webp" 
+          alt="SALUTÉ doboz" 
           class="product-image"
         />
       </div>
@@ -34,7 +34,7 @@
             <input type="radio" name="package" value="1" checked />
             <div class="package-radio"></div>
             <div class="package-info">
-              <span class="package-name">Zephyr Breeze</span>
+              <span class="package-name">SALUTÉ Breeze</span>
               <span class="package-desc">1 doboz • 3 éjszaka</span>
             </div>
             <div class="package-price">
@@ -50,7 +50,7 @@
             <input type="radio" name="package" value="2" />
             <div class="package-radio"></div>
             <div class="package-info">
-              <span class="package-name">Zephyr Flow</span>
+              <span class="package-name">SALUTÉ Flow</span>
               <span class="package-desc">2 doboz • 6 éjszaka</span>
             </div>
             <div class="package-price">
@@ -66,7 +66,7 @@
             <input type="radio" name="package" value="3" />
             <div class="package-radio"></div>
             <div class="package-info">
-              <span class="package-name">Zephyr Pro</span>
+              <span class="package-name">SALUTÉ Pro</span>
               <span class="package-desc">3 doboz • 9 éjszaka</span>
             </div>
             <div class="package-price">
@@ -396,9 +396,9 @@
   // 2) Shopify variants — lazy load + cache
   //    Csak akkor kérjük le az API-t, ha a user tényleg vásárol.
   // ─────────────────────────────────────────
-  const SHOPIFY_DOMAIN = 'zephyr-hangover.myshopify.com';
+  const SHOPIFY_DOMAIN = 'SALUTÉ-hangover.myshopify.com';
   const STOREFRONT_TOKEN = 'a225ffacab411d067a8d8b474e490668';
-  const PRODUCT_HANDLE = 'teszt-zephyr-termek';
+  const PRODUCT_HANDLE = 'teszt-SALUTÉ-termek';
 
   const PRODUCT_QUERY = `
     query getProduct($handle: String!) {
@@ -438,13 +438,13 @@
   }
 
   let variantsCache: Variant[] | null = null;
-  let productTitle = 'Zephyr';
+  let productTitle = 'SALUTÉ';
 
   async function loadVariants(): Promise<Variant[]> {
     if (variantsCache) return variantsCache;
     try {
       const data = await shopifyFetch(PRODUCT_QUERY, { handle: PRODUCT_HANDLE });
-      productTitle = data.product?.title || 'Zephyr';
+      productTitle = data.product?.title || 'SALUTÉ';
       variantsCache = data.product?.variants?.edges?.map((e: any) => e.node) || [];
     } catch (err) {
       console.error('Shopify product fetch error:', err);
@@ -492,7 +492,7 @@
       }
       
       // LocalStorage frissítése
-      const saved = localStorage.getItem('zephyr-cart');
+      const saved = localStorage.getItem('salute-cart');
       const items: CartItem[] = saved ? JSON.parse(saved) : [];
       
       const existing = items.find(item => item.variantId === variant.id);
@@ -507,7 +507,7 @@
         });
       }
       
-      localStorage.setItem('zephyr-cart', JSON.stringify(items));
+      localStorage.setItem('salute-cart', JSON.stringify(items));
       
       // Events: Header badge frissül, Drawer megnyílik
       window.dispatchEvent(new CustomEvent('cartUpdated'));
