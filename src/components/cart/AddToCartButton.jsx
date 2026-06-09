@@ -50,7 +50,7 @@ async function shopifyFetch(query, variables = {}) {
 // Helper: get cart from localStorage
 function getCart() {
   try {
-    const saved = localStorage.getItem('SALUTÉ-cart');
+    const saved = localStorage.getItem('salute-cart');
     return saved ? JSON.parse(saved) : [];
   } catch {
     return [];
@@ -59,7 +59,7 @@ function getCart() {
 
 // Helper: save cart to localStorage
 function saveCart(items) {
-  localStorage.setItem('SALUTÉ-cart', JSON.stringify(items));
+  localStorage.setItem('salute-cart', JSON.stringify(items));
   // Notify other components
   window.dispatchEvent(new CustomEvent('cartUpdated'));
 }

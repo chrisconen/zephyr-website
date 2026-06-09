@@ -513,7 +513,7 @@ const t = dict[lang];
   function updateCartCount() {
     var count = 0;
     try {
-      var saved = localStorage.getItem('SALUTÉ-cart');
+      var saved = localStorage.getItem('salute-cart');
       var items = saved ? JSON.parse(saved) : [];
       if (Array.isArray(items)) {
         count = items.reduce(function (sum, item) {

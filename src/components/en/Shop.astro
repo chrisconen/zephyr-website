@@ -492,7 +492,7 @@
       }
       
       // LocalStorage frissítése
-      const saved = localStorage.getItem('SALUTÉ-cart');
+      const saved = localStorage.getItem('salute-cart');
       const items: CartItem[] = saved ? JSON.parse(saved) : [];
       
       const existing = items.find(item => item.variantId === variant.id);
@@ -507,7 +507,7 @@
         });
       }
       
-      localStorage.setItem('SALUTÉ-cart', JSON.stringify(items));
+      localStorage.setItem('salute-cart', JSON.stringify(items));
       
       // Events: Header badge frissül, Drawer megnyílik
       window.dispatchEvent(new CustomEvent('cartUpdated'));
