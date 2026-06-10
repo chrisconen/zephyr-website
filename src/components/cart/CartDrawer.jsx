@@ -9,7 +9,7 @@
 import { useState, useEffect, useRef } from 'react';
 
 // Shopify konfiguráció
-const SHOPIFY_DOMAIN = 'SALUTÉ-hangover.myshopify.com';
+const SHOPIFY_DOMAIN = 'zephyr-hangover.myshopify.com';
 const STOREFRONT_ACCESS_TOKEN = 'a225ffacab411d067a8d8b474e490668';
 
 // Cart létrehozása mutation
