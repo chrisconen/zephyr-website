@@ -12,7 +12,7 @@
       <div class="shop-visual">
         <img 
           src="/images/SALUTÉ_stick_latvany.webp" 
-          alt="SALUTÉ box" 
+          alt="Saluté box" 
           class="product-image"
         />
       </div>
@@ -34,7 +34,7 @@
             <input type="radio" name="package" value="1" checked />
             <div class="package-radio"></div>
             <div class="package-info">
-              <span class="package-name">SALUTÉ Breeze</span>
+              <span class="package-name">Saluté Breeze</span>
               <span class="package-desc">1 box • 3 nights</span>
             </div>
             <div class="package-price">
@@ -50,7 +50,7 @@
             <input type="radio" name="package" value="2" />
             <div class="package-radio"></div>
             <div class="package-info">
-              <span class="package-name">SALUTÉ Flow</span>
+              <span class="package-name">Saluté Flow</span>
               <span class="package-desc">2 boxes • 6 nights</span>
             </div>
             <div class="package-price">
@@ -66,7 +66,7 @@
             <input type="radio" name="package" value="3" />
             <div class="package-radio"></div>
             <div class="package-info">
-              <span class="package-name">SALUTÉ Pro</span>
+              <span class="package-name">Saluté Pro</span>
               <span class="package-desc">3 boxes • 9 nights</span>
             </div>
             <div class="package-price">
@@ -438,13 +438,13 @@
   }
 
   let variantsCache: Variant[] | null = null;
-  let productTitle = 'SALUTÉ';
+  let productTitle = 'Saluté';
 
   async function loadVariants(): Promise<Variant[]> {
     if (variantsCache) return variantsCache;
     try {
       const data = await shopifyFetch(PRODUCT_QUERY, { handle: PRODUCT_HANDLE });
-      productTitle = data.product?.title || 'SALUTÉ';
+      productTitle = data.product?.title || 'Saluté';
       variantsCache = data.product?.variants?.edges?.map((e: any) => e.node) || [];
     } catch (err) {
       console.error('Shopify product fetch error:', err);
