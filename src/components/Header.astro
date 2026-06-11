@@ -338,6 +338,7 @@ const t = dict[lang];
     transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     overflow-y: auto;
   }
   
@@ -349,6 +350,7 @@ const t = dict[lang];
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    flex: 0 0 auto;
   }
   
   .mobile-nav-link {
@@ -376,7 +378,9 @@ const t = dict[lang];
   }
   
   .mobile-menu-cta {
-    padding-top: 1.5rem;
+    flex: 0 0 auto;
+    margin-top: 1.25rem;
+    padding-top: 0;
   }
   
   .btn-primary {
